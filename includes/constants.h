@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/17 21:17:11 by hsaadaou         ###   ########.fr       */
+/*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
+/*   Updated: 2021/01/17 21:17:48 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CONSTANTS_H
 
-# include <string.h>
-# include <stdlib.h>
-# include <stdio.h>
+# define CONSTANTS_H
 
-# include "../libft/ft_printf/includes/ft_printf.h"
-# include "../libft/ft_printf/libft/libft.h"
-# include "../libft/get_next_line/get_next_line.h"
-
-# include "constants.h"
-
-void	ft_errors(char	*err);
-void	ft_check_ext(char *path);
+# define INVALID_ARGS "Usage : ./Cub3d [--save] <map.cub>"
+# define TOO_MUCH_ARGS "Too much args>"
+# define INVALID_MAP "Invalid map"
+# define WRONG_FILE_NAME "Not a valid .cub file."
 
 #endif
