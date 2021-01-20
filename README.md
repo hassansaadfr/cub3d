@@ -2,5 +2,5 @@
 
 ## Build the project
 	- make
-	- ./Cube3d ./maps/example-correct-map.cub
+	- ./Cub3d maps/valid_maps/map_1920_1080.cub
 
