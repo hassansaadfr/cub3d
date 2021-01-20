@@ -6,14 +6,14 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:38:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/17 21:19:05 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:23:30 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	ft_errors(char	*err)
+void	ft_errors(char *err)
 {
-	ft_printf("Error.\n%s\n", err);
+	ft_print_msg(err, ERROR_MSG);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 17:20:09 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/17 17:23:17 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/20 16:37:42 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ all		:	$(NAME)
 			${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
 
 $(NAME)	:	${OBJECTS}
-			ar -rcs ${NAME} ${OBJECTS}
+			# ar -rcs ${NAME} ${OBJECTS}
 
 clean	:
 			rm -rf ${OBJECTS}

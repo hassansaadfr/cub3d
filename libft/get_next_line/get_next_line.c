@@ -6,38 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 20:07:22 by hsaadaou          #+#    #+#             */
-/*   Updated: 2020/12/15 20:45:26 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/20 16:40:44 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*get_rest(char *buff)
-{
-	char	*remaining;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	if (!buff)
-		return (0);
-	while (buff[i] && buff[i] != '\n')
-		i++;
-	if (!buff[i])
-	{
-		free(buff);
-		return (0);
-	}
-	if (!(remaining = malloc(sizeof(char) * ((ft_strlen(buff) - i) + 1))))
-		return (0);
-	i++;
-	while (buff[i])
-		remaining[j++] = buff[i++];
-	remaining[j] = '\0';
-	free(buff);
-	return (remaining);
-}
 
 char	*get_correct_line(char *str)
 {

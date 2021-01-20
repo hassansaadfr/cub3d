@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 17:19:55 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/17 17:28:58 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/20 16:38:26 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,7 @@ $(NAME)	:	${OBJECTS}
 			make -C ft_printf
 			cp ft_printf/libftprintf.a $(NAME)
 			make -C get_next_line
-			cp get_next_line/get_next_line.a get_next_line.a
-			ar -rcs ${NAME} get_next_line.a
-			rm get_next_line.a
+			ar -rcs ${NAME} get_next_line/get_next_line.o get_next_line/get_next_line_utils.o
 
 clean	:
 			make clean -C ft_printf

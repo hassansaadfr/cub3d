@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 18:35:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/17 15:43:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/20 13:20:09 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ struct	s_precision {
 	int					after_dot;
 	char				type;
 };
-
-// void	ft_putchar(char c);
-// char	*ft_itoa(long int nb);
-// int		ft_atoi(char *str);
-// char	*ft_substr(char const *s, size_t start, size_t len);
-// void	ft_putstr(const char *s);
-// size_t	ft_strlen(const char *str);
-// char	*ft_strjoin(char const *s1, char const *s2);
-// void	*ft_calloc(size_t count, size_t size);
-// void	ft_bzero(void *s, size_t n);
-// char	*ft_strchr(const char *s, int c);
 
 int		ft_printf(const char *str, ...);
 int		ft_lst_new_prec(t_prec **lst);

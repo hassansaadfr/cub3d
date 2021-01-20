@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 20:15:36 by hsaadaou          #+#    #+#             */
-/*   Updated: 2020/12/15 15:55:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:23:41 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t		ft_strlen(const char *s)
+static size_t	ft_strlen(const char *s)
 {
 	int i;
 
@@ -24,7 +24,7 @@ size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-void		*ft_memmove(void *dst, const void *src, size_t len)
+void			*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char *d;
 	char *s;
@@ -44,7 +44,7 @@ void		*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-char		*join_str(char const *s1, char const *s2)
+char			*join_str(char const *s1, char const *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -66,7 +66,7 @@ char		*join_str(char const *s1, char const *s2)
 	return (remaining);
 }
 
-int			get_nl(char *str)
+int				get_nl(char *str)
 {
 	int i;
 
@@ -80,4 +80,31 @@ int			get_nl(char *str)
 		i++;
 	}
 	return (0);
+}
+
+char			*get_rest(char *buff)
+{
+	char	*remaining;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!buff)
+		return (0);
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (!buff[i])
+	{
+		free(buff);
+		return (0);
+	}
+	if (!(remaining = malloc(sizeof(char) * ((ft_strlen(buff) - i) + 1))))
+		return (0);
+	i++;
+	while (buff[i])
+		remaining[j++] = buff[i++];
+	remaining[j] = '\0';
+	free(buff);
+	return (remaining);
 }

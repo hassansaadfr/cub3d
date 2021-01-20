@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 15:07:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/20 20:38:08 by hsaadaou         ###   ########.fr       */
+/*   Created: 2021/01/20 20:13:36 by hsaadaou          #+#    #+#             */
+/*   Updated: 2021/01/20 20:13:54 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int		main(int argc, char **argv)
+void		free_array_str(char **arr)
 {
-	if (argc == 1)
-		ft_errors(INVALID_ARGS);
-	if (argc > 3)
-		ft_errors(TOO_MUCH_ARGS);
-	if (argc <= 3)
-		ft_launch_game(argv[1]);
-	system("leaks Cub3d");
-	return (0);
+	int	i;
+
+	i = 0;
+	while (arr && arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
