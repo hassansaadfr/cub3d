@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/20 21:04:11 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/21 15:53:58 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,17 @@ NAME	=	cub3d.a
 HEADERS	=	-I./includes
 
 SRCS	=	main.c \
-			srcs/map_check.c \
 			srcs/processing/ft_process_game.c \
 			srcs/utils/errors.c \
 			srcs/utils/print_colors.c \
 			srcs/utils/free_utils.c \
+			srcs/parser/map_check.c \
 			srcs/parser/ft_map_parser.c \
+			srcs/struct_utils/struct_config.c \
 
 OBJECTS	=	${SRCS:.c=.o}
+
+.PHONY	:	all clean fclean re
 
 all		:	$(NAME)
 
@@ -50,4 +53,3 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	all clean fclean re

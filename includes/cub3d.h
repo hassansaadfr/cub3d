@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/20 22:18:20 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/21 17:48:41 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct	s_coord {
 	int		x;
 	int		y;
+	int		exist;
 }				t_coord;
 typedef struct	s_config {
 	t_coord	*resolution;
@@ -49,5 +50,11 @@ void			ft_launch_game(char *path);
 char			**ft_open_and_read(char *path);
 void			free_array_str(char **arr);
 t_config		*ft_parse_map(char **map);
+void			ft_read_array_str(char **array);
+char			**ft_add_line_in_array(char *line, char **array);
+
+int				ft_check_config(t_config *c);
+void			ft_free_config(t_config **config);
+int				ft_alloc_config(t_config **config);
 
 #endif

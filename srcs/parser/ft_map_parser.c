@@ -6,56 +6,74 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/20 23:28:42 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/21 19:24:52 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static t_coord	*ft_parse_resolution(char *str)
+static void		ft_parse_resolution(char *str, t_config **config)
 {
-	t_coord	*coord;
 	int		i;
 
-	coord = malloc(sizeof(t_coord));
 	i = 0;
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
-	coord->x = ft_atoi(str + i);
+	(*config)->resolution->x = ft_atoi(str + i);
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
-	coord->y = ft_atoi(str + i);
-	return (coord);
+	(*config)->resolution->y = ft_atoi(str + i);
+	(*config)->resolution->exist = 1;
+	free(str);
 }
 
-static void		ft_parse_lines(char *line, t_config **config)
+static char		*ft_extract_conf(char *line, int start)
 {
-	if (line[0] == 'R')
-		(*config)->resolution = ft_parse_resolution(line + 1);
-	else if (line[0] == 'S')
-		(*config)->sprite_texture = ft_strtrim(line + 1, " \t");
-	else if (line[0] == 'F')
-		(*config)->floor_color = ft_strtrim(line + 1, " \t");
-	else if (line[0] == 'C')
-		(*config)->ceiling_color = ft_strtrim(line + 1, " \t");
+	char	*tmp;
+	char	*swap;
+
+	tmp = 0;
+	swap = 0;
+	tmp = ft_strtrim(line, " \t");
+	swap = ft_substr(tmp, start, ft_strlen(tmp));
+	free(tmp);
+	tmp = ft_strtrim(swap, " \t");
+	free(swap);
+	return (tmp);
+}
+
+static void		ft_parse_lines(char *map_line, t_config **config)
+{
+	char	*line;
+
+	line = ft_strtrim(map_line, " \t");
+	if (ft_strncmp("R ", line, 2) == 0)
+		ft_parse_resolution(ft_extract_conf(line, 1), config);
+	else if (ft_strncmp("S ", line, 2) == 0)
+		(*config)->sprite_texture = ft_extract_conf(line, 1);
+	else if (ft_strncmp("F ", line, 2) == 0)
+		(*config)->floor_color = ft_extract_conf(line, 1);
+	else if (ft_strncmp("C ", line, 2) == 0)
+		(*config)->ceiling_color = ft_extract_conf(line, 1);
 	else if (ft_strncmp("SO", line, 2) == 0)
-		(*config)->so_texture = ft_strtrim(line + 2, " \t");
+		(*config)->so_texture = ft_extract_conf(line, 2);
 	else if (ft_strncmp("NO", line, 2) == 0)
-		(*config)->no_texture = ft_strtrim(line + 2, " \t");
+		(*config)->no_texture = ft_extract_conf(line, 2);
 	else if (ft_strncmp("WE", line, 2) == 0)
-		(*config)->we_texture = ft_strtrim(line + 2, " \t");
+		(*config)->we_texture = ft_extract_conf(line, 2);
 	else if (ft_strncmp("EA", line, 2) == 0)
-		(*config)->ea_texture = ft_strtrim(line + 2, " \t");
+		(*config)->ea_texture = ft_extract_conf(line, 2);
+	free(line);
 }
 
 t_config		*ft_parse_map(char **map)
 {
 	t_config	*config;
 	int			i;
-	char		*line;
+	int			alloc_result;
 
 	i = 0;
-	config = malloc(sizeof(t_config));
+	alloc_result = ft_alloc_config(&config);
 	if (!config)
 	{
 		free_array_str(map);
@@ -63,9 +81,7 @@ t_config		*ft_parse_map(char **map)
 	}
 	while (map[i])
 	{
-		line = ft_strtrim(map[i], " \t");
-		ft_parse_lines(line, &config);
-		free(line);
+		ft_parse_lines(map[i], &config);
 		i++;
 	}
 	return (config);

@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/20 23:27:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/21 19:29:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-static char		**ft_add_line_in_array(char *line, char **array)
+char		**ft_add_line_in_array(char *line, char **array)
 {
 	char	**out;
 	int		i;
@@ -30,11 +30,10 @@ static char		**ft_add_line_in_array(char *line, char **array)
 	out[i] = ft_strdup(line);
 	out[i + 1] = 0;
 	free_array_str(array);
-	free(line);
 	return (out);
 }
 
-static void		ft_read_array_str(char **array)
+void		ft_read_array_str(char **array)
 {
 	int	i;
 
@@ -46,7 +45,7 @@ static void		ft_read_array_str(char **array)
 	}
 }
 
-void			ft_check_ext(char *path)
+void		ft_check_ext(char *path)
 {
 	char	**extension;
 	int		name_size;
@@ -67,7 +66,7 @@ void			ft_check_ext(char *path)
 	ft_print_msg(START_MAP_PARSING_MSG, SUCCESS_MSG);
 }
 
-char			**ft_open_and_read(char *path)
+char		**ft_open_and_read(char *path)
 {
 	int		fd;
 	char	**file;
@@ -83,12 +82,10 @@ char			**ft_open_and_read(char *path)
 	{
 		if ((trimmed_line = ft_strtrim(line, " \t"))[0] != '\0')
 			file = ft_add_line_in_array(line, file);
-		else
-			free(line);
+		free(line);
 		free(trimmed_line);
 	}
 	free(line);
-	ft_read_array_str(file);
 	close(fd);
 	return (file);
 }
