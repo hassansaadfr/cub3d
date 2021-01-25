@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 17:19:55 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/20 16:38:26 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/24 16:20:35 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,19 @@ NAME	=	libft.a
 all		:	$(NAME)
 
 $(NAME)	:	${OBJECTS}
-			make -C ft_printf
-			cp ft_printf/libftprintf.a $(NAME)
-			make -C get_next_line
-			ar -rcs ${NAME} get_next_line/get_next_line.o get_next_line/get_next_line_utils.o
+			@make -C ft_printf
+			@cp ft_printf/libftprintf.a $(NAME)
+			@make -C get_next_line
+			@ar -rcs ${NAME} get_next_line/get_next_line.o get_next_line/get_next_line_utils.o
 
 clean	:
-			make clean -C ft_printf
-			make clean -C get_next_line
+			@make clean -C ft_printf
+			@make clean -C get_next_line
 
 fclean	:	clean
-			make fclean -C ft_printf
-			make fclean -C get_next_line
-			rm -rf $(NAME)
+			@make fclean -C ft_printf
+			@make fclean -C get_next_line
+			@rm -rf $(NAME)
 
 re		:	fclean all
 

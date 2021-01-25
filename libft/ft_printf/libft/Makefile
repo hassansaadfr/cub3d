@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 22:04:03 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/17 16:09:57 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/24 16:29:50 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,20 +36,21 @@ BONUS_OBJS	=	$(BONUS:.c=.o)
 all:			$(NAME)
 
 .c.o:
-				${CC} ${FLAGS} -I ${HEADERS} -c $< -o ${<:.c=.o}
+				@${CC} ${FLAGS} -I ${HEADERS} -c $< -o ${<:.c=.o}
 
 $(NAME) :		${OBJECTS}
-				ar -rcs libft.a ${OBJECTS}
+				@ar -rcs libft.a ${OBJECTS}
 
 clean:
-				rm -rf ${OBJECTS} ${BONUS_OBJS}
+				@rm -rf ${OBJECTS} ${BONUS_OBJS}
 
 fclean:			clean
-				rm -rf $(NAME)
+				@rm -rf $(NAME)
 
 re:				fclean all
 
 bonus:			$(OBJECTS) $(BONUS_OBJS)
-				ar rc libft.a $(OBJECTS) $(BONUS_OBJS)
+				@ar rc libft.a $(OBJECTS) $(BONUS_OBJS)
+				@printf "\033[92mLibft compiled\n\033[0m"
 
 .PHONY:			all clean fclean re bonus

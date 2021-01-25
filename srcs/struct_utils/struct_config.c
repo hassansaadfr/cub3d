@@ -6,18 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:33:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/21 19:24:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/24 21:26:08 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void		ft_free(char *str)
-{
-	if (str == NULL)
-		return ;
-	free(str);
-}
 
 static int	ft_print_undefined_params(char *name)
 {
@@ -28,13 +21,20 @@ static int	ft_print_undefined_params(char *name)
 void		ft_free_config(t_config **config)
 {
 	free((*config)->resolution);
-	ft_free((*config)->no_texture);
-	ft_free((*config)->so_texture);
-	ft_free((*config)->we_texture);
-	ft_free((*config)->ea_texture);
-	ft_free((*config)->sprite_texture);
-	ft_free((*config)->floor_color);
-	ft_free((*config)->ceiling_color);
+	if ((*config)->no_texture)
+		free((*config)->no_texture);
+	if ((*config)->so_texture)
+		free((*config)->so_texture);
+	if ((*config)->we_texture)
+		free((*config)->we_texture);
+	if ((*config)->ea_texture)
+		free((*config)->ea_texture);
+	if ((*config)->sprite_texture)
+		free((*config)->sprite_texture);
+	if ((*config)->floor_color)
+		free((*config)->floor_color);
+	if ((*config)->ceiling_color)
+		free((*config)->ceiling_color);
 	free(*config);
 }
 
@@ -67,7 +67,7 @@ int			ft_alloc_config(t_config **config)
 	*config = malloc(sizeof(t_config));
 	if (!*config)
 		return (0);
-	(*config)->resolution = malloc(sizeof(t_coord));
+	(*config)->resolution = ft_alloc_coord(0, 0);
 	if (!(*config)->resolution)
 		return (0);
 	(*config)->resolution->exist = 0;

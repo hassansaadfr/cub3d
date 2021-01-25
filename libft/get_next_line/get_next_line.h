@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 19:59:36 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/20 16:40:53 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:27:05 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1000
+# define BUFFER_SIZE 100000
 
 int					get_next_line(int fd, char **line);
 int					get_nl(char *str);

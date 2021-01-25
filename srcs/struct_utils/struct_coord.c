@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   struct_coord.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 15:07:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/24 21:53:00 by hsaadaou         ###   ########.fr       */
+/*   Created: 2021/01/24 21:25:54 by hsaadaou          #+#    #+#             */
+/*   Updated: 2021/01/24 22:08:03 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int		main(int argc, char **argv)
+t_coord		*ft_alloc_coord(int x, int y)
 {
-	if (argc == 1)
-		ft_errors(INVALID_ARGS);
-	if (argc > 3)
-		ft_errors(TOO_MUCH_ARGS);
-	if (argc <= 3)
-		ft_launch_game(argv[1]);
-	system("leaks Cub3d");
-	return (0);
+	t_coord		*coord;
+
+	coord = malloc(sizeof(t_coord));
+	coord->x = x;
+	coord->y = y;
+	coord->exist = 0;
+	return (coord);
+}
+
+void		ft_free_coord(t_coord *coord)
+{
+	free(coord);
+	coord = 0;
 }

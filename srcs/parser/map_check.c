@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/21 19:29:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:21:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,36 @@ char		**ft_add_line_in_array(char *line, char **array)
 
 void		ft_read_array_str(char **array)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
+	j = 0;
+	c = 0;
 	while (array[i])
 	{
-		ft_printf("%s\n", array[i]);
+		while (array[i][j])
+		{
+			c = array[i][j];
+			if (c == 'X')
+			{
+				ft_putstr("\033[1;32m");
+				ft_putchar(c);
+				ft_putstr("\033[1;39m");
+			}
+			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				ft_putstr("\033[1;34m");
+				ft_putchar(c);
+				ft_putstr("\033[1;39m");
+			}
+			else
+				ft_putchar(c);
+			j++;
+		}
+		ft_putchar('\n');
+		j = 0;
 		i++;
 	}
 }

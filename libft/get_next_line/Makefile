@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 17:20:09 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/20 16:37:42 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/24 16:28:49 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,15 @@ OBJECTS	=	${SRCS:.c=.o}
 all		:	$(NAME)
 
 .c.o	:
-			${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
+			@${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
 
 $(NAME)	:	${OBJECTS}
-			# ar -rcs ${NAME} ${OBJECTS}
-
+			@printf "\033[92mGNL Compiled\n\033[0m"
 clean	:
-			rm -rf ${OBJECTS}
+			@rm -rf ${OBJECTS}
 
 fclean	:	clean
-			rm -rf $(NAME)
+			@rm -rf $(NAME)
 
 re		:	fclean all
 

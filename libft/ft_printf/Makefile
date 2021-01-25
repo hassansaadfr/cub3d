@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 18:31:54 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/17 16:06:30 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/24 16:29:08 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,20 +32,20 @@ OBJECTS		=	${SRCS:.c=.o}
 all:			$(NAME)
 
 .c.o:
-				${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
+				@${CC} ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
 
 $(NAME) :		${OBJECTS}
-				make bonus -C $(LIBFT)
+				@make bonus -C $(LIBFT)
 				@cp libft/libft.a ./$(NAME)
 				@ar -rcs ${NAME} ${OBJECTS}
-
+				@printf "\033[92mPrintf Compiled\n\033[0m"
 clean:
-				rm -rf ${OBJECTS}
-				make clean -C libft
+				@rm -rf ${OBJECTS}
+				@make clean -C libft
 
 fclean:			clean
-				rm -rf $(NAME) ${OBJECTS}
-				make fclean -C libft
+				@rm -rf $(NAME) ${OBJECTS}
+				@make fclean -C libft
 
 re:				fclean all
 
