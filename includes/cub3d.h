@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/24 21:26:58 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:51:39 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,12 @@ void			ft_free_config(t_config **config);
 int				ft_alloc_config(t_config **config);
 t_coord			*ft_alloc_coord(int x, int y);
 void			ft_free_coord(t_coord *coord);
+int				get_array_size(char **arr);
+char			**ft_copy_arr(char **original);
+
+int				ft_get_queue_size(t_coord **arr);
+t_coord			*ft_get_last(t_coord **old);
+void			ft_free_stack(t_coord **old);
+t_coord			**add_to_coord_queue(t_coord **old, int x, int y);
 
 #endif

@@ -6,42 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/24 22:50:44 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/26 21:33:29 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-static t_list	*ft_list_pop(t_list **list)
-{
-	struct s_list	*cur;
-	struct s_list	*next;
-
-	cur = *list;
-	next = *list;
-	if (*list == NULL || (*list)->next == NULL)
-	{
-		*list = NULL;
-		return (cur);
-	}
-	while (next->next != NULL)
-	{
-		cur = next;
-		next = next->next;
-    }
-	cur->next = NULL;
-	return (next);
-}
-
-static int		get_array_size(char **arr)
-{
-	int		i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 static int		ft_should_be_treated(int x, int y, char **map)
 {
@@ -49,64 +18,66 @@ static int		ft_should_be_treated(int x, int y, char **map)
 
 	height = get_array_size(map);
 	if (x < 0 || y < 0 || x >= (int)ft_strlen(map[y]) || y >= height)
+	{
+		return (-1);
+	}
+	if (map[y][x] == '1')
 		return (0);
+	if (map[y][x] == '0' || map[y][x] == '2')
+	{
+		map[y][x] = 'X';
+		return (1);
+	}
 	return (map[y][x] == '0' || map[y][x] == '2');
 }
 
-static void		ft_add_to_stack(t_list **stack, int x, int y)
+int				ft_clean_stack(int err, t_coord *p, t_coord **stack, char **map)
 {
-	t_coord		*coord;
-	t_list		*tmp;
+	int		i;
 
-	tmp = 0;
-	coord = malloc(sizeof(t_coord));
-	coord->x = x;
-	coord->y = y;
-	tmp = ft_lstnew(coord);
-	ft_lstadd_back(stack, tmp);
-	ft_lstclear(&tmp, 0);
+	i = 0;
+	if (err == -1)
+	{
+		free(p);
+		p = 0;
+	}
+	while (stack[i])
+	{
+		free(stack[i]);
+		i++;
+	}
+	free(stack);
+	ft_read_array_str(map);
+	free_array_str(map);
+	if (err == -1)
+		return (-1);
+	return (1);
 }
 
-int				ft_flood_fill(t_coord *player_pos, char **map)
+int				ft_flood_fill(t_coord *player_pos, char **original)
 {
-	t_list	*stack;
+	t_coord	**stack;
 	t_coord	*p;
-	int		map_size;
-	t_list	*tmp;
+	char	**map;
+	int		err;
 
-	map_size = get_array_size(map);
-	stack = ft_lstnew(player_pos);
-	while (ft_lstsize(stack) > 0)
-	{
-		tmp = ft_list_pop(&stack);
-		p = tmp->content;
-		if (ft_should_be_treated(p->x - 1, p->y, map))
-		{
-			ft_add_to_stack(&stack, p->x - 1, p->y);
-			map[p->y][p->x - 1] = 'X';
-		}
-		if (ft_should_be_treated(p->x, p->y - 1, map))
-		{
-			ft_add_to_stack(&stack, p->x, p->y - 1);
-			map[p->y - 1][p->x] = 'X';
-		}
-		if (ft_should_be_treated(p->x, p->y + 1, map))
-		{
-			ft_add_to_stack(&stack, p->x, p->y + 1);
-			map[p->y + 1][p->x] = 'X';
-		}
-		if (ft_should_be_treated(p->x + 1, p->y, map))
-		{
-			ft_add_to_stack(&stack, p->x + 1, p->y);
-			map[p->y][p->x + 1] = 'X';
-		}
-		tmp->content = 0;
-		p = 0;
-		free(tmp);
-	}
-	ft_lstiter(stack, (void*)ft_free_coord);
-	ft_lstclear(&stack, NULL);
+	err = 0;
+	map = ft_copy_arr(original);
 	stack = 0;
-	ft_read_array_str(map);
-	return (1);
+	stack = add_to_coord_queue(stack, player_pos->x, player_pos->y);
+	while (ft_get_queue_size(stack) > 0 && err != -1)
+	{
+		p = ft_get_last(stack);
+		if ((err = ft_should_be_treated(p->x - 1, p->y, map)))
+			stack = add_to_coord_queue(stack, p->x - 1, p->y);
+		if ((err = ft_should_be_treated(p->x, p->y - 1, map)))
+			stack = add_to_coord_queue(stack, p->x, p->y - 1);
+		if ((err = ft_should_be_treated(p->x, p->y + 1, map)))
+			stack = add_to_coord_queue(stack, p->x, p->y + 1);
+		if ((err = ft_should_be_treated(p->x + 1, p->y, map)))
+			stack = add_to_coord_queue(stack, p->x + 1, p->y);
+		free(p);
+		p = 0;
+	}
+	return (ft_clean_stack(err, p, stack, map));
 }

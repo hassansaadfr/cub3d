@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/24 21:27:11 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/26 20:51:52 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS	=	main.c \
 			srcs/processing/ft_flood_fill.c \
 			srcs/utils/errors.c \
 			srcs/utils/print_colors.c \
-			srcs/utils/free_utils.c \
+			srcs/utils/array_utils.c \
+			srcs/utils/stack_utils.c \
 			srcs/parser/map_check.c \
 			srcs/parser/ft_map_parser.c \
 			srcs/struct_utils/struct_config.c \

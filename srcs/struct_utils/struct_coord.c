@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 21:25:54 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/24 22:08:03 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/26 18:56:44 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_coord		*ft_alloc_coord(int x, int y)
 	coord = malloc(sizeof(t_coord));
 	coord->x = x;
 	coord->y = y;
-	coord->exist = 0;
+	coord->exist = 1;
 	return (coord);
 }
 
