@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/26 21:33:29 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 03:06:21 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_should_be_treated(int x, int y, char **map)
 	int	height;
 
 	height = get_array_size(map);
-	if (x < 0 || y < 0 || x >= (int)ft_strlen(map[y]) || y >= height)
+	if (x < 0 || y < 0 || y >= height || x >= (int)ft_strlen(map[y]))
 	{
 		return (-1);
 	}
@@ -28,6 +28,8 @@ static int		ft_should_be_treated(int x, int y, char **map)
 		map[y][x] = 'X';
 		return (1);
 	}
+	if (map[y][x] == ' ')
+		return (-1);
 	return (map[y][x] == '0' || map[y][x] == '2');
 }
 
