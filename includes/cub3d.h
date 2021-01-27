@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 18:01:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 18:33:50 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_config {
 void			ft_errors(char	*err);
 void			ft_print_msg(char *str, int color);
 void			ft_check_ext(char *path);
+int				ft_check_colors(const char *color);
 void			ft_launch_game(char *path);
 char			**ft_open_and_read(char *path);
 void			free_array_str(char **arr);

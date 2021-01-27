@@ -6,12 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:13:36 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 18:11:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 19:11:54 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 char		**ft_add_line_in_array(char *line, char **array)
 {
@@ -73,6 +72,7 @@ void		free_array_str(char **arr)
 		i++;
 	}
 	free(arr);
+	arr = 0;
 }
 
 int			get_array_size(char **arr)

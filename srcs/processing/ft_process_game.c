@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 17:29:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 19:16:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,11 @@ void			ft_launch_game(char *path)
 	map_config = ft_open_and_read(path);
 	config = ft_parse_map(map_config);
 	if (!ft_check_config(config))
-	{
-		ft_free_config(&config);
-		ft_errors("The map is invalid.");
-	}
+		ft_print_msg("The map is invalid.", ERROR_MSG);
 	else
 	{
 		ft_print_msg("Configuration OK", SUCCESS_MSG);
 		map = ft_extract_map(map_config);
-		// ft_read_array_str(map);
 		player_pos = ft_get_player_pos(map, player_pos);
 		if (ft_flood_fill(player_pos->x, player_pos->y, ft_copy_arr(map)) != -1)
 			ft_print_msg("MAP OK", SUCCESS_MSG);

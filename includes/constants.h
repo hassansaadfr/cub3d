@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 17:30:50 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 18:44:16 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@
 # define EA_UNDEFINED "Path to east texture is not defined"
 # define S_UNDEFINED "Path to sprite texture is not defined"
 # define F_UNDEFINED "Floor color is not defined"
-# define C_UNDEFINED "Ceiling texture is not defined"
+# define C_UNDEFINED "Ceiling color is not defined"
 # define R_UNDEFINED "The map resolution is not defined"
+
+# define F_INVALID "Floor color is not valid"
+# define C_INVALID "Ceiling color is not valid"
 
 # define START_MAP_PARSING_MSG "Parsing the map please wait"
 

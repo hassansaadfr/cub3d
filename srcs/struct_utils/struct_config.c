@@ -6,19 +6,19 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:33:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 17:12:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 19:12:58 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	ft_print_undefined_params(char *name)
+static int		ft_print_undefined_params(char *name)
 {
 	ft_print_msg(name, ERROR_MSG);
 	return (0);
 }
 
-void		ft_free_config(t_config **config)
+void			ft_free_config(t_config **config)
 {
 	free((*config)->resolution);
 	if ((*config)->no_texture)
@@ -38,7 +38,7 @@ void		ft_free_config(t_config **config)
 	free(*config);
 }
 
-int			ft_check_config(t_config *c)
+static int		ft_check_undefined_params(t_config *c)
 {
 	int		res;
 
@@ -62,12 +62,24 @@ int			ft_check_config(t_config *c)
 	return (res);
 }
 
-// static int		ft_check_colors(char *color)
-// {
+int				ft_check_config(t_config *c)
+{
+	if (!ft_check_undefined_params(c))
+		return (0);
+	if (!ft_check_colors(c->floor_color))
+	{
+		ft_print_msg(F_INVALID, ERROR_MSG);
+		return (0);
+	}
+	if (!ft_check_colors(c->ceiling_color))
+	{
+		ft_print_msg(C_INVALID, ERROR_MSG);
+		return (0);
+	}
+	return (1);
+}
 
-// }
-
-int			ft_alloc_config(t_config **config)
+int				ft_alloc_config(t_config **config)
 {
 	*config = malloc(sizeof(t_config));
 	if (!*config)
