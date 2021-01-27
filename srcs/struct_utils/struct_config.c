@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:33:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/24 21:26:08 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:12:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int			ft_check_config(t_config *c)
 		res = ft_print_undefined_params(R_UNDEFINED);
 	return (res);
 }
+
+// static int		ft_check_colors(char *color)
+// {
+
+// }
 
 int			ft_alloc_config(t_config **config)
 {

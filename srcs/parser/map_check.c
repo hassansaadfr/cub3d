@@ -6,60 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/26 21:34:33 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 18:09:11 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char		**ft_add_line_in_array(char *line, char **array)
-{
-	char	**out;
-	int		i;
-
-	i = 0;
-	while (array && array[i])
-		i++;
-	out = malloc(sizeof(char*) * (i + 2));
-	i = 0;
-	while (array && array[i])
-	{
-		out[i] = ft_strdup(array[i]);
-		i++;
-	}
-	out[i] = ft_strdup(line);
-	out[i + 1] = 0;
-	free_array_str(array);
-	return (out);
-}
-
-void		ft_read_array_str(char **array)
-{
-	int		i;
-	int		j;
-	char	c;
-
-	i = 0;
-	j = 0;
-	c = 0;
-	while (array[i])
-	{
-		while (array[i][j])
-		{
-			c = array[i][j];
-			if (c == 'X')
-				ft_printf("\033[1;32m%c\033[1;39m", c);
-			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				ft_printf("\033[1;32m%c\033[1;39m", c);
-			else
-				ft_putchar(c);
-			j++;
-		}
-		ft_putchar('\n');
-		j = 0;
-		i++;
-	}
-}
 
 void		ft_check_ext(char *path)
 {

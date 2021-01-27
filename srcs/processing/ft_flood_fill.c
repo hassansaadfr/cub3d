@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 04:27:38 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:31:10 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ static int		ft_clean_stack(int err, t_list **stack, char **map)
 	i = 0;
 	if (err == -1)
 		ft_lstclear(stack, free);
-	ft_read_array_str(map);
+	if (DEBUG)
+		ft_read_array_str(map);
+	free_array_str(map);
 	if (err == -1)
 		return (-1);
 	return (1);

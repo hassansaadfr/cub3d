@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 04:28:24 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 18:01:17 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "../libft/get_next_line/get_next_line.h"
 
 # include "constants.h"
+
+# define DEBUG 1
 
 typedef struct	s_coord {
 	int		x;

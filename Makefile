@@ -6,13 +6,13 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/27 04:28:34 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/27 18:01:07 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	clang
 
-FLAGS	=	-Wall -Wextra -Werror -g
+FLAGS	=	-Wall -Wextra -Werror -g -o Cub3d
 
 NAME	=	cub3d.a
 
@@ -42,7 +42,7 @@ $(NAME)	:	${OBJECTS}
 			@make -C libft
 			@cp libft/libft.a $(NAME)
 			@ar -rcs ${NAME} ${OBJECTS}
-			@${CC} ${FLAGS} ${OBJECTS} ${HEADERS} ${NAME} -o Cub3d
+			@${CC} ${FLAGS} ${OBJECTS} ${HEADERS} ${NAME}
 			@printf "\033[92mCub3d compiled\n\033[0m"
 
 clean	:
