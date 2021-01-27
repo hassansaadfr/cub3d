@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/26 20:51:39 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/27 03:25:42 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			free_array_str(char **arr);
 t_config		*ft_parse_map(char **map);
 void			ft_read_array_str(char **array);
 char			**ft_add_line_in_array(char *line, char **array);
-int				ft_flood_fill(t_coord *player_pos, char **map);
+int				ft_flood_fill(int x, int y, char **map);
 
 int				ft_check_config(t_config *c);
 void			ft_free_config(t_config **config);
