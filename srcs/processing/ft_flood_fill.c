@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 18:58:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/28 23:58:58 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		ft_clean_stack(int err, t_list **stack, char **map)
 		ft_read_array_str(map);
 	free_array_str(map);
 	if (err == -1)
-		return (-1);
+		return (0);
 	return (1);
 }
 
@@ -80,14 +80,16 @@ static void		ft_add_to_stack(t_list **stack, int x, int y)
 	ft_lstadd_back(stack, tmp);
 }
 
-int				ft_flood_fill(int x, int y, char **map)
+int				ft_flood_fill(t_config **config, char **map)
 {
 	t_list	*stack;
 	t_list	*tmp;
 	t_coord	*p;
 	int		err;
 
-	p = ft_alloc_coord(x, y);
+	free_array_str(map);
+	map = ft_copy_arr((*config)->map);
+	p = ft_alloc_coord((*config)->player_pos->x, (*config)->player_pos->y);
 	stack = ft_lstnew(p);
 	err = 0;
 	while (ft_lstsize(stack) > 0 && err != -1)

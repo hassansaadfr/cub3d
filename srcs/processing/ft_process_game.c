@@ -6,42 +6,42 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 19:16:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 00:15:45 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static t_coord	*ft_get_player_pos(char **map, t_coord *player_pos)
+static int	ft_get_player_pos(t_config **config, char **map)
 {
 	int		x;
 	int		y;
 
-	player_pos = malloc(sizeof(t_coord));
-	if (!player_pos)
-		return (player_pos);
 	x = 0;
 	y = 0;
-	player_pos->exist = 0;
-	while (map[y])
+	(void)map;
+	(*config)->player_pos->exist = 0;
+	while ((*config)->map[y])
 	{
-		while (map[y][x])
+		while ((*config)->map[y][x])
 		{
-			if (ft_strrchr("NSEW", map[y][x]))
+			if (ft_strrchr("NSEW", (*config)->map[y][x]))
 			{
-				player_pos->x = x;
-				player_pos->y = y;
-				player_pos->exist++;
+				(*config)->player_pos->x = x;
+				(*config)->player_pos->y = y;
+				(*config)->player_pos->exist++;
 			}
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	return (player_pos);
+	if ((*config)->player_pos->exist == 1)
+		return (1);
+	return (0);
 }
 
-static char		**ft_extract_map(char **map)
+char		**ft_extract_map(char **map)
 {
 	int		i;
 	char	**out;
@@ -59,29 +59,37 @@ static char		**ft_extract_map(char **map)
 void			ft_launch_game(char *path)
 {
 	char		**map_config;
-	char		**map;
 	t_config	*config;
-	t_coord		*player_pos;
 
-	map = 0;
-	player_pos = 0;
+	config = ft_alloc_config();
 	ft_check_ext(path);
 	map_config = ft_open_and_read(path);
-	config = ft_parse_map(map_config);
-	if (!ft_check_config(config))
-		ft_print_msg("The map is invalid.", ERROR_MSG);
-	else
+	if (ft_all_checks(&config, map_config))
 	{
 		ft_print_msg("Configuration OK", SUCCESS_MSG);
-		map = ft_extract_map(map_config);
-		player_pos = ft_get_player_pos(map, player_pos);
-		if (ft_flood_fill(player_pos->x, player_pos->y, ft_copy_arr(map)) != -1)
-			ft_print_msg("MAP OK", SUCCESS_MSG);
-		else
-			ft_print_msg("MAP NOT VALID", ERROR_MSG);
 	}
-	free(player_pos);
-	ft_free_config(&config);
-	free_array_str(map_config);
-	free_array_str(map);
+	ft_free_config(config);
+	config = 0;
+	map_config = 0;
+}
+
+int		ft_all_checks(t_config **config, char **map)
+{
+	int		(*functions_arr[5])(t_config **config, char **map);
+	int		result;
+	int		i;
+
+	result = 1;
+	i = 0;
+	functions_arr[0] = ft_parse_map;
+	functions_arr[1] = ft_get_player_pos;
+	functions_arr[2] = ft_check_config;
+	functions_arr[3] = ft_flood_fill;
+	functions_arr[4] = 0;
+	while (functions_arr[i] && result)
+	{
+		result = (*functions_arr[i]) (config, map);
+		i++;
+	}
+	return (result);
 }

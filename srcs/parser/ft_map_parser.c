@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/21 19:24:52 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/28 23:50:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char		*ft_extract_conf(char *line, int start)
 	return (tmp);
 }
 
-static void		ft_parse_lines(char *map_line, t_config **config)
+static void		ft_parse_lines(t_config **config, char *map_line)
 {
 	char	*line;
 
@@ -52,9 +52,9 @@ static void		ft_parse_lines(char *map_line, t_config **config)
 	else if (ft_strncmp("S ", line, 2) == 0)
 		(*config)->sprite_texture = ft_extract_conf(line, 1);
 	else if (ft_strncmp("F ", line, 2) == 0)
-		(*config)->floor_color = ft_extract_conf(line, 1);
+		(*config)->f_color = ft_parse_color(line);
 	else if (ft_strncmp("C ", line, 2) == 0)
-		(*config)->ceiling_color = ft_extract_conf(line, 1);
+		(*config)->c_color = ft_parse_color(line);
 	else if (ft_strncmp("SO", line, 2) == 0)
 		(*config)->so_texture = ft_extract_conf(line, 2);
 	else if (ft_strncmp("NO", line, 2) == 0)
@@ -66,23 +66,18 @@ static void		ft_parse_lines(char *map_line, t_config **config)
 	free(line);
 }
 
-t_config		*ft_parse_map(char **map)
+int		ft_parse_map(t_config **config, char **map)
 {
-	t_config	*config;
 	int			i;
-	int			alloc_result;
 
 	i = 0;
-	alloc_result = ft_alloc_config(&config);
 	if (!config)
-	{
-		free_array_str(map);
-		ft_errors(MALLOC_ERROR);
-	}
+		return (0);
 	while (map[i])
 	{
-		ft_parse_lines(map[i], &config);
+		ft_parse_lines(config, map[i]);
 		i++;
 	}
-	return (config);
+	(*config)->map = ft_extract_map(map);
+	return (1);
 }

@@ -6,13 +6,13 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/28 01:41:50 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/28 23:52:28 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	clang
 
-FLAGS	=	-Wall -Wextra -Werror -g -o Cub3d
+FLAGS	=	-Wall -Wextra -Werror -g -o cub3D
 
 MLX_F	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
@@ -28,9 +28,11 @@ SRCS	=	main.c \
 			srcs/utils/colors.c \
 			srcs/utils/array_utils.c \
 			srcs/parser/map_check.c \
+			srcs/parser/color_parser.c \
 			srcs/parser/ft_map_parser.c \
-			srcs/struct_utils/struct_config.c \
-			srcs/struct_utils/struct_coord.c \
+			srcs/struct_utils/struct_config_alloc.c \
+			srcs/struct_utils/struct_config_free.c \
+			srcs/struct_utils/struct_config_utils.c \
 
 OBJECTS	=	${SRCS:.c=.o}
 
@@ -46,7 +48,7 @@ $(NAME)	:	${OBJECTS}
 			@cp libft/libft.a $(NAME)
 			@ar -rcs ${NAME} ${OBJECTS}
 			@${CC} ${FLAGS} ${MLX_F} ${OBJECTS} ${HEADERS} ${NAME}
-			@printf "\033[92mCub3d compiled\n\033[0m"
+			@printf "\033[92mcub3d compiled\n\033[0m"
 
 clean	:
 			@make clean -C libft
@@ -55,7 +57,7 @@ clean	:
 fclean	:	clean
 			@make fclean -C libft
 			@rm -rf $(NAME)
-			@rm Cub3d
+			@rm cub3d
 
 re		:	fclean all
 
