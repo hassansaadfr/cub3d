@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 18:33:50 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/28 01:43:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "../libft/get_next_line/get_next_line.h"
 
 # include "constants.h"
+
+# include <mlx.h>
 
 # define DEBUG 1
 
@@ -64,5 +66,8 @@ t_coord			*ft_alloc_coord(int x, int y);
 void			ft_free_coord(t_coord *coord);
 int				get_array_size(char **arr);
 char			**ft_copy_arr(char **original);
+
+int				create_trgb(int t, int r, int g, int b);
+int				add_shade(double shade, int color);
 
 #endif
