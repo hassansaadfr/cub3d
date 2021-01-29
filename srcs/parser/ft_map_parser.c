@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/28 23:50:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:26:28 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static void		ft_parse_lines(t_config **config, char *map_line)
 	else if (ft_strncmp("S ", line, 2) == 0)
 		(*config)->sprite_texture = ft_extract_conf(line, 1);
 	else if (ft_strncmp("F ", line, 2) == 0)
-		(*config)->f_color = ft_parse_color(line);
+		ft_parse_color(line, (*config)->f_color);
 	else if (ft_strncmp("C ", line, 2) == 0)
-		(*config)->c_color = ft_parse_color(line);
+		ft_parse_color(line, (*config)->c_color);
 	else if (ft_strncmp("SO", line, 2) == 0)
 		(*config)->so_texture = ft_extract_conf(line, 2);
 	else if (ft_strncmp("NO", line, 2) == 0)

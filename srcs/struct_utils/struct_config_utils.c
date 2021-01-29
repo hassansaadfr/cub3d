@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:20:47 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/28 22:56:06 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:05:34 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,5 @@ static int		ft_check_undefined_params(t_config *c)
 int		ft_check_config(t_config **config, char **map)
 {
 	(void)map;
-	if (!ft_check_undefined_params(*config))
-		return (0);
-	return (1);
+	return (ft_check_undefined_params(*config));
 }

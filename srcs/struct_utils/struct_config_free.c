@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:20:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 00:23:30 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:26:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void		ft_free_config(t_config *config)
 {
 	free_array_str(config->map);
-	ft_free_color(config->c_color);
-	ft_free_color(config->f_color);
-	ft_free_coord(config->resolution);
-	ft_free_coord(config->player_pos);
+	free(config->c_color);
+	free(config->f_color);
+	free(config->resolution);
+	free(config->player_pos);
 	if (config->no_texture)
 		free(config->no_texture);
 	if (config->so_texture)
@@ -32,14 +32,3 @@ void		ft_free_config(t_config *config)
 	free(config);
 }
 
-void		ft_free_coord(t_coord *coord)
-{
-	free(coord);
-	coord = 0;
-}
-
-void		ft_free_color(t_color *color)
-{
-	free(color);
-	color = 0;
-}

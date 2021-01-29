@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/29 14:41:06 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/29 15:22:10 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ CC		=	clang
 
 FLAGS	=	-Wall -Wextra -Werror -g -o cub3D
 
-MLX_F	=
-# MLX_F	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_F	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 NAME	=	cub3D
 
@@ -42,8 +41,7 @@ OBJECTS	=	${SRCS:.c=.o}
 all		:	$(NAME)
 
 .c.o	:
-			# @${CC} ${FLAGS} -I ${HEADERS} -Imlx -c $< -o ${<:.c=.o}
-			@${CC} ${FLAGS} -I ${HEADERS} -c $< -o ${<:.c=.o}
+			@${CC} ${FLAGS} -I ${HEADERS} -Imlx -c $< -o ${<:.c=.o}
 
 $(NAME)	:	${OBJECTS}
 			@make -C libft
