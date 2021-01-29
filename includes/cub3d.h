@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 14:35:29 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 14:41:11 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # include "constants.h"
 
-# include <mlx.h>
+// # include <mlx.h>
 
 # define DEBUG 1
 
