@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/28 23:35:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 14:35:29 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# include "../libft/ft_printf/includes/ft_printf.h"
-# include "../libft/ft_printf/libft/libft.h"
-# include "../libft/get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 
 # include "constants.h"
 

@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 18:31:54 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/24 16:29:08 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/29 14:22:34 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS		=	ft_printf.c srcs/parse_args.c srcs/ft_lst_init.c \
 				srcs/ft_arg_c.c srcs/ft_arg_d.c srcs/ft_arg_p.c \
 				srcs/ft_arg_s.c srcs/ft_arg_x.c
 
-LIBFT		=	libft
+LIBFT		=	../
 
 HEADERS		=	-I./includes
 

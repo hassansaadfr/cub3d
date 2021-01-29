@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/28 23:52:28 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/29 14:39:18 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS	=	-Wall -Wextra -Werror -g -o cub3D
 
 MLX_F	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
-NAME	=	cub3d.a
+NAME	=	cub3D
 
 HEADERS	=	-I./includes
 
