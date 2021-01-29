@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:25:51 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:39:30 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_color			*ft_alloc_color(void);
 int				get_array_size(char **arr);
 char			**ft_copy_arr(char **original);
 char			**ft_extract_map(char **map);
+int				ft_check_struct_color(t_color *color);
 
 int				create_trgb(int t, int r, int g, int b);
 

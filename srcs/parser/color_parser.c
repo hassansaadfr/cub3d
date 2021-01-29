@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:32:35 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:25:41 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:05:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		ft_check_color_validity(char *color)
 	return (ft_atoi(color));
 }
 
-int			ft_parse_color(char *str, t_color *color)
+int				ft_parse_color(char *str, t_color *color)
 {
 	int		i;
 	char	**splitted;
@@ -44,7 +44,7 @@ int			ft_parse_color(char *str, t_color *color)
 	while (splitted[i])
 	{
 		if ((tmp = ft_check_color_validity(splitted[i] + 1)) == -1)
-			return (0);
+			break ;
 		if (i == 0)
 			(color)->r = tmp;
 		if (i == 1)
@@ -54,5 +54,32 @@ int			ft_parse_color(char *str, t_color *color)
 		i++;
 	}
 	free_array_str(splitted);
+	return (1);
+}
+
+static int		color_is_valid(int c)
+{
+	if (c < 0 || c > 255)
+		return (0);
+	return (1);
+}
+
+int				ft_check_struct_color(t_color *color)
+{
+	if (!color_is_valid(color->r))
+	{
+		ft_print_msg("Red color is invalid", ERROR_MSG);
+		return (0);
+	}
+	if (!color_is_valid(color->g))
+	{
+		ft_print_msg("Green color is invalid", ERROR_MSG);
+		return (0);
+	}
+	if (!color_is_valid(color->r))
+	{
+		ft_print_msg("Blue color is invalid", ERROR_MSG);
+		return (0);
+	}
 	return (1);
 }

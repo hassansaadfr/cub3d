@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/28 23:58:58 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:03:52 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static int		ft_clean_stack(int err, t_list **stack, char **map)
 		ft_read_array_str(map);
 	free_array_str(map);
 	if (err == -1)
+	{
+		ft_print_msg("Invalid map", ERROR_MSG);
 		return (0);
+	}
 	return (1);
 }
 
@@ -87,7 +90,6 @@ int				ft_flood_fill(t_config **config, char **map)
 	t_coord	*p;
 	int		err;
 
-	free_array_str(map);
 	map = ft_copy_arr((*config)->map);
 	p = ft_alloc_coord((*config)->player_pos->x, (*config)->player_pos->y);
 	stack = ft_lstnew(p);

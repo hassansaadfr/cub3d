@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:20:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:26:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:05:33 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ void		ft_free_config(t_config *config)
 		free(config->sprite_texture);
 	free(config);
 }
-

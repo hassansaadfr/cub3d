@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 20:07:22 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 14:15:15 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:06:55 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*join_str(char const *s1, char const *s2)
+char	*join_str(char const *s1, char const *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -34,7 +34,7 @@ char			*join_str(char const *s1, char const *s2)
 	return (remaining);
 }
 
-int				get_nl(char *str)
+int		get_nl(char *str)
 {
 	int i;
 
@@ -50,7 +50,7 @@ int				get_nl(char *str)
 	return (0);
 }
 
-char			*get_rest(char *buff)
+char	*get_rest(char *buff)
 {
 	char	*remaining;
 	int		i;

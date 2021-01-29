@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 00:15:45 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:04:22 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char		**ft_extract_map(char **map)
 	return (out);
 }
 
-void			ft_launch_game(char *path)
+void		ft_launch_game(char *path)
 {
 	char		**map_config;
 	t_config	*config;
@@ -66,14 +66,11 @@ void			ft_launch_game(char *path)
 	map_config = ft_open_and_read(path);
 	if (ft_all_checks(&config, map_config))
 	{
-		ft_print_msg("Configuration OK", SUCCESS_MSG);
+		ft_free_config(config);
 	}
-	ft_free_config(config);
-	config = 0;
-	map_config = 0;
 }
 
-int		ft_all_checks(t_config **config, char **map)
+int			ft_all_checks(t_config **config, char **map)
 {
 	int		(*functions_arr[5])(t_config **config, char **map);
 	int		result;
@@ -86,10 +83,15 @@ int		ft_all_checks(t_config **config, char **map)
 	functions_arr[2] = ft_check_config;
 	functions_arr[3] = ft_flood_fill;
 	functions_arr[4] = 0;
-	while (functions_arr[i] && result)
+	while (functions_arr[i] && result == 1)
 	{
-		result = (*functions_arr[i]) (config, map);
+		result = (*functions_arr[i])(config, map);
 		i++;
 	}
+	if (!result)
+		ft_free_config(*config);
+	else
+		ft_print_msg("Configuration OK", SUCCESS_MSG);
+	free_array_str(map);
 	return (result);
 }

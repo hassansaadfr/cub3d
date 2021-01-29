@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/29 15:22:10 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/29 16:03:29 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,7 @@ clean	:
 
 fclean	:	clean
 			@make fclean -C libft
-			@rm -rf $(NAME)
-			@rm cub3d
+			@rm cub3D cub3d.a
 
 re		:	fclean all
 

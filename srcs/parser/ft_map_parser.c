@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:26:28 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:05:08 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void		ft_parse_lines(t_config **config, char *map_line)
 	free(line);
 }
 
-int		ft_parse_map(t_config **config, char **map)
+int				ft_parse_map(t_config **config, char **map)
 {
 	int			i;
 
@@ -77,6 +77,15 @@ int		ft_parse_map(t_config **config, char **map)
 	{
 		ft_parse_lines(config, map[i]);
 		i++;
+	}
+	if (!ft_check_struct_color((*config)->c_color))
+		return (0);
+	if (!ft_check_struct_color((*config)->f_color))
+		return (0);
+	if ((*config)->resolution->x < 0 || (*config)->resolution->y < 0)
+	{
+		ft_print_msg("Invalid resolution", ERROR_MSG);
+		return (0);
 	}
 	(*config)->map = ft_extract_map(map);
 	return (1);
