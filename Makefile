@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/29 16:03:29 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/30 12:15:24 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SRCS	=	main.c \
 			srcs/struct_utils/struct_config_alloc.c \
 			srcs/struct_utils/struct_config_free.c \
 			srcs/struct_utils/struct_config_utils.c \
+			srcs/screen/common.c \
+			srcs/screen/hooks.c \
+			srcs/screen/draw_utils.c \
 
 OBJECTS	=	${SRCS:.c=.o}
 

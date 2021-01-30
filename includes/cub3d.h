@@ -6,12 +6,14 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:39:30 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/30 12:09:08 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# include <mlx.h>
 
 # include <string.h>
 # include <stdlib.h>
@@ -24,35 +26,10 @@
 # include "../libft/libft.h"
 
 # include "constants.h"
+# include "struct.h"
 
-// # include <mlx.h>
 
 # define DEBUG 1
-
-typedef struct	s_coord {
-	int			x;
-	int			y;
-	int			exist;
-}				t_coord;
-
-typedef struct	s_color {
-	int			r;
-	int			g;
-	int			b;
-	int			a;
-}				t_color;
-typedef struct	s_config {
-	t_coord		*resolution;
-	t_coord		*player_pos;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
-	char		*sprite_texture;
-	t_color		*f_color;
-	t_color		*c_color;
-	char		**map;
-}				t_config;
 
 void			ft_errors(char	*err);
 void			ft_print_msg(char *str, int color);
@@ -79,5 +56,14 @@ char			**ft_extract_map(char **map);
 int				ft_check_struct_color(t_color *color);
 
 int				create_trgb(int t, int r, int g, int b);
+int				add_shade(double shade, int color);
+
+void			init_window(t_config *c);
+int				key_hook(int keycode, t_vars *vars);
+
+void			vertical_line(int x, int y, int max_height, t_data *img);
+void			horizontal_line(int x, int y, int max_width, t_data *img);
+void			dessine_grille(t_coord size, t_coord *resolution, t_data *img);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

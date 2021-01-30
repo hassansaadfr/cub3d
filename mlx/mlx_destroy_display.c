@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 15:07:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 22:00:34 by hsaadaou         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
-#include <mlx.h>
-int		main(int argc, char **argv)
-{
-	if (argc == 1)
-		ft_errors(INVALID_ARGS);
-	if (argc > 3)
-		ft_errors(TOO_MUCH_ARGS);
-	if (argc <= 3)
-		ft_launch_game(argv[1]);
-	system("leaks cub3D");
+#include "mlx_int.h"
 
-	return (0);
+int	mlx_destroy_display(t_xvar *xvar)
+{
+	XCloseDisplay(xvar->display);
 }

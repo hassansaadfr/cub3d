@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 03:55:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 16:03:52 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/30 00:13:55 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		ft_should_be_treated(int x, int y, char **map)
 	{
 		return (-1);
 	}
-	if (map[y][x] == ' ')
+	if (!ft_strchr("012NSEWX", map[y][x]))
 		return (-1);
 	if (map[y][x] == '1')
 		return (0);

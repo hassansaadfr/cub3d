@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 16:04:22 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/01/29 21:58:17 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		ft_launch_game(char *path)
 	map_config = ft_open_and_read(path);
 	if (ft_all_checks(&config, map_config))
 	{
+		init_window(config);
 		ft_free_config(config);
 	}
 }
