@@ -6,15 +6,15 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/30 12:15:24 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/01/30 20:50:07 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	clang
 
-FLAGS	=	-Wall -Wextra -Werror -g -o cub3D
+FLAGS	=	-Wall -Wextra -Werror -g
 
-MLX_F	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_F	=	-L./libft -lft -I/usr/local/include -L/usr/local/lib -lmlx -L/usr/include -lm -lbsd -lX11 -lXext
 
 NAME	=	cub3D
 
@@ -44,13 +44,13 @@ OBJECTS	=	${SRCS:.c=.o}
 all		:	$(NAME)
 
 .c.o	:
-			@${CC} ${FLAGS} -I ${HEADERS} -Imlx -c $< -o ${<:.c=.o}
+			@${CC} ${FLAGS} ${HEADERS} -o $@ -c $<
 
 $(NAME)	:	${OBJECTS}
 			@make -C libft
 			@cp libft/libft.a $(NAME)
 			@ar -rcs ${NAME} ${OBJECTS}
-			@${CC} ${FLAGS} ${MLX_F} ${OBJECTS} ${HEADERS} ${NAME}
+			@${CC} ${FLAGS} ${MLX_F} ${OBJECTS} ${HEADERS} -o $(NAME)
 			@printf "\033[92mcub3d compiled\n\033[0m"
 
 clean	:
