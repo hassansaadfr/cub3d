@@ -16,7 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_printf/includes/ft_printf.h"
+# include "ft_printf.h"
 
 # define BUFFER_SIZE 10000
 

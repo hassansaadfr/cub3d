@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static t_coord	map_size(char **map)
 {
@@ -33,7 +33,7 @@ static t_coord	map_size(char **map)
 	return (size);
 }
 
-static void	get_screen_size(void *mlx, int *sizex, int *sizey)
+static t_coord	*get_screen_size(void *mlx, t_coord *res)
 {
 	int	x;
 	int	y;
@@ -41,30 +41,25 @@ static void	get_screen_size(void *mlx, int *sizex, int *sizey)
 	x = 0;
 	y = 0;
 	mlx_get_screen_size(mlx, &x, &y);
-	if (*sizex > x)
-		*sizex = x;
-	if (*sizey > y)
-		*sizey = y;
+	if (res->x > x)
+		res->x = x;
+	if (res->y > y)
+		res->y = y;
+	return (res);
 }
 
 void init_window(t_config *c)
 {
-	int		x;
-	int		y;
 	t_vars	vars;
 
-	x = c->resolution->x;
-	y = c->resolution->y;
-	get_screen_size(vars.mlx, &x, &y);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, x,y, "cub3d");
+	c->resolution = get_screen_size(vars.mlx, c->resolution);
+	vars.win = mlx_new_window(vars.mlx, c->resolution->x,c->resolution->y, "cub3d");
 	vars.img.img = mlx_new_image(vars.mlx, c->resolution->x, c->resolution->y);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel, &vars.img.line_length,
 								 &vars.img.endian);
 	dessine_grille(map_size(c->map), c->resolution, &vars.img);
-	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
+	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop(vars.mlx);
-	return ;
 }
-

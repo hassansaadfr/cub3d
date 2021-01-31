@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int key_hook(int keycode, t_vars *vars)
 {
@@ -18,13 +18,13 @@ int key_hook(int keycode, t_vars *vars)
 	printf("hook %d\n", keycode);
 	if (keycode == ESCAPE)
 	{
-		 mlx_destroy_window(vars->mlx, vars->win);
-		 system("leaks cub3D");
+		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_loop_end(vars->mlx);
 	}
-	if (keycode == 126)
+	if (keycode == DOWN)
 	{
-		int i = 0;
-		int j = 0;
+		int i = 100;
+		int j = 100;
 		while (i < 900)
 		{
 			my_mlx_pixel_put(&(vars->img), i, j, create_trgb(0,255,100,10));

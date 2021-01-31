@@ -13,7 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "mlx.h"
+# include "libft.h"
 
 # include <string.h>
 # include <stdlib.h>
@@ -23,7 +24,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# include "../libft/libft.h"
 
 # include "constants.h"
 # include "struct.h"

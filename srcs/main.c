@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
-#include <mlx.h>
+#include "../includes/cub3d.h"
 int		main(int argc, char **argv)
 {
 	if (argc == 1)

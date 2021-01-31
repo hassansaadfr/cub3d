@@ -12,10 +12,12 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "../../libft.h"
+
+# include "libft.h"
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
+
 # define HEXA_LOWER "0123456789abcdef"
 # define HEXA_UPPER "0123456789ABCDEF"
 # define NOT_SET -1

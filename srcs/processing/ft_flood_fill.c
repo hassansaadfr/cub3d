@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static int		ft_should_be_treated(int x, int y, char **map)
 {
@@ -35,9 +35,6 @@ static int		ft_should_be_treated(int x, int y, char **map)
 
 static int		ft_clean_stack(int err, t_list **stack, char **map)
 {
-	int		i;
-
-	i = 0;
 	if (err == -1)
 		ft_lstclear(stack, free);
 	if (DEBUG)

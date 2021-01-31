@@ -41,10 +41,10 @@
 # define ERROR_MSG -1
 # define CLEAR_CONSOLE -2
 
-# define ESCAPE 53
-# define UP 126
-# define DOWN 125
-# define RIGHT 124
-# define LEFT 123
+# define ESCAPE 65307
+# define UP 65362
+# define DOWN 65364
+# define RIGHT 65364
+# define LEFT 65364
 
 #endif

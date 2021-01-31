@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -24,7 +24,7 @@ void		vertical_line(int x, int y, int max_height, t_data *img)
 {
 	while (y < max_height)
 	{
-		my_mlx_pixel_put(img, x - 1, y, create_trgb(0, 0, 255, 255));
+		my_mlx_pixel_put(img, x, y, create_trgb(0, 0, 255, 255));
 		y++;
 	}
 
@@ -34,7 +34,7 @@ void		horizontal_line(int x, int y, int max_width, t_data *img)
 {
 	while (x < max_width)
 	{
-		my_mlx_pixel_put(img, x, y - 1, create_trgb(0, 0, 255, 255));
+		my_mlx_pixel_put(img, x, y, create_trgb(0, 0, 255, 255));
 		x++;
 	}
 }
@@ -48,13 +48,13 @@ void		dessine_grille(t_coord size, t_coord *resolution, t_data *img)
 	i = 0;
 	nb_x = resolution->x / size.x;
 	nb_y = resolution->y  / size.y;
-	while (i <= size.x)
+	while (i < size.y)
 	{
 		horizontal_line(0, nb_y * i, resolution->x, img);
 		i++;
 	}
 	i = 0;
-	while (i <= size.y)
+	while (i <= size.x)
 	{
 		vertical_line(nb_x * i,0, resolution->y, img);
 		i++;

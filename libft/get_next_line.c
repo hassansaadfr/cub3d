@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*join_str(char const *s1, char const *s2)
+static char	*join_str(char const *s1, char const *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -34,7 +34,7 @@ char	*join_str(char const *s1, char const *s2)
 	return (remaining);
 }
 
-int		get_nl(char *str)
+static int	get_nl(char *str)
 {
 	int i;
 
@@ -50,7 +50,7 @@ int		get_nl(char *str)
 	return (0);
 }
 
-char	*get_rest(char *buff)
+static char	*get_rest(char *buff)
 {
 	char	*remaining;
 	int		i;
@@ -77,7 +77,7 @@ char	*get_rest(char *buff)
 	return (remaining);
 }
 
-char	*get_correct_line(char *str)
+static char	*get_correct_line(char *str)
 {
 	int		i;
 	char	*remaining;

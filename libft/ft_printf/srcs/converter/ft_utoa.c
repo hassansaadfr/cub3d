@@ -43,11 +43,6 @@ char			*ft_utoa(unsigned int nb)
 	str[len--] = '\0';
 	if (nbr == 0)
 		str[0] = 48;
-	if (nbr < 0)
-	{
-		str[0] = '-';
-		nbr = nbr * -1;
-	}
 	while (nbr > 0)
 	{
 		str[len] = '0' + (nbr % 10);
