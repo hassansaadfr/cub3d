@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/30 12:23:52 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/01 01:22:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int key_hook(int keycode, t_vars *vars)
 	if (keycode == ESCAPE)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_loop_end(vars->mlx);
+		// mlx_loop_end(vars->mlx); Only for linux
 	}
 	if (keycode == DOWN)
 	{

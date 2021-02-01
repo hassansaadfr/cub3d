@@ -6,11 +6,12 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:07:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 22:00:34 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/01 01:18:42 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
+
 int		main(int argc, char **argv)
 {
 	if (argc == 1)

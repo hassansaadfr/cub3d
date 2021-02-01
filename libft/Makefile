@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 22:04:03 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/01/29 14:36:04 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/02/01 01:15:38 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,13 @@ OBJS			=	${SRC_FILES:.c=.o}
 
 HEAD			=	includes
 
-CC				=	gcc
+CC				=	clang
 
 CFLAGS			=	-Wall -Werror -Wextra
 
 NAME			=	libft.a
 
-.c.o			:		
+.c.o			:
 					${CC} ${CFLAGS} -I ${HEAD} -c $< -o ${<:.c=.o}
 
 ${NAME}			:	${OBJS}
