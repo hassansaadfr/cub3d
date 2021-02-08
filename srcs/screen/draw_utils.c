@@ -24,7 +24,7 @@ void		vertical_line(int x, int y, int max_height, t_data *img)
 {
 	while (y < max_height)
 	{
-		my_mlx_pixel_put(img, x, y, create_trgb(0, 0, 255, 255));
+		my_mlx_pixel_put(img, x, y, create_trgb(0, 255, 255, 255));
 		y++;
 	}
 
@@ -34,7 +34,7 @@ void		horizontal_line(int x, int y, int max_width, t_data *img)
 {
 	while (x < max_width)
 	{
-		my_mlx_pixel_put(img, x, y, create_trgb(0, 0, 255, 255));
+		my_mlx_pixel_put(img, x, y, create_trgb(0, 255, 255, 255));
 		x++;
 	}
 }

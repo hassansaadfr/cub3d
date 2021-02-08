@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/01 01:18:20 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/07 16:35:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,8 @@ void			vertical_line(int x, int y, int max_height, t_data *img);
 void			horizontal_line(int x, int y, int max_width, t_data *img);
 void			dessine_grille(t_coord size, t_coord *resolution, t_data *img);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+// temp
+void			draw_2d(char **map, t_data *img);
 
 #endif

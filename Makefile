@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/01 01:20:36 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/02/07 16:28:02 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS			=	main.c \
 					screen/common.c \
 					screen/hooks.c \
 					screen/draw_utils.c \
+					screen/draw_map_2d.c
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
@@ -41,7 +42,7 @@ CFLAGS			=	-Wall -Werror -Wextra -g
 
 LIBFT_DIR		=	libft
 
-MLX_DIR			=	mlx/mlx_mac
+MLX_DIR			=	mlx/mlx_linux
 
 LDFLAGS			=	-L ${LIBFT_DIR} -L ${MLX_DIR}
 
@@ -49,7 +50,7 @@ MLX_LINUX		=	-lm -lft -lmlx -lXext -lX11
 
 MLX_MAC			=	-Lmlx  -lft -lmlx -framework OpenGL -framework AppKit
 
-LIBS			=	${MLX_MAC}
+LIBS			=	${MLX_LINUX}
 
 .c.o			:
 					${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
