@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/10 20:25:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/11 09:10:22 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@
 # define BLUE 0xff
 # define LIGHT_GRAY 0xd3d3d3
 
-# define MAP_CUBE_SIZE 9
-# define MAP_PLAYER_SIZE (MAP_CUBE_SIZE / 2)
+# define MAP_CUBE_SIZE 17
+# define MAP_PLAYER_SIZE 4
+
+# define PI 3.14159265359
 
 #endif

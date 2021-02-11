@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/10 16:19:24 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/11 09:09:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,17 @@ typedef struct	s_data
 	int			endian;
 }				t_data;
 
+typedef struct	s_player {
+	int			pa;
+	t_coord		player_pos;
+}				t_player;
+
 typedef struct	s_vars {
-    void		*mlx;
-    void		*win;
+	void		*mlx;
+	void		*win;
 	t_data		img;
 	t_config	*c;
-	t_coord		player_pos;
+	t_player	player;
 }				t_vars;
 
 #endif

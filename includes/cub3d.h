@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/10 19:13:41 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/11 09:08:42 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-
 # include "constants.h"
 # include "struct.h"
-
 
 # define DEBUG 1
 
