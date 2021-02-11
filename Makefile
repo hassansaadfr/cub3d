@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/07 16:28:02 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/02/09 16:16:35 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS			=	main.c \
 					screen/common.c \
 					screen/hooks.c \
 					screen/draw_utils.c \
-					screen/draw_map_2d.c
+					screen/draw_map_2d.c \
+					engine/move_player.c \
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 

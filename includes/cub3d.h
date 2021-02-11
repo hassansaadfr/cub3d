@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/07 16:35:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/10 19:13:41 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,17 @@ int				add_shade(double shade, int color);
 void			init_window(t_config *c);
 int				key_hook(int keycode, t_vars *vars);
 
-void			vertical_line(int x, int y, int max_height, t_data *img);
-void			horizontal_line(int x, int y, int max_width, t_data *img);
-void			dessine_grille(t_coord size, t_coord *resolution, t_data *img);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			ft_draw_img(t_vars *vars, int x, int y);
 
-// temp
-void			draw_2d(char **map, t_data *img);
+void			move_north(t_vars *vars);
+void			move_south(t_vars *vars);
+void			move_east(t_vars *vars);
+void			move_west(t_vars *vars);
+
+void			draw_minimap(t_vars *vars);
+void			draw_player(t_vars *vars, t_coord *pos);
+void			ft_init_minimap(t_vars *vars);
+t_coord			*ft_calc_pos_in_map(t_vars *vars);
 
 #endif

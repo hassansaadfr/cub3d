@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/03 16:00:48 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/10 16:19:24 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct	s_vars {
     void		*mlx;
     void		*win;
 	t_data		img;
+	t_config	*c;
+	t_coord		player_pos;
 }				t_vars;
 
 #endif
