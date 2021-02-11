@@ -20,6 +20,11 @@ typedef struct	s_coord {
 	int			exist;
 }				t_coord;
 
+typedef struct	s_pos {
+	float		x;
+	float		y;
+}				t_float_pos;
+
 typedef struct	s_color {
 	int			r;
 	int			g;
@@ -50,8 +55,8 @@ typedef struct	s_data
 }				t_data;
 
 typedef struct	s_player {
-	int			pa;
-	t_coord		player_pos;
+	float		pa;
+	t_float_pos	p_pos;
 }				t_player;
 
 typedef struct	s_vars {

@@ -56,8 +56,8 @@
 # define BLUE 0xff
 # define LIGHT_GRAY 0xd3d3d3
 
-# define MAP_CUBE_SIZE 17
-# define MAP_PLAYER_SIZE 4
+# define MAP_CUBE_SIZE 20
+# define MAP_PLAYER_SIZE MAP_CUBE_SIZE / 2
 
 # define PI 3.14159265359
 
