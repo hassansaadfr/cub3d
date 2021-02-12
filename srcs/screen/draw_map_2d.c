@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/11 09:07:34 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/12 14:44:44 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ static void	draw_cube(t_coord *pos, int size, int color, t_data *img)
 	}
 }
 
-void		draw_player(t_vars *vars, t_float_pos *pos)
+static int	ft_can_draw_ray(t_vars *vars, int i)
 {
-	t_coord coord;
+	int		x;
+	int		y;
 
-	coord.x = (int)pos->x * MAP_CUBE_SIZE;
-	coord.y = (int)pos->y * MAP_CUBE_SIZE;
-	draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
+	x = vars->player.p_pos.x + vars->player.pdx * i;
+	y = vars->player.p_pos.y + vars->player.pdy * i;
+	x /= MAP_CUBE_SIZE;
+	y /= MAP_CUBE_SIZE;
+	return (vars->c->map[y][x] != '1');
 }
 
 void		draw_minimap(t_vars *vars)
@@ -72,6 +75,33 @@ void		draw_minimap(t_vars *vars)
 	}
 }
 
+void		draw_player(t_vars *vars)
+{
+	int		i;
+	int		line_size;
+	t_coord coord;
+
+	i = 0;
+	line_size = 10000;
+	draw_minimap(vars);
+	while (i < line_size)
+	{
+
+		if (ft_can_draw_ray(vars, i))
+		{
+			my_mlx_pixel_put(&vars->img, vars->player.p_pos.x + (vars->player.pdx * i),
+			vars->player.p_pos.y + (vars->player.pdy * i), RED);
+		}
+		else
+			break;
+		i++;
+	}
+	coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
+	coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
+	draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
+	ft_draw_img(vars, 0, 0);
+}
+
 void		ft_init_minimap(t_vars *vars)
 {
 	int		x_px;
@@ -79,10 +109,13 @@ void		ft_init_minimap(t_vars *vars)
 
 	x_px = vars->c->player_pos->x;
 	y_px = vars->c->player_pos->y;
-	vars->player.p_pos.x =  vars->c->player_pos->x + 0.5;
-	vars->player.p_pos.y =  vars->c->player_pos->y + 0.5;
+	vars->player.p_pos.x =  (vars->c->player_pos->x + 0.5) * MAP_CUBE_SIZE;
+	vars->player.p_pos.y = (vars->c->player_pos->y + 0.5) * MAP_CUBE_SIZE;
 	vars->c->map[vars->c->player_pos->y][vars->c->player_pos->x] = '0';
+	vars->player.pa = 3*(PI/2);
+	vars->player.pdx = cos(vars->player.pa) * 5;
+	vars->player.pdy = sin(vars->player.pa) * 5;
 	draw_minimap(vars);
-	draw_player(vars, &vars->player.p_pos);
+	draw_player(vars);
 	ft_draw_img(vars, 0, 0);
 }

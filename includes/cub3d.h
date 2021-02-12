@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/11 09:08:42 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/12 13:32:43 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 
 # include "constants.h"
 # include "struct.h"
@@ -61,6 +62,7 @@ int				key_hook(int keycode, t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			ft_draw_img(t_vars *vars, int x, int y);
+void			ft_set_bg(t_vars *vars);
 
 void			move_north(t_vars *vars);
 void			move_south(t_vars *vars);
@@ -68,7 +70,7 @@ void			move_east(t_vars *vars);
 void			move_west(t_vars *vars);
 
 void			draw_minimap(t_vars *vars);
-void			draw_player(t_vars *vars, t_coord *pos);
+void			draw_player(t_vars *vars);
 void			ft_init_minimap(t_vars *vars);
 t_coord			*ft_calc_pos_in_map(t_vars *vars);
 

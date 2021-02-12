@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/11 09:09:02 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/12 12:35:36 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_data
 
 typedef struct	s_player {
 	float		pa;
+	float		pdx;
+	float		pdy;
 	t_float_pos	p_pos;
 }				t_player;
 

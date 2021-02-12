@@ -5,5 +5,5 @@
 *.a
 **/*.a
 **/*.o
-Cub3d
+cub3D
 .DS_Store

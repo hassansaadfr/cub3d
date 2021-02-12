@@ -6,86 +6,97 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/11 09:02:21 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/12 13:27:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	ft_player_can_move(t_float_pos pos, char **map)
+{
+	int		x;
+	int		y;
+
+	x = pos.x / MAP_CUBE_SIZE;
+	y = pos.y / MAP_CUBE_SIZE;
+	return (map[y][x] == '0' || map[y][x] == '2');
+}
+
 void	move_north(t_vars *vars)
 {
-	t_coord	*pos;
+	int	x;
+	int	y;
 	char	c;
 
-	vars->player.player_pos.y -= 1;
-	pos = ft_calc_pos_in_map(vars);
-	c = vars->c->map[pos->y][pos->x];
-	if (c == '0')
+	vars->player.p_pos.x += vars->player.pdx;
+	vars->player.p_pos.y += vars->player.pdy;
+	x = vars->player.p_pos.x / MAP_CUBE_SIZE;
+	y = vars->player.p_pos.y / MAP_CUBE_SIZE;
+	c = vars->c->map[y][x];
+	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
-		vars->c->player_pos = pos;
-		draw_minimap(vars);
-		draw_player(vars, &vars->player.player_pos);
-		ft_draw_img(vars, 0, 0);
+		vars->c->player_pos->x = x;
+		vars->c->player_pos->y = y;
+		draw_player(vars);
 	}
 	else
-		vars->player.player_pos.y += 1;
+	{
+		vars->player.p_pos.x -= vars->player.pdx;
+		vars->player.p_pos.y -= vars->player.pdy;
+	}
 }
 
 void	move_south(t_vars *vars)
 {
-	t_coord	*pos;
+	int	x;
+	int	y;
 	char	c;
 
-	vars->player.player_pos.y += MAP_PLAYER_SIZE + 1;
-	pos = ft_calc_pos_in_map(vars);
-	c = vars->c->map[pos->y][pos->x];
-	if (c == '0')
+	vars->player.p_pos.x -= vars->player.pdx;
+	vars->player.p_pos.y -= vars->player.pdy;
+	x = vars->player.p_pos.x / MAP_CUBE_SIZE;
+	y = vars->player.p_pos.y / MAP_CUBE_SIZE;
+	c = vars->c->map[y][x];
+	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
-		vars->player.player_pos.y -= MAP_PLAYER_SIZE;
-		vars->c->player_pos = pos;
-		draw_minimap(vars);
-		draw_player(vars, &vars->player.player_pos);
-		ft_draw_img(vars, 0, 0);
+		vars->c->player_pos->x = x;
+		vars->c->player_pos->y = y;
+		draw_player(vars);
 	}
 	else
-		vars->player.player_pos.y -= MAP_PLAYER_SIZE + 1;
+	{
+		vars->player.p_pos.x += vars->player.pdx;
+		vars->player.p_pos.y += vars->player.pdy;
+	}
 }
 
 void	move_east(t_vars *vars)
 {
-	t_coord	*pos;
-	char	c;
+	int		i;
+	int		line_size;
 
-	vars->player.player_pos.x -= 1;
-	pos = ft_calc_pos_in_map(vars);
-	c = vars->c->map[pos->y][pos->x];
-	if (c == '0')
-	{
-		vars->c->player_pos = pos;
-		draw_minimap(vars);
-		draw_player(vars, &vars->player.player_pos);
-		ft_draw_img(vars, 0, 0);
-	}
-	else
-		vars->player.player_pos.x += 1;
+	i = 0;
+	line_size = 5;
+
+	vars->player.pa -= 0.1;
+	if (vars->player.pa < 0)
+		vars->player.pa += 2* PI;
+	vars->player.pdx = cos(vars->player.pa) * 5;
+	vars->player.pdy = sin(vars->player.pa) * 5;
+	draw_player(vars);
 }
 
 void	move_west(t_vars *vars)
 {
-	t_coord	*pos;
-	char	c;
+	int		i;
+	int		line_size;
 
-	vars->player.player_pos.x += MAP_PLAYER_SIZE + 1;
-	pos = ft_calc_pos_in_map(vars);
-	c = vars->c->map[pos->y][pos->x];
-	if (c == '0')
-	{
-		vars->player.player_pos.x -= MAP_PLAYER_SIZE;
-		vars->c->player_pos = pos;
-		draw_minimap(vars);
-		draw_player(vars, &vars->player.player_pos);
-		ft_draw_img(vars, 0, 0);
-	}
-	else
-		vars->player.player_pos.x -= MAP_PLAYER_SIZE + 1;
+	i = 0;
+	line_size = 10;
+	vars->player.pa += 0.1;
+	if (vars->player.pa > PI * 2)
+		vars->player.pa -= 2* PI;
+	vars->player.pdx = cos(vars->player.pa) * 5;
+	vars->player.pdy = sin(vars->player.pa) * 5;
+	draw_player(vars);
 }
