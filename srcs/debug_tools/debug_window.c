@@ -22,7 +22,7 @@ static void	ft_display_window(t_vars *mlx, char **titles, char **values)
 	xspacement = 160;
 	yspacement = 20;
 	y = 40;
-	x = 600;
+	x = (MAP_CUBE_SIZE * mlx->map_size.x) + MAP_CUBE_SIZE;
 	mlx_string_put(mlx->mlx, mlx->win, x, y, 0x6752d9,
 		"=========[ DEBUG ]=========");
 	y += yspacement;
@@ -49,25 +49,29 @@ static char	*float_to_str(float f)
 
 void		ft_display_info(t_vars *mlx)
 {
-	char	*titles[8];
-	char	*values[8];
+	char	*titles[10];
+	char	*values[10];
 
 	titles[0] = "player pos x   :";
 	titles[1] = "player pos y   :";
 	titles[2] = "player angle   :";
-	titles[3] = "player pposx   :";
-	titles[4] = "player pposy   :";
+	titles[3] = "player pposx px:";
+	titles[4] = "player pposy px:";
 	titles[5] = "player delta x :";
 	titles[6] = "player delta y :";
-	titles[7] = 0;
+	titles[7] = "player x:";
+	titles[8] = "player y:";
+	titles[9] = 0;
 	values[0] = float_to_str(mlx->c->player_pos->x);
 	values[1] = float_to_str(mlx->c->player_pos->y);
 	values[2] = float_to_str(mlx->player.pa);
-	values[3] = float_to_str(mlx->player.p_pos.x);
-	values[4] = float_to_str(mlx->player.p_pos.y);
+	values[3] = float_to_str(mlx->player.p_pos.x / MAP_CUBE_SIZE);
+	values[4] = float_to_str(mlx->player.p_pos.y / MAP_CUBE_SIZE);
 	values[5] = float_to_str(mlx->player.pdx);
 	values[6] = float_to_str(mlx->player.pdy);
-	values[7] = 0;
+	values[7] = ft_itoa(mlx->c->player_pos->x);
+	values[8] = ft_itoa(mlx->c->player_pos->y);
+	values[9] = 0;
 	ft_display_window(mlx, titles, values);
 	ft_display_window(mlx, titles, values);
 	ft_display_window(mlx, titles, values);

@@ -71,7 +71,7 @@ void		move_east(t_vars *vars)
 	int		i;
 
 	i = 0;
-	vars->player.pa -= 0.05;
+	vars->player.pa -= 0.1;
 	if (vars->player.pa < 0)
 		vars->player.pa += 2 * PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
@@ -84,7 +84,7 @@ void		move_west(t_vars *vars)
 	int		i;
 
 	i = 0;
-	vars->player.pa += 0.05;
+	vars->player.pa += 0.1;
 	if (vars->player.pa > PI * 2)
 		vars->player.pa -= 2 * PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;

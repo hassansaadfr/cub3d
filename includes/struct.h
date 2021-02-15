@@ -70,4 +70,20 @@ typedef struct	s_vars {
 	t_coord		map_size;
 }				t_vars;
 
+typedef struct	s_ray {
+	int		r;
+	int		mx;
+	int		my;
+	int		mp;
+	int		dof;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+
+	float	atan;
+	float	ntan;
+}				t_ray;
+
 #endif
