@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/12 13:32:43 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/14 16:36:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,9 @@ void			draw_minimap(t_vars *vars);
 void			draw_player(t_vars *vars);
 void			ft_init_minimap(t_vars *vars);
 t_coord			*ft_calc_pos_in_map(t_vars *vars);
+void			draw_ray_lines(t_vars *v);
+void			draw_cube(t_coord *pos, int size, int color, t_data *img);
+
+void			ft_display_info(t_vars *mlx);
 
 #endif

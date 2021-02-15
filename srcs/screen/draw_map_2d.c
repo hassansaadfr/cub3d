@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/12 18:20:38 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/14 23:01:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_cube(t_coord *pos, int size, int color, t_data *img)
+void		draw_cube(t_coord *pos, int size, int color, t_data *img)
 {
 	int		y;
 	int		x;
@@ -100,6 +100,8 @@ void		draw_player(t_vars *vars)
 	coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
 	draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
 	ft_draw_img(vars, 0, 0);
+	draw_ray_lines(vars);
+	ft_display_info(vars);
 }
 
 void		ft_init_minimap(t_vars *vars)
@@ -123,10 +125,9 @@ void		ft_init_minimap(t_vars *vars)
 	if (direction == 'E')
 		vars->player.pa = 2 * PI;
 	if (direction == 'W')
-		vars->player.pa = 4 * (PI / 4);
+		vars->player.pa = PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
 	vars->player.pdy = sin(vars->player.pa) * 5;
 	draw_minimap(vars);
 	draw_player(vars);
-	ft_draw_img(vars, 0, 0);
 }

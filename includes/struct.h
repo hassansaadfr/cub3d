@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/12 12:35:36 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:58:43 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	s_vars {
 	t_data		img;
 	t_config	*c;
 	t_player	player;
+	t_coord		map_size;
 }				t_vars;
 
 #endif
