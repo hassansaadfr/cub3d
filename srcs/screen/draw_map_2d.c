@@ -34,18 +34,6 @@ void		draw_cube(t_coord *pos, int size, int color, t_data *img)
 	}
 }
 
-static int	ft_can_draw_ray(t_vars *vars, int i)
-{
-	int		x;
-	int		y;
-
-	x = vars->player.p_pos.x + (vars->player.pdx / 5) * i;
-	y = vars->player.p_pos.y + (vars->player.pdy / 5) * i;
-	x /= MAP_CUBE_SIZE;
-	y /= MAP_CUBE_SIZE;
-	return (vars->c->map[y][x] != '1');
-}
-
 void		draw_minimap(t_vars *vars)
 {
 	int		i;
@@ -84,21 +72,12 @@ void		draw_player(t_vars *vars)
 	i = 0;
 	line_size = 10000;
 	draw_minimap(vars);
-	while (i < line_size)
-	{
-		if (ft_can_draw_ray(vars, i))
-		{
-			my_mlx_pixel_put(&vars->img,
-			vars->player.p_pos.x + ((vars->player.pdx / 5) * i),
-			vars->player.p_pos.y + ((vars->player.pdy / 5) * i), RED);
-		}
-		else
-			break ;
-		i++;
-	}
 	coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
 	coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
 	draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
+	coord.x = vars->player.p_pos.x;
+	coord.y = vars->player.p_pos.y;
+	drawline(&coord, coord.x + vars->player.pdx, coord.y + vars->player.pdy, vars);
 	ft_draw_img(vars, 0, 0);
 	draw_ray_lines(vars);
 	ft_display_info(vars);

@@ -71,19 +71,27 @@ typedef struct	s_vars {
 }				t_vars;
 
 typedef struct	s_ray {
-	int		r;
-	int		mx;
-	int		my;
-	int		mp;
-	int		dof;
-	float	rx;
-	float	ry;
-	float	ra;
-	float	xo;
-	float	yo;
-
 	float	atan;
-	float	ntan;
+	int		dof;
+	float	ra;
+	int		mxh;
+	int		myh;
+	float	rxh;
+	float	ryh;
+	float	xoh;
+	float	yoh;
+	int		mxv;
+	int		myv;
+	float	rxv;
+	float	ryv;
+	float	xov;
+	float	yov;
+	float	disth;
+	float	hx;
+	float	hy;
+	float	distv;
+	float	vx;
+	float	vy;
 }				t_ray;
 
 #endif

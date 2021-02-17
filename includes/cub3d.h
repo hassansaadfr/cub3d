@@ -78,4 +78,7 @@ void			draw_cube(t_coord *pos, int size, int color, t_data *img);
 
 void			ft_display_info(t_vars *mlx);
 
+
+void			drawline(t_coord *start, int end_x, int end_y, t_vars *vars);
+
 #endif

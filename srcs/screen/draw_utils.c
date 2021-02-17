@@ -45,3 +45,30 @@ void		ft_set_bg(t_vars *vars)
 		i++;
 	}
 }
+
+void		drawline(t_coord *start, int end_x, int end_y, t_vars *vars)
+{
+	t_coord		delta;
+	t_float_pos	inc;
+	int			steps;
+	int			i;
+
+	i = 0;
+	delta.x = end_x - start->x;
+	delta.y = end_y - start->y;
+	if (abs(delta.x) > abs(delta.y))
+		steps = abs(delta.x);
+	else
+		steps = abs(delta.y);
+	inc.x = delta.x / (float) steps;
+	inc.y = delta.y / (float) steps;
+	float X = start->x;
+	float Y = start->y;
+	while (i < steps)
+	{
+		my_mlx_pixel_put(&vars->img, X, Y, GREEN);
+		X+=inc.x;
+		Y+=inc.y;
+		i++;
+	}
+}

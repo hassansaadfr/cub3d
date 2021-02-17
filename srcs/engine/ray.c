@@ -12,28 +12,37 @@
 
 #include "cub3d.h"
 
+static float	ray_dist(t_float_pos *p, float wallx, float wally, float ang)
+{
+	float	dist;
+
+	(void)ang;
+	dist = sqrt((wallx - p->x) * (wallx - p->x) + (wally - p->y) * (wally - p->y));
+	return (dist);
+}
+
 static void	calc_horizontal(t_ray *r, t_vars *v)
 {
 	r->dof = 0;
 	r->atan = -1 / tan(r->ra);
 	if (r->ra > PI)
 	{
-		r->ry = (((int)(v->player.p_pos.y) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) - 0.0001;
-		r->rx = (v->player.p_pos.y - r->ry) * r->atan + (v->player.p_pos.x);
-		r->yo = -MAP_CUBE_SIZE;
-		r->xo = -r->yo * r->atan;
+		r->ryh = (((int)(v->player.p_pos.y) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) - 0.0001;
+		r->rxh = (v->player.p_pos.y - r->ryh) * r->atan + (v->player.p_pos.x);
+		r->yoh = -MAP_CUBE_SIZE;
+		r->xoh = -r->yoh * r->atan;
 	}
 	if (r->ra < PI)
 	{
-		r->ry = (((int)(v->player.p_pos.y) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
-		r->rx = ((v->player.p_pos.y) - r->ry) * r->atan + (v->player.p_pos.x);
-		r->yo = MAP_CUBE_SIZE;
-		r->xo = -r->yo * r->atan;
+		r->ryh = (((int)(v->player.p_pos.y) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
+		r->rxh = ((v->player.p_pos.y) - r->ryh) * r->atan + (v->player.p_pos.x);
+		r->yoh = MAP_CUBE_SIZE;
+		r->xoh = -r->yoh * r->atan;
 	}
 	if (r->ra == 0 || r->ra == PI)
 	{
-		r->rx = v->player.p_pos.x;
-		r->ry = v->player.p_pos.y;
+		r->rxh = v->player.p_pos.x;
+		r->ryh = v->player.p_pos.y;
 		r->dof = v->map_size.y;
 	}
 }
@@ -41,93 +50,103 @@ static void	calc_horizontal(t_ray *r, t_vars *v)
 static void calc_vertical(t_ray *r, t_vars *v)
 {
 	r->dof = 0;
-	r->ntan = -tan(r->ra);
+	r->atan = -tan(r->ra);
 	if (r->ra > PI / 2 && r->ra < 3 * PI / 2)
 	{
-		r->rx = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) - 0.0001;
-		r->ry = (v->player.p_pos.x - r->rx) * r->ntan + (v->player.p_pos.y);
-		r->xo = -MAP_CUBE_SIZE;
-		r->yo = -r->xo * r->ntan;
+		r->rxv = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) - 0.0001;
+		r->ryv = (v->player.p_pos.x - r->rxv) * r->atan + (v->player.p_pos.y);
+		r->xov = -MAP_CUBE_SIZE;
+		r->yov = -r->xov * r->atan;
 	}
 	if (r->ra < PI / 2  || r->ra > 3 * PI / 2)
 	{
-		r->rx = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
-		r->ry = ((v->player.p_pos.x) - r->rx) * r->ntan + (v->player.p_pos.y);
-		r->xo = MAP_CUBE_SIZE;
-		r->yo = -r->xo * r->ntan;
+		r->rxv = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
+		r->ryv = ((v->player.p_pos.x) - r->rxv) * r->atan + (v->player.p_pos.y);
+		r->xov = MAP_CUBE_SIZE;
+		r->yov = -r->xov * r->atan;
 	}
 	if (r->ra == 0 || r->ra == PI)
 	{
-		r->rx = v->player.p_pos.x;
-		r->ry = v->player.p_pos.y;
+		r->rxv = v->player.p_pos.x;
+		r->ryv = v->player.p_pos.y;
 		r->dof = v->map_size.x;
 	}
 }
 
-static void	horizontal_ray(t_vars *v)
+static void	horizontal_ray(t_vars *v, t_ray *r)
 {
-	t_ray	r;
-	t_coord co;
-
-	r.ra = v->player.pa;
-	r.r = 0;
-	while (r.r < 1)
+	calc_horizontal(r, v);
+	while (r->dof < v->map_size.y)
 	{
-		calc_horizontal(&r, v);
-		while (r.dof < v->map_size.y)
+		r->mxh = ((int)(r->rxh) / MAP_CUBE_SIZE);
+		r->myh = ((int)(r->ryh) / MAP_CUBE_SIZE);
+		if (r->mxh > 0 && r->myh >= 0 && r->mxh < v->map_size.x && r->myh < v->map_size.y &&  v->c->map[(int)r->myh][(int)r->mxh] == '1')
 		{
-			r.mx = ((int)(r.rx) / MAP_CUBE_SIZE);
-			r.my = ((int)(r.ry) / MAP_CUBE_SIZE);
-			if (r.mx > 0 && r.my >= 0 && r.mx < v->map_size.x && r.my < v->map_size.y &&  v->c->map[(int)r.my][(int)r.mx] == '1')
-				r.dof = v->map_size.y;
-			else
-			{
-				r.rx += r.xo;
-				r.ry += r.yo;
-				r.dof += 1;
-			}
+			r->hx = r->rxh;
+			r->hy = r->ryh;
+			r->disth = ray_dist(&v->player.p_pos, r->hx, r->hy, r->ra);
+			r->dof = v->map_size.y;
 		}
-		co.x = r.rx;
-		co.y = r.ry;
-		if (r.rx < v->c->resolution->x && r.ry < v->c->resolution->y)
-			draw_cube(&co, 10, BLUE, &v->img);
-		r.r++;
+		else
+		{
+			r->rxh += r->xoh;
+			r->ryh += r->yoh;
+			r->dof += 1;
+		}
 	}
 }
 
-void	vertical_ray(t_vars *v)
+void	vertical_ray(t_vars *v, t_ray *r)
 {
-	t_ray	r;
-	t_coord co;
-
-	r.ra = v->player.pa;
-	r.r = 0;
-	while (r.r < 1)
+	calc_vertical(r, v);
+	while (r->dof < v->map_size.x)
 	{
-		calc_vertical(&r, v);
-		while (r.dof < v->map_size.x)
+		r->mxv = ((int)(r->rxv) / MAP_CUBE_SIZE);
+		r->myv = ((int)(r->ryv) / MAP_CUBE_SIZE);
+		if (r->mxv >= 0 && r->myv > 0 && r->mxv < v->map_size.x && r->myv < v->map_size.y && v->c->map[(int)r->myv][(int)r->mxv] == '1')
 		{
-			r.mx = ((int)(r.rx) / MAP_CUBE_SIZE);
-			r.my = ((int)(r.ry) / MAP_CUBE_SIZE);
-			if (r.mx >= 0 && r.my > 0 && r.mx < v->map_size.x && r.my < v->map_size.y && v->c->map[(int)r.my][(int)r.mx] == '1')
-				r.dof = v->map_size.x;
-			else
-			{
-				r.rx += r.xo;
-				r.ry += r.yo;
-				r.dof += 1;
-			}
+			r->vx = r->rxv;
+			r->vy = r->ryv;
+			r->distv = ray_dist(&v->player.p_pos, r->vx, r->vy, r->ra);
+			r->dof = v->map_size.x;
 		}
-		co.x = r.rx;
-		co.y = r.ry;
-		if (r.rx < v->c->resolution->x && r.ry < v->c->resolution->y)
-			draw_cube(&co, 10, GREEN, &v->img);
-		r.r++;
+		else
+		{
+			r->rxv += r->xov;
+			r->ryv += r->yov;
+			r->dof += 1;
+		}
 	}
 }
 
 void	draw_ray_lines(t_vars *v)
 {
-	horizontal_ray(v);
-	vertical_ray(v);
+	t_ray	r;
+	int		i;
+	t_coord	player_pos;
+	t_coord	ray_impact;
+
+	i = 0;
+	r.ra = v->player.pa;
+	player_pos.x = v->player.p_pos.x;
+	player_pos.y = v->player.p_pos.y;
+	r.disth = 1000000;
+	r.distv = 1000000;
+	while (i < 10)
+	{
+		horizontal_ray(v, &r);
+		vertical_ray(v, &r);
+		if (r.disth < r.distv)
+		{
+			ray_impact.x = r.hx;
+			ray_impact.y = r.hy;
+		}
+		if (r.disth > r.distv)
+		{
+			ray_impact.x = r.vx;
+			ray_impact.y = r.vy;
+		}
+		drawline(&player_pos, ray_impact.x, ray_impact.y, v);
+		i++;
+	}
 }
