@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/13 13:58:43 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/17 22:54:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_vars {
 
 typedef struct	s_ray {
 	float	atan;
+	float	ntan;
 	int		dof;
 	float	ra;
 	int		mxh;

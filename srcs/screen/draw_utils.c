@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/12 18:18:42 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/17 23:13:21 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char *dst;
 
-	if (x < 0 || y < 0)
-		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
@@ -66,7 +64,7 @@ void		drawline(t_coord *start, int end_x, int end_y, t_vars *vars)
 	float Y = start->y;
 	while (i < steps)
 	{
-		my_mlx_pixel_put(&vars->img, X, Y, GREEN);
+		my_mlx_pixel_put(&vars->img, X, Y, GREEN * i);
 		X+=inc.x;
 		Y+=inc.y;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 23:01:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/17 23:18:28 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,8 @@ void		draw_minimap(t_vars *vars)
 
 void		draw_player(t_vars *vars)
 {
-	int		i;
-	int		line_size;
 	t_coord coord;
 
-	i = 0;
-	line_size = 10000;
 	draw_minimap(vars);
 	coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
 	coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
@@ -107,6 +103,5 @@ void		ft_init_minimap(t_vars *vars)
 		vars->player.pa = PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
 	vars->player.pdy = sin(vars->player.pa) * 5;
-	draw_minimap(vars);
 	draw_player(vars);
 }

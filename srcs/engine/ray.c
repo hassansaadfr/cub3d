@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 23:04:05 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/17 23:39:46 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ static void	calc_horizontal(t_ray *r, t_vars *v)
 static void calc_vertical(t_ray *r, t_vars *v)
 {
 	r->dof = 0;
-	r->atan = -tan(r->ra);
+	r->ntan = -tan(r->ra);
 	if (r->ra > PI / 2 && r->ra < 3 * PI / 2)
 	{
 		r->rxv = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) - 0.0001;
-		r->ryv = (v->player.p_pos.x - r->rxv) * r->atan + (v->player.p_pos.y);
+		r->ryv = (v->player.p_pos.x - r->rxv) * r->ntan + (v->player.p_pos.y);
 		r->xov = -MAP_CUBE_SIZE;
-		r->yov = -r->xov * r->atan;
+		r->yov = -r->xov * r->ntan;
 	}
 	if (r->ra < PI / 2  || r->ra > 3 * PI / 2)
 	{
 		r->rxv = (((int)(v->player.p_pos.x) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
-		r->ryv = ((v->player.p_pos.x) - r->rxv) * r->atan + (v->player.p_pos.y);
+		r->ryv = ((v->player.p_pos.x) - r->rxv) * r->ntan + (v->player.p_pos.y);
 		r->xov = MAP_CUBE_SIZE;
-		r->yov = -r->xov * r->atan;
+		r->yov = -r->xov * r->ntan;
 	}
 	if (r->ra == 0 || r->ra == PI)
 	{
@@ -127,26 +127,36 @@ void	draw_ray_lines(t_vars *v)
 	t_coord	ray_impact;
 
 	i = 0;
-	r.ra = v->player.pa;
+	r.ra = v->player.pa - (DR * 30);
+	if (r.ra < 0)
+		r.ra += 2 * PI;
+	if (r.ra > 2 * PI)
+		r.ra -= 2 * PI;
 	player_pos.x = v->player.p_pos.x;
 	player_pos.y = v->player.p_pos.y;
-	r.disth = 1000000;
-	r.distv = 1000000;
-	while (i < 10)
+	while (i < 60)
 	{
-		horizontal_ray(v, &r);
+		r.disth = 1000000;
+		r.distv = 1000000;
 		vertical_ray(v, &r);
+		horizontal_ray(v, &r);
 		if (r.disth < r.distv)
 		{
 			ray_impact.x = r.hx;
 			ray_impact.y = r.hy;
+			drawline(&player_pos, ray_impact.x, ray_impact.y, v);
 		}
 		if (r.disth > r.distv)
 		{
 			ray_impact.x = r.vx;
 			ray_impact.y = r.vy;
+			drawline(&player_pos, ray_impact.x, ray_impact.y, v);
 		}
-		drawline(&player_pos, ray_impact.x, ray_impact.y, v);
+		r.ra += DR;
+		if (r.ra < 0)
+			r.ra += 2 * PI;
+		if (r.ra > 2 * PI)
+			r.ra -= 2 * PI;
 		i++;
 	}
 }
