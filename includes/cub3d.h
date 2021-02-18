@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 16:36:13 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/18 16:46:50 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "constants.h"
 # include "struct.h"
 
-# define DEBUG 1
+# define DEBUG 0
 
 void			ft_errors(char	*err);
 void			ft_print_msg(char *str, int color);
@@ -78,7 +78,6 @@ void			draw_cube(t_coord *pos, int size, int color, t_data *img);
 
 void			ft_display_info(t_vars *mlx);
 
-
-void			drawline(t_coord *start, int end_x, int end_y, t_vars *vars);
+void			drawline(t_coord *start, t_coord *end, int color, t_vars *vars);
 
 #endif

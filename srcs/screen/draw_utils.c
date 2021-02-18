@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/17 23:13:21 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/18 16:57:09 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_set_bg(t_vars *vars)
 	{
 		while (j < vars->c->resolution->x)
 		{
-			my_mlx_pixel_put(&vars->img, j, i, BLACK);
+			my_mlx_pixel_put(&vars->img, j, i, LIGHT_GRAY);
 			j++;
 		}
 		j = 0;
@@ -44,7 +44,7 @@ void		ft_set_bg(t_vars *vars)
 	}
 }
 
-void		drawline(t_coord *start, int end_x, int end_y, t_vars *vars)
+void		drawline(t_coord *start, t_coord *end, int color, t_vars *vars)
 {
 	t_coord		delta;
 	t_float_pos	inc;
@@ -52,8 +52,8 @@ void		drawline(t_coord *start, int end_x, int end_y, t_vars *vars)
 	int			i;
 
 	i = 0;
-	delta.x = end_x - start->x;
-	delta.y = end_y - start->y;
+	delta.x = end->x - start->x;
+	delta.y = end->y - start->y;
 	if (abs(delta.x) > abs(delta.y))
 		steps = abs(delta.x);
 	else
@@ -64,7 +64,7 @@ void		drawline(t_coord *start, int end_x, int end_y, t_vars *vars)
 	float Y = start->y;
 	while (i < steps)
 	{
-		my_mlx_pixel_put(&vars->img, X, Y, GREEN * i);
+		my_mlx_pixel_put(&vars->img, X, Y, color);
 		X+=inc.x;
 		Y+=inc.y;
 		i++;

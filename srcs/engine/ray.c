@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/17 23:39:46 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/18 17:01:10 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	calc_horizontal(t_ray *r, t_vars *v)
 		r->yoh = -MAP_CUBE_SIZE;
 		r->xoh = -r->yoh * r->atan;
 	}
-	if (r->ra < PI)
+	else if (r->ra < PI)
 	{
 		r->ryh = (((int)(v->player.p_pos.y) / MAP_CUBE_SIZE) * MAP_CUBE_SIZE) + MAP_CUBE_SIZE;
 		r->rxh = ((v->player.p_pos.y) - r->ryh) * r->atan + (v->player.p_pos.x);
 		r->yoh = MAP_CUBE_SIZE;
 		r->xoh = -r->yoh * r->atan;
 	}
-	if (r->ra == 0 || r->ra == PI)
+	else if (r->ra == 0 || r->ra == PI)
 	{
 		r->rxh = v->player.p_pos.x;
 		r->ryh = v->player.p_pos.y;
@@ -80,7 +80,7 @@ static void	horizontal_ray(t_vars *v, t_ray *r)
 	{
 		r->mxh = ((int)(r->rxh) / MAP_CUBE_SIZE);
 		r->myh = ((int)(r->ryh) / MAP_CUBE_SIZE);
-		if (r->mxh > 0 && r->myh >= 0 && r->mxh < v->map_size.x && r->myh < v->map_size.y &&  v->c->map[(int)r->myh][(int)r->mxh] == '1')
+		if (r->mxh > 0 && r->myh >= 0 && r->mxh < v->map_size.x && r->myh < v->map_size.y && v->c->map[(int)r->myh][(int)r->mxh] == '1')
 		{
 			r->hx = r->rxh;
 			r->hy = r->ryh;
@@ -130,7 +130,7 @@ void	draw_ray_lines(t_vars *v)
 	r.ra = v->player.pa - (DR * 30);
 	if (r.ra < 0)
 		r.ra += 2 * PI;
-	if (r.ra > 2 * PI)
+	if (r.ra >= 2 * PI)
 		r.ra -= 2 * PI;
 	player_pos.x = v->player.p_pos.x;
 	player_pos.y = v->player.p_pos.y;
@@ -144,14 +144,31 @@ void	draw_ray_lines(t_vars *v)
 		{
 			ray_impact.x = r.hx;
 			ray_impact.y = r.hy;
-			drawline(&player_pos, ray_impact.x, ray_impact.y, v);
+			r.final_dist = r.disth;
 		}
 		if (r.disth > r.distv)
 		{
 			ray_impact.x = r.vx;
 			ray_impact.y = r.vy;
-			drawline(&player_pos, ray_impact.x, ray_impact.y, v);
+			r.final_dist = r.distv;
 		}
+		float fisheye = v->player.pa - r.ra;
+		if (fisheye < 0)
+			fisheye += 2 * PI;
+		if (fisheye > 2 * PI)
+			fisheye -= 2 * PI;
+		r.final_dist = r.final_dist * cos(fisheye);
+		float lineH = (v->map_size.y * 320) / r.final_dist;
+		if (lineH > 320)
+			lineH = 320;
+		float lineO = 160 - lineH / 2;
+		for (int w = 1; w < 50; w++)
+		{
+			drawline(&(t_coord){i+w + 300,lineO,0},&(t_coord){i +w + 300,lineH + lineO,0},BLUE, v);
+		}
+
+		// drawline(&(t_coord){i,0,0},i,lineH,v);
+		drawline(&player_pos, &ray_impact, RED, v);
 		r.ra += DR;
 		if (r.ra < 0)
 			r.ra += 2 * PI;

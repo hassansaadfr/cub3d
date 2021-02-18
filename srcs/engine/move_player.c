@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/17 23:27:22 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:57:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		move_north(t_vars *vars)
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
+	ft_set_bg(vars);
+
 		draw_player(vars);
 	}
 	else
@@ -57,6 +59,8 @@ void		move_south(t_vars *vars)
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
+	ft_set_bg(vars);
+
 		draw_player(vars);
 	}
 	else
@@ -76,6 +80,8 @@ void		move_east(t_vars *vars)
 		vars->player.pa += 2 * PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
 	vars->player.pdy = sin(vars->player.pa) * 5;
+	ft_set_bg(vars);
+
 	draw_player(vars);
 }
 
@@ -89,5 +95,6 @@ void		move_west(t_vars *vars)
 		vars->player.pa -= 2 * PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
 	vars->player.pdy = sin(vars->player.pa) * 5;
+	ft_set_bg(vars);
 	draw_player(vars);
 }
