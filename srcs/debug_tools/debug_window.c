@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 17:36:31 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/18 23:58:43 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	ft_display_window(t_vars *mlx, char **titles, char **values)
 	y += yspacement;
 	while (*titles)
 	{
-		mlx_string_put(mlx->mlx, mlx->win, x, y, 0xFFFFFF, *titles);
-		mlx_string_put(mlx->mlx, mlx->win, x + xspacement, y, 0xFFFFFF, *values);
+		mlx_string_put(mlx->mlx, mlx->win, x, y, BLACK, *titles);
+		mlx_string_put(mlx->mlx, mlx->win, x + xspacement, y, BLACK, *values);
 		y += yspacement;
 		titles++;
 		values++;

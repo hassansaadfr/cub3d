@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 16:48:11 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 00:04:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ void		draw_player(t_vars *vars)
 {
 	t_coord coord;
 
+	coord.x = vars->player.p_pos.x;
+	coord.y = vars->player.p_pos.y;
 	draw_minimap(vars);
+	draw_ray_lines(vars);
+	ft_draw_img(vars, 0, 0);
+	ft_display_info(vars);
 	coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
 	coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
 	draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
-	coord.x = vars->player.p_pos.x;
-	coord.y = vars->player.p_pos.y;
-	ft_draw_img(vars, 0, 0);
-	draw_ray_lines(vars);
-	// ft_display_info(vars);
 }
 
 void		ft_init_minimap(t_vars *vars)

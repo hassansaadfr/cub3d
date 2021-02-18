@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 17:01:10 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 00:02:37 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	draw_ray_lines(t_vars *v)
 	int		i;
 	t_coord	player_pos;
 	t_coord	ray_impact;
+	int color;
 
 	i = 0;
 	r.ra = v->player.pa - (DR * 30);
@@ -145,12 +146,14 @@ void	draw_ray_lines(t_vars *v)
 			ray_impact.x = r.hx;
 			ray_impact.y = r.hy;
 			r.final_dist = r.disth;
+			color = DARK_BLUE;
 		}
 		if (r.disth > r.distv)
 		{
 			ray_impact.x = r.vx;
 			ray_impact.y = r.vy;
 			r.final_dist = r.distv;
+			color = BLUE;
 		}
 		float fisheye = v->player.pa - r.ra;
 		if (fisheye < 0)
@@ -158,16 +161,16 @@ void	draw_ray_lines(t_vars *v)
 		if (fisheye > 2 * PI)
 			fisheye -= 2 * PI;
 		r.final_dist = r.final_dist * cos(fisheye);
-		float lineH = (v->map_size.y * 320) / r.final_dist;
-		if (lineH > 320)
-			lineH = 320;
-		float lineO = 160 - lineH / 2;
-		for (int w = 1; w < 50; w++)
+		float lineH = (v->map_size.x * v->c->resolution->y) / r.final_dist;
+		if (lineH > v->c->resolution->y)
+			lineH = v->c->resolution->y;
+		float lineO = (v->c->resolution->y / 2) - lineH / 2;
+		int sizew = v->c->resolution->x / 60;
+		for (int w = 1; w <= sizew; w++)
 		{
-			drawline(&(t_coord){i+w + 300,lineO,0},&(t_coord){i +w + 300,lineH + lineO,0},BLUE, v);
+			if (sizew * i -w > 0)
+				drawline(&(t_coord){sizew * i -w,lineO,0},&(t_coord){sizew * i -w,lineH + lineO,0},color, v);
 		}
-
-		// drawline(&(t_coord){i,0,0},i,lineH,v);
 		drawline(&player_pos, &ray_impact, RED, v);
 		r.ra += DR;
 		if (r.ra < 0)
