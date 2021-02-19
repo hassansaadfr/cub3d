@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 23:58:43 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:26:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*float_to_str(float f)
 
 	str = malloc(sizeof(char) * 50);
 	if (!str)
-		return 0;
+		return (0);
 	sprintf(str, "%f", f);
 	return (str);
 }
@@ -65,14 +65,12 @@ void		ft_display_info(t_vars *mlx)
 	values[0] = float_to_str(mlx->c->player_pos->x);
 	values[1] = float_to_str(mlx->c->player_pos->y);
 	values[2] = float_to_str(mlx->player.pa);
-	values[3] = float_to_str(mlx->player.p_pos.x / MAP_CUBE_SIZE);
-	values[4] = float_to_str(mlx->player.p_pos.y / MAP_CUBE_SIZE);
+	values[3] = float_to_str(mlx->player.p_pos.x);
+	values[4] = float_to_str(mlx->player.p_pos.y);
 	values[5] = float_to_str(mlx->player.pdx);
 	values[6] = float_to_str(mlx->player.pdy);
 	values[7] = ft_itoa(mlx->c->player_pos->x);
 	values[8] = ft_itoa(mlx->c->player_pos->y);
 	values[9] = 0;
-	ft_display_window(mlx, titles, values);
-	ft_display_window(mlx, titles, values);
 	ft_display_window(mlx, titles, values);
 }

@@ -2,6 +2,9 @@
 
 ## Build the project
 	- make
-	- ./Cub3d maps/valid_maps/map_1920_1080.cub
+## Run the project
+	- ./cub3d maps/valid_maps/map_medium.cub
 
-## Dont forgot to decomment linux part !!
+### Enjoy
+
+#

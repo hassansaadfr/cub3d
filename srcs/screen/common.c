@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 16:36:29 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:10:31 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void			init_window(t_config *c)
 	int		res_y;
 
 	vars.c = c;
-
 	vars.mlx = mlx_init();
 	get_map_dimensions(&vars);
 	c->resolution = get_screen_size(vars.mlx, vars.c->resolution);
-		res_x = vars.c->resolution->x;
+	res_x = vars.c->resolution->x;
 	res_y = vars.c->resolution->y;
 	vars.win = mlx_new_window(vars.mlx, res_x, res_y, "cub3d");
 	vars.img.img = mlx_new_image(vars.mlx, res_x, res_y);

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 15:32:53 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:17:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,22 @@ typedef struct	s_ray {
 	float	vy;
 	float	final_dist;
 }				t_ray;
+
+typedef struct s_wall
+{
+	float	lineH;
+	float	lineO;
+	int		wall_width;
+	int		wall_height;
+}				t_wall;
+
+typedef struct s_dda_line
+{
+	t_coord		delta;
+	t_float_pos	inc;
+	int			steps;
+	float		x;
+	float		y;
+}				t_dda_line;
 
 #endif

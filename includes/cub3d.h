@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 16:46:50 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:26:17 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 # include "constants.h"
 # include "struct.h"
-
-# define DEBUG 0
 
 void			ft_errors(char	*err);
 void			ft_print_msg(char *str, int color);
@@ -75,9 +73,12 @@ void			ft_init_minimap(t_vars *vars);
 t_coord			*ft_calc_pos_in_map(t_vars *vars);
 void			draw_ray_lines(t_vars *v);
 void			draw_cube(t_coord *pos, int size, int color, t_data *img);
+void			drawline(t_coord *start, t_coord *end, int color, t_vars *vars);
 
 void			ft_display_info(t_vars *mlx);
 
-void			drawline(t_coord *start, t_coord *end, int color, t_vars *vars);
+void			vertical_collision(t_vars *v, t_ray *r);
+void			horizontal_collision(t_vars *v, t_ray *r);
+float			ray_dist(t_float_pos *p, float wallx, float wally, float ang);
 
 #endif

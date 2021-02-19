@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/18 16:57:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:24:47 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,25 @@ void		ft_set_bg(t_vars *vars)
 
 void		drawline(t_coord *start, t_coord *end, int color, t_vars *vars)
 {
-	t_coord		delta;
-	t_float_pos	inc;
-	int			steps;
+	t_dda_line	line;
 	int			i;
 
 	i = 0;
-	delta.x = end->x - start->x;
-	delta.y = end->y - start->y;
-	if (abs(delta.x) > abs(delta.y))
-		steps = abs(delta.x);
+	line.delta.x = end->x - start->x;
+	line.delta.y = end->y - start->y;
+	if (abs(line.delta.x) > abs(line.delta.y))
+		line.steps = abs(line.delta.x);
 	else
-		steps = abs(delta.y);
-	inc.x = delta.x / (float) steps;
-	inc.y = delta.y / (float) steps;
-	float X = start->x;
-	float Y = start->y;
-	while (i < steps)
+		line.steps = abs(line.delta.y);
+	line.inc.x = line.delta.x / (float)line.steps;
+	line.inc.y = line.delta.y / (float)line.steps;
+	line.x = start->x;
+	line.y = start->y;
+	while (i < line.steps)
 	{
-		my_mlx_pixel_put(&vars->img, X, Y, color);
-		X+=inc.x;
-		Y+=inc.y;
+		my_mlx_pixel_put(&vars->img, line.x, line.y, color);
+		line.x += line.inc.x;
+		line.y += line.inc.y;
 		i++;
 	}
 }
