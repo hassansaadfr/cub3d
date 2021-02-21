@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 00:05:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 00:13:08 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define CONSTANTS_H
 
-# define DEBUG 0
+# define DEBUG 1
 
 # define INVALID_ARGS "Usage : ./cub3d [--save] <map.cub>"
 # define TOO_MUCH_ARGS "Too much args"

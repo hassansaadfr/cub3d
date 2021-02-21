@@ -6,13 +6,11 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/19 20:11:50 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/02/22 00:19:23 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
-
-CC				=	clang
 
 SRCS			=	main.c \
 					processing/ft_process_game.c \
