@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/19 21:26:24 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 00:05:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define CONSTANTS_H
 
-# define DEBUG 1
+# define DEBUG 0
 
 # define INVALID_ARGS "Usage : ./cub3d [--save] <map.cub>"
 # define TOO_MUCH_ARGS "Too much args"
@@ -59,7 +59,7 @@
 # define DARK_BLUE 0x2F327A
 # define LIGHT_GRAY 0xd3d3d3
 
-# define MAP_CUBE_SIZE 15
+# define MAP_CUBE_SIZE 2
 # define MAP_PLAYER_SIZE MAP_CUBE_SIZE / 2
 
 # define PI 3.1415926535
