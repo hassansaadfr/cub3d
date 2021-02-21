@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/22 00:21:22 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/02/22 00:23:01 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,15 +45,13 @@ CFLAGS			=	-Wall -Werror -Wextra -g
 
 LIBFT_DIR		=	libft
 
-MLX_DIR			=	mlx/mlx_linux
+MLX_DIR			=	mlx
 
 LDFLAGS			=	-L ${LIBFT_DIR} -L ${MLX_DIR}
 
-MLX_LINUX		=	-lm -lft -lmlx -lXext -lX11
+MLX				=	-lm -lft -lmlx -lXext -lX11
 
-MLX_MAC			=	-Lmlx  -lft -lmlx -framework OpenGL -framework AppKit
-
-LIBS			=	${MLX_LINUX}
+LIBS			=	${MLX}
 
 .c.o			:
 					${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
