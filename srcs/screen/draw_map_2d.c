@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/21 23:36:42 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 00:20:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,11 @@ void		draw_player(t_vars *vars)
 
 void		ft_init_minimap(t_vars *vars)
 {
-	int		x_px;
-	int		y_px;
 	char	direction;
 	t_coord	*player_pos;
 
 	player_pos = vars->c->player_pos;
 	direction = vars->c->map[player_pos->y][player_pos->x];
-	x_px = player_pos->x;
-	y_px = player_pos->y;
 	vars->player.p_pos.x = (player_pos->x + 0.5) * MAP_CUBE_SIZE;
 	vars->player.p_pos.y = (player_pos->y + 0.5) * MAP_CUBE_SIZE;
 	vars->c->map[player_pos->y][player_pos->x] = '0';

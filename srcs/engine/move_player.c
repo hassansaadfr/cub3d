@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 00:04:54 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 00:21:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ void		move_south(t_vars *vars)
 
 void		move_east(t_vars *vars)
 {
-	int		i;
-
-	i = 0;
 	vars->player.pa -= 0.1;
 	if (vars->player.pa < 0)
 		vars->player.pa += 2 * PI;
@@ -84,9 +81,6 @@ void		move_east(t_vars *vars)
 
 void		move_west(t_vars *vars)
 {
-	int		i;
-
-	i = 0;
 	vars->player.pa += 0.1;
 	if (vars->player.pa > PI * 2)
 		vars->player.pa -= 2 * PI;
