@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/21 23:31:45 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:41:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ static t_coord	*get_screen_size(void *mlx, t_coord *res)
 	return (res);
 }
 
+static void		init_keys_struct(t_vars *v)
+{
+	v->keys.north = 0;
+	v->keys.south = 0;
+	v->keys.east = 0;
+	v->keys.west = 0;
+}
+
 void			init_window(t_config *c)
 {
 	t_vars	vars;
@@ -57,6 +65,7 @@ void			init_window(t_config *c)
 
 	vars.c = c;
 	vars.mlx = mlx_init();
+	init_keys_struct(&vars);
 	get_map_dimensions(&vars);
 	c->resolution = get_screen_size(vars.mlx, vars.c->resolution);
 	res_x = vars.c->resolution->x;
@@ -66,6 +75,10 @@ void			init_window(t_config *c)
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
 						&vars.img.line_length, &vars.img.endian);
 	ft_init_minimap(&vars);
-	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
+	mlx_hook(vars.win, 2, 1L << 0, keypress, &vars);
+	mlx_hook(vars.win, 3, 1L << 1, keyrelease, &vars);
+	mlx_hook(vars.win, 10, 1L << 21, focus_window, &vars);
+	mlx_hook(vars.win, 33, 1L << 17, exit_game, &vars);
+	mlx_loop_hook(vars.mlx, loop_hook, &vars);
 	mlx_loop(vars.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/19 21:17:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:53:52 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ typedef struct	s_player {
 	t_float_pos	p_pos;
 }				t_player;
 
+typedef struct	s_keys {
+	int		north;
+	int		south;
+	int		east;
+	int		west;
+}				t_keys;
+
 typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
@@ -68,6 +75,7 @@ typedef struct	s_vars {
 	t_config	*c;
 	t_player	player;
 	t_coord		map_size;
+	t_keys		keys;
 }				t_vars;
 
 typedef struct	s_ray {

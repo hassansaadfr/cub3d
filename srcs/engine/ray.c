@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 00:07:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:35:29 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	draw_walls(t_vars *v, t_ray *r, int color, int ray_nb)
 
 	screen = v->c->resolution->y / 2 / (tan(30 * DR));
 	wall.lineH = MAP_CUBE_SIZE / r->final_dist * screen;
-	// wall.lineH = (v->map_size.x * v->c->resolution->y) / r->final_dist;
 	if (wall.lineH > v->c->resolution->y)
 		wall.lineH = v->c->resolution->y;
 	wall.lineO = (v->c->resolution->y / 2) - wall.lineH / 2;

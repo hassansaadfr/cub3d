@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/21 23:32:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:37:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ int				create_trgb(int t, int r, int g, int b);
 int				add_shade(double shade, int color);
 
 void			init_window(t_config *c);
-int				key_hook(int keycode, t_vars *vars);
+
+int				keypress(int keycode, t_vars *vars);
+int				keyrelease(int keycode, t_vars *vars);
+int				loop_hook(t_vars *v);
+int				exit_game(t_vars *vars);
+int				focus_window(t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			ft_draw_img(t_vars *vars, int x, int y);

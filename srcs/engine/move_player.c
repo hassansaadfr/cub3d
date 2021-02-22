@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 00:21:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:33:14 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	ft_player_can_move(t_float_pos pos, char **map)
 	int		x;
 	int		y;
 
-	x = pos.x / MAP_CUBE_SIZE;
-	y = pos.y / MAP_CUBE_SIZE;
+	x = (pos.x / MAP_CUBE_SIZE);
+	y = (pos.y / MAP_CUBE_SIZE);
 	return (map[y][x] != '1');
 }
 
@@ -27,10 +27,10 @@ void		move_north(t_vars *vars)
 	int	x;
 	int	y;
 
-	vars->player.p_pos.x += vars->player.pdx;
-	vars->player.p_pos.y += vars->player.pdy;
-	x = vars->player.p_pos.x / MAP_CUBE_SIZE;
-	y = vars->player.p_pos.y / MAP_CUBE_SIZE;
+	vars->player.p_pos.x += (vars->player.pdx / MAP_CUBE_SIZE)* SPEED_MOVE;
+	vars->player.p_pos.y += (vars->player.pdy / MAP_CUBE_SIZE)* SPEED_MOVE;
+	x = vars->player.p_pos.x;
+	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
@@ -50,10 +50,10 @@ void		move_south(t_vars *vars)
 	int		x;
 	int		y;
 
-	vars->player.p_pos.x -= vars->player.pdx;
-	vars->player.p_pos.y -= vars->player.pdy;
-	x = vars->player.p_pos.x / MAP_CUBE_SIZE;
-	y = vars->player.p_pos.y / MAP_CUBE_SIZE;
+	vars->player.p_pos.x -= (vars->player.pdx / MAP_CUBE_SIZE)* SPEED_MOVE;
+	vars->player.p_pos.y -= (vars->player.pdy / MAP_CUBE_SIZE)* SPEED_MOVE;
+	x = vars->player.p_pos.x;
+	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
@@ -70,7 +70,7 @@ void		move_south(t_vars *vars)
 
 void		move_east(t_vars *vars)
 {
-	vars->player.pa -= 0.1;
+	vars->player.pa -= 0.03;
 	if (vars->player.pa < 0)
 		vars->player.pa += 2 * PI;
 	vars->player.pdx = cos(vars->player.pa);
@@ -81,7 +81,7 @@ void		move_east(t_vars *vars)
 
 void		move_west(t_vars *vars)
 {
-	vars->player.pa += 0.1;
+	vars->player.pa += 0.03;
 	if (vars->player.pa > PI * 2)
 		vars->player.pa -= 2 * PI;
 	vars->player.pdx = cos(vars->player.pa);
