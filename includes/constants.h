@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 15:30:37 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:20:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@
 # define DOWN 65364
 # define RIGHT 65363
 # define LEFT 65361
+# define Z 122
+# define Q 113
+# define S 115
+# define D 100
 
 # define WHITE 0xffffff
 # define BLACK 0x0

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 14:41:27 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:26:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,26 @@ int			keypress(int keycode, t_vars *vars)
 {
 	if (keycode == ESCAPE)
 		exit_game(vars);
-	if (keycode == UP)
+	if (keycode == UP || keycode == Z)
 		vars->keys.north = 1;
-	if (keycode == DOWN)
+	if (keycode == DOWN || keycode == S)
 		vars->keys.south = 1;
-	if (keycode == LEFT)
+	if (keycode == LEFT || keycode == Q)
 		vars->keys.east = 1;
-	if (keycode == RIGHT)
+	if (keycode == RIGHT || keycode == D)
 		vars->keys.west = 1;
 	return (keycode);
 }
 
 int			keyrelease(int keycode, t_vars *v)
 {
-	if (keycode == UP)
+	if (keycode == UP || keycode == Z)
 		v->keys.north = 0;
-	if (keycode == DOWN)
+	if (keycode == DOWN || keycode == S)
 		v->keys.south = 0;
-	if (keycode == LEFT)
+	if (keycode == LEFT || keycode == Q)
 		v->keys.east = 0;
-	if (keycode == RIGHT)
+	if (keycode == RIGHT || keycode == D)
 		v->keys.west = 0;
 	return (1);
 }

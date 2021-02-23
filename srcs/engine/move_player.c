@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 15:33:14 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:33:38 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ void		move_north(t_vars *vars)
 	int	x;
 	int	y;
 
-	vars->player.p_pos.x += (vars->player.pdx / MAP_CUBE_SIZE)* SPEED_MOVE;
-	vars->player.p_pos.y += (vars->player.pdy / MAP_CUBE_SIZE)* SPEED_MOVE;
+	vars->player.p_pos.x += (vars->player.pdx / MAP_CUBE_SIZE) * SPEED_MOVE;
+	vars->player.p_pos.y += (vars->player.pdy / MAP_CUBE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
-		ft_set_bg(vars);
 		draw_player(vars);
 	}
 	else
@@ -50,15 +49,14 @@ void		move_south(t_vars *vars)
 	int		x;
 	int		y;
 
-	vars->player.p_pos.x -= (vars->player.pdx / MAP_CUBE_SIZE)* SPEED_MOVE;
-	vars->player.p_pos.y -= (vars->player.pdy / MAP_CUBE_SIZE)* SPEED_MOVE;
+	vars->player.p_pos.x -= (vars->player.pdx / MAP_CUBE_SIZE) * SPEED_MOVE;
+	vars->player.p_pos.y -= (vars->player.pdy / MAP_CUBE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
-		ft_set_bg(vars);
 		draw_player(vars);
 	}
 	else
@@ -75,7 +73,6 @@ void		move_east(t_vars *vars)
 		vars->player.pa += 2 * PI;
 	vars->player.pdx = cos(vars->player.pa);
 	vars->player.pdy = sin(vars->player.pa);
-	ft_set_bg(vars);
 	draw_player(vars);
 }
 
@@ -86,6 +83,5 @@ void		move_west(t_vars *vars)
 		vars->player.pa -= 2 * PI;
 	vars->player.pdx = cos(vars->player.pa);
 	vars->player.pdy = sin(vars->player.pa);
-	ft_set_bg(vars);
 	draw_player(vars);
 }

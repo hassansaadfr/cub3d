@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 00:47:25 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 22:10:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:37:50 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ static int	get_b(int trgb)
 	return (trgb & 0xFF);
 }
 
-int			create_trgb(int t, int r, int g, int b)
+static int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int			create_color(t_color *c)
+{
+	int	color;
+
+	color = create_trgb(c->a, c->r, c->g, c->b);
+	return (color);
 }
 
 int			add_shade(double shade, int color)
