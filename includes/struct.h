@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 13:53:52 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/24 13:12:35 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,29 +79,30 @@ typedef struct	s_vars {
 }				t_vars;
 
 typedef struct	s_ray {
-	float	atan;
-	float	ntan;
-	int		dof;
-	float	ra;
-	int		mxh;
-	int		myh;
-	float	rxh;
-	float	ryh;
-	float	xoh;
-	float	yoh;
-	int		mxv;
-	int		myv;
-	float	rxv;
-	float	ryv;
-	float	xov;
-	float	yov;
-	float	disth;
-	float	hx;
-	float	hy;
-	float	distv;
-	float	vx;
-	float	vy;
-	float	final_dist;
+	float		atan;
+	float		ntan;
+	int			dof;
+	float		ra;
+	int			mxh;
+	int			myh;
+	float		rxh;
+	float		ryh;
+	float		xoh;
+	float		yoh;
+	int			mxv;
+	int			myv;
+	float		rxv;
+	float		ryv;
+	float		xov;
+	float		yov;
+	float		disth;
+	float		hx;
+	float		hy;
+	float		distv;
+	float		vx;
+	float		vy;
+	float		final_dist;
+	t_float_pos	impact_pos;
 }				t_ray;
 
 typedef struct s_wall
