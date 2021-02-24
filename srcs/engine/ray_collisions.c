@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:09:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 13:18:45 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/24 22:28:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void		horizontal_collision(t_vars *v, t_ray *r)
 			r->hy = r->ryh;
 			r->disth = ray_dist(&v->player.p_pos, r->hx, r->hy, r->ra);
 			r->dof = v->map_size.y;
+			r->impact_pos = (r->rxh) / MAP_CUBE_SIZE - (int)((r->rxh) / MAP_CUBE_SIZE);
 		}
 		else
 		{
@@ -113,6 +114,7 @@ void		vertical_collision(t_vars *v, t_ray *r)
 			r->vy = r->ryv;
 			r->distv = ray_dist(&v->player.p_pos, r->vx, r->vy, r->ra);
 			r->dof = v->map_size.x;
+			r->impact_pos = (r->ryv) / MAP_CUBE_SIZE - (int)((r->ryv) / MAP_CUBE_SIZE);
 		}
 		else
 		{

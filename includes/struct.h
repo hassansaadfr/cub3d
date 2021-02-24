@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 13:12:35 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/24 22:27:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct	s_ray {
 	float		vx;
 	float		vy;
 	float		final_dist;
-	t_float_pos	impact_pos;
+	float		impact_pos;
 }				t_ray;
 
 typedef struct s_wall
