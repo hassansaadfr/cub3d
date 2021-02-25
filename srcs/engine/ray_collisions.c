@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:09:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 22:28:02 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:23:18 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		horizontal_collision(t_vars *v, t_ray *r)
 	calc_horizontal(r, v);
 	while (r->dof < v->map_size.y)
 	{
+		r->impact_pos_h = 1;
 		r->mxh = ((int)(r->rxh) / MAP_CUBE_SIZE);
 		r->myh = ((int)(r->ryh) / MAP_CUBE_SIZE);
 		if (r->mxh > 0 && r->myh >= 0 && r->mxh < v->map_size.x
@@ -88,8 +89,8 @@ void		horizontal_collision(t_vars *v, t_ray *r)
 			r->hx = r->rxh;
 			r->hy = r->ryh;
 			r->disth = ray_dist(&v->player.p_pos, r->hx, r->hy, r->ra);
+			r->impact_pos_h = r->rxh / MAP_CUBE_SIZE - r->mxh;
 			r->dof = v->map_size.y;
-			r->impact_pos = (r->rxh) / MAP_CUBE_SIZE - (int)((r->rxh) / MAP_CUBE_SIZE);
 		}
 		else
 		{
@@ -105,16 +106,17 @@ void		vertical_collision(t_vars *v, t_ray *r)
 	calc_vertical(r, v);
 	while (r->dof < v->map_size.x)
 	{
+		r->impact_pos_v = 1;
 		r->mxv = ((int)(r->rxv) / MAP_CUBE_SIZE);
 		r->myv = ((int)(r->ryv) / MAP_CUBE_SIZE);
-		if (r->mxv >= 0 && r->myv > 0 && r->mxv < v->map_size.x
+		if (r->mxv >= 0 && r->myv >= 0 && r->mxv <= v->map_size.x
 		&& r->myv < v->map_size.y && hit_wall(v, r->mxv, r->myv))
 		{
 			r->vx = r->rxv;
 			r->vy = r->ryv;
 			r->distv = ray_dist(&v->player.p_pos, r->vx, r->vy, r->ra);
+			r->impact_pos_v = ((r->ryv) / MAP_CUBE_SIZE) - r->myv;
 			r->dof = v->map_size.x;
-			r->impact_pos = (r->ryv) / MAP_CUBE_SIZE - (int)((r->ryv) / MAP_CUBE_SIZE);
 		}
 		else
 		{

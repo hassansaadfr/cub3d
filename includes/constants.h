@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 22:00:31 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:29:20 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 
 # define MAP_CUBE_SIZE 8
 # define MAP_PLAYER_SIZE MAP_CUBE_SIZE / 2
-# define SPEED_MOVE 4
+# define SPEED_MOVE 6
 
 # define PI 3.1415926535
 # define DR 0.0174533

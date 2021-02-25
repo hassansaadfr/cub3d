@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 22:33:00 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:22:31 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 	{
 		r->final_dist = r->disth;
 		color = BLUE;
-		if (r->impact_pos < 0.01)
-			color = YELLOW;
+		if (r->impact_pos_h < 0.01 && r->impact_pos_h > 0)
+			color = RED;
 	}
-	if (r->disth > r->distv)
+	if (r->distv < r->disth)
 	{
 		r->final_dist = r->distv;
 		color = DARK_BLUE;
-		if (r->impact_pos < 0.01)
-			color = GREEN;
+		if (r->impact_pos_v < 0.01 && r->impact_pos_v > 0)
+			color = BLACK;
 	}
 	fisheye = v->player.pa - r->ra;
 	fisheye = fix_angle(fisheye);
