@@ -6,11 +6,18 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/22 14:41:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/26 12:06:36 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void		load_texture(t_vars *v, t_tex *t, char *path)
+{
+	t->img = mlx_xpm_file_to_image(v->mlx, path, &t->width, &t->height);
+	t->addr = mlx_get_data_addr(t->img, &t->bits_per_pixel,
+						&t->line_length, &t->endian);
+}
 
 static void		get_map_dimensions(t_vars *vars)
 {
@@ -74,6 +81,7 @@ void			init_window(t_config *c)
 	vars.img.img = mlx_new_image(vars.mlx, res_x, res_y);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
 						&vars.img.line_length, &vars.img.endian);
+	load_texture(&vars, &vars.no, vars.c->no_texture);
 	ft_init_minimap(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, keypress, &vars);
 	mlx_hook(vars.win, 3, 1L << 1, keyrelease, &vars);

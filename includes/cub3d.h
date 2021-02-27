@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/24 18:25:54 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/27 13:38:39 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int				exit_game(t_vars *vars);
 int				focus_window(t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				my_mlx_pixel_get(t_tex t, float x, int y);
 void			ft_draw_img(t_vars *vars, int x, int y);
 void			ft_set_bg(t_vars *vars);
 

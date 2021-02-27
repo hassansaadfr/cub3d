@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/25 17:21:00 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/27 12:19:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ typedef struct	s_data
 	int			endian;
 }				t_data;
 
+typedef struct	s_tex
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			height;
+	int			width;
+	char		*path;
+}				t_tex;
+
 typedef struct	s_player {
 	float		pa;
 	float		pdx;
@@ -76,6 +88,10 @@ typedef struct	s_vars {
 	t_player	player;
 	t_coord		map_size;
 	t_keys		keys;
+	t_tex		no;
+	t_tex		so;
+	t_tex		we;
+	t_tex		ea;
 }				t_vars;
 
 typedef struct	s_ray {
@@ -104,6 +120,7 @@ typedef struct	s_ray {
 	float		final_dist;
 	float		impact_pos_v;
 	float		impact_pos_h;
+	float		actual_impact_pos;
 }				t_ray;
 
 typedef struct s_wall

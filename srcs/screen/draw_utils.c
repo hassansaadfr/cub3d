@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/19 21:24:47 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/27 20:26:58 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int			my_mlx_pixel_get(t_tex t, float x, int y)
+{
+	// int		*color;
+
+	// color = (int*)t.addr;
+	// color = (int*)color + y * t.width + (int)(x);
+	// return (*color);
+
+	int color;
+
+	int *int_addr;
+	int_addr = (int*)t.addr;
+	color = int_addr[y * t.width + (int)(x * t.width)];
+	return (color);
 }
 
 void		ft_draw_img(t_vars *vars, int x, int y)
