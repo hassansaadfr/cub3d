@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:11:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/23 21:42:14 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/28 11:42:46 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,13 @@ float	degree_to_radian(float degree)
 
 	out = degree * (PI / 180);
 	return (out);
+}
+
+float	fix_angle(float angle)
+{
+	if (angle < 0)
+		angle += 2 * PI;
+	if (angle >= 2 * PI)
+		angle -= 2 * PI;
+	return (angle);
 }

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/27 13:38:39 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/28 11:47:32 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char			**ft_extract_map(char **map);
 int				ft_check_struct_color(t_color *color);
 
 int				create_color(t_color *c);
-int				add_shade(double shade, int color);
 
 void			init_window(t_config *c);
 
@@ -86,6 +85,7 @@ void			ft_display_info(t_vars *mlx);
 void			vertical_collision(t_vars *v, t_ray *r);
 void			horizontal_collision(t_vars *v, t_ray *r);
 float			ray_dist(t_float_pos *p, float wallx, float wally, float ang);
+float			fix_angle(float angle);
 float			degree_to_radian(float degree);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/26 12:06:36 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/28 11:39:16 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,22 @@ static void		init_keys_struct(t_vars *v)
 void			init_window(t_config *c)
 {
 	t_vars	vars;
-	int		res_x;
-	int		res_y;
 
 	vars.c = c;
 	vars.mlx = mlx_init();
 	init_keys_struct(&vars);
 	get_map_dimensions(&vars);
 	c->resolution = get_screen_size(vars.mlx, vars.c->resolution);
-	res_x = vars.c->resolution->x;
-	res_y = vars.c->resolution->y;
-	vars.win = mlx_new_window(vars.mlx, res_x, res_y, "cub3d");
-	vars.img.img = mlx_new_image(vars.mlx, res_x, res_y);
+	vars.win = mlx_new_window(vars.mlx, vars.c->resolution->x,
+	vars.c->resolution->y, "cub3d");
+	vars.img.img = mlx_new_image(vars.mlx, vars.c->resolution->x,
+	vars.c->resolution->y);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
 						&vars.img.line_length, &vars.img.endian);
 	load_texture(&vars, &vars.no, vars.c->no_texture);
+	load_texture(&vars, &vars.so, vars.c->so_texture);
+	load_texture(&vars, &vars.ea, vars.c->ea_texture);
+	load_texture(&vars, &vars.we, vars.c->we_texture);
 	ft_init_minimap(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, keypress, &vars);
 	mlx_hook(vars.win, 3, 1L << 1, keyrelease, &vars);
