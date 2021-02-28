@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/28 11:45:50 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/28 12:31:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall)
 	int			tex_y;
 
 	y = pos[0].y;
-	step = 1.0 * v->no.height / wall->lineH;
+	step = 1.0 * v->ea.height / wall->lineH;
 	tex_pos = (pos[0].y - (v->c->resolution->y / 2) + wall->lineH / 2) * step;
 	while (y < pos[1].y)
 	{
-		tex_y = (int)tex_pos & (v->no.height - 1);
+		tex_y = (int)tex_pos & (v->ea.height - 1);
 		tex_pos += step;
 		my_mlx_pixel_put(&v->img, pos[0].x, y,
-		my_mlx_pixel_get(v->no, r->actual_impact_pos, tex_y));
+		my_mlx_pixel_get(v->ea, r->actual_impact_pos, tex_y));
 		y++;
 	}
 }

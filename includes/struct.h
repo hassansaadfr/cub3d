@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/27 12:19:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/02/28 12:13:39 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ typedef struct s_wall
 {
 	float	lineH;
 	float	lineO;
-	int		wall_width;
-	int		wall_height;
 }				t_wall;
 
 typedef struct s_dda_line
