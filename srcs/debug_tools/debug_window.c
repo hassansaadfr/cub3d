@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 13:31:44 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:37:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	ft_display_window(t_vars *mlx, char **titles, char **values)
 	int				x;
 	int				y;
 
+	if (!DEBUG)
+		return ;
 	xspacement = 160;
 	yspacement = 20;
 	y = 40;
@@ -51,7 +53,9 @@ void		ft_display_info(t_vars *mlx)
 {
 	char	*titles[10];
 	char	*values[10];
+	int		i;
 
+	i = 0;
 	titles[0] = "player pos x   :";
 	titles[1] = "player pos y   :";
 	titles[2] = "player angle   :";
@@ -73,13 +77,9 @@ void		ft_display_info(t_vars *mlx)
 	values[8] = ft_itoa(mlx->c->player_pos->y);
 	values[9] = 0;
 	ft_display_window(mlx, titles, values);
-	free(values[0]);
-	free(values[1]);
-	free(values[2]);
-	free(values[3]);
-	free(values[4]);
-	free(values[5]);
-	free(values[6]);
-	free(values[7]);
-	free(values[8]);
+	while (values[i])
+	{
+		free(values[i]);
+		i++;
+	}
 }

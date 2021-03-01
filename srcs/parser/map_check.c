@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 14:20:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:43:23 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,26 @@ int			ft_check_ext(char *path)
 	return (1);
 }
 
+int			ft_can_open_file(char *path)
+{
+	int		fd;
+
+	fd = 0;
+	errno = 0;
+	fd = open(path, O_RDWR);
+	if (errno != 0)
+	{
+		ft_print_msg(strerror(errno), ERROR_MSG);
+		return (0);
+	}
+	if (fd <= 0)
+	{
+		ft_print_msg(CANT_OPEN_MAP, ERROR_MSG);
+		return (0);
+	}
+	return (fd);
+}
+
 char		**ft_open_and_read(char *path)
 {
 	int		fd;
@@ -91,17 +111,9 @@ char		**ft_open_and_read(char *path)
 	fd = 0;
 	file = 0;
 	errno = 0;
-	fd = open(path, O_RDWR);
-	if (errno != 0)
-	{
-		ft_print_msg(strerror(errno), ERROR_MSG);
+	fd = ft_can_open_file(path);
+	if (!ft_can_open_file(path))
 		return (0);
-	}
-	if (fd < 0)
-	{
-		ft_print_msg(CANT_OPEN_MAP, ERROR_MSG);
-		return (0);
-	}
 	while (get_next_line(fd, &line))
 	{
 		if ((trimmed_line = ft_strtrim(line, " \t"))[0] != '\0')

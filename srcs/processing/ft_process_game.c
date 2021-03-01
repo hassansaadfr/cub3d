@@ -6,50 +6,53 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 14:19:23 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:31:11 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_get_player_pos(t_config **config, char **map)
+static char	ft_str_contain_others(char *str)
 {
-	int		x;
-	int		y;
+	int		i;
+	char	c;
 
-	x = 0;
-	y = 0;
-	(void)map;
-	(*config)->player_pos->exist = 0;
-	while ((*config)->map[y])
+	i = 0;
+	while (str[i])
 	{
-		while ((*config)->map[y][x])
-		{
-			if (ft_strrchr("NSEW", (*config)->map[y][x]))
-			{
-				(*config)->player_pos->x = x;
-				(*config)->player_pos->y = y;
-				(*config)->player_pos->exist++;
-			}
-			x++;
-		}
-		x = 0;
-		y++;
+		c = str[i];
+		if (c == '0' || c == '1' || c == '2' ||
+		c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			i++;
+		else
+			return (1);
 	}
-	if ((*config)->player_pos->exist == 1)
-		return (1);
 	return (0);
 }
 
 char		**ft_extract_map(char **map)
 {
 	int		i;
+	int		map_size;
 	char	**out;
 
+	map_size = 0;
 	out = 0;
 	i = 8;
+	while (map[map_size])
+		map_size++;
+	if (map_size <= i)
+	{
+		ft_print_msg("The file doesnt contain map", ERROR_MSG);
+		return (0);
+	}
 	while (map[i])
 	{
+		if (ft_str_contain_others(map[i]))
+		{
+			ft_print_msg("Map contain wrong characters", ERROR_MSG);
+			return (0);
+		}
 		out = ft_add_line_in_array(map[i], out);
 		i++;
 	}
@@ -69,6 +72,7 @@ void		ft_launch_game(char *path)
 	}
 	if (!(map_config = ft_open_and_read(path)))
 	{
+		ft_print_msg("Map file is invalid", ERROR_MSG);
 		ft_free_config(config);
 		exit(1);
 	}
@@ -76,9 +80,9 @@ void		ft_launch_game(char *path)
 		init_window(config);
 }
 
-int			ft_all_checks(t_config **config, char **map)
+int			ft_all_checks(t_config **c, char **map)
 {
-	int		(*functions_arr[5])(t_config **config, char **map);
+	int		(*functions_arr[5])(t_config **c, char **map);
 	int		result;
 	int		i;
 
@@ -91,11 +95,11 @@ int			ft_all_checks(t_config **config, char **map)
 	functions_arr[4] = 0;
 	while (functions_arr[i] && result == 1)
 	{
-		result = (*functions_arr[i])(config, map);
+		result = (*functions_arr[i])(c, map);
 		i++;
 	}
-	if (!result)
-		ft_free_config(*config);
+	if (!result || !(result = try_load_textures(*c)) || !(*c)->map)
+		ft_free_config(*c);
 	else
 		ft_print_msg("Configuration OK", SUCCESS_MSG);
 	free_array_str(map);

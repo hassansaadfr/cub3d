@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 13:44:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:32:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,21 @@
 # include "struct.h"
 
 void			ft_errors(char	*err);
+int				ft_print_err(char *msg);
 void			ft_print_msg(char *str, int color);
 int				ft_check_ext(char *path);
 int				ft_check_colors(const char *color);
 int				ft_parse_color(char *str, t_color *color);
 void			ft_launch_game(char *path);
 char			**ft_open_and_read(char *path);
+int				ft_can_open_file(char *path);
 void			free_array_str(char **arr);
 int				ft_parse_map(t_config **config, char **map);
 void			ft_read_array_str(char **array);
 char			**ft_add_line_in_array(char *line, char **array);
 int				ft_flood_fill(t_config **config, char **map);
 int				ft_all_checks(t_config **config, char **map);
+int				ft_get_player_pos(t_config **config, char **map);
 
 int				ft_check_config(t_config **config, char **map);
 void			ft_free_config(t_config *config);
@@ -52,6 +55,7 @@ int				get_array_size(char **arr);
 char			**ft_copy_arr(char **original);
 char			**ft_extract_map(char **map);
 int				ft_check_struct_color(t_color *color);
+int				try_load_textures(t_config *c);
 
 int				create_color(t_color *c);
 
@@ -67,6 +71,10 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				my_mlx_pixel_get(t_tex t, float x, int y);
 void			ft_draw_img(t_vars *vars, int x, int y);
 void			ft_set_bg(t_vars *vars);
+void			get_map_dimensions(t_vars *vars);
+t_coord			*get_screen_size(void *mlx, t_coord *res);
+void			init_keys_struct(t_vars *v);
+
 
 void			move_north(t_vars *vars);
 void			move_south(t_vars *vars);

@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/25 12:25:55 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/01 16:31:39 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,13 @@ SRCS			=	main.c \
 					parser/map_check.c \
 					parser/color_parser.c \
 					parser/ft_map_parser.c \
+					parser/textures_load.c \
+					parser/player_pos.c \
 					struct_utils/struct_config_alloc.c \
 					struct_utils/struct_config_free.c \
 					struct_utils/struct_config_utils.c \
 					screen/common.c \
+					screen/screen_utils.c \
 					screen/hooks.c \
 					screen/draw_utils.c \
 					screen/draw_map_2d.c \
