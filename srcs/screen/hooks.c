@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/23 19:26:02 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:34:33 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 int			exit_game(t_vars *vars)
 {
+	mlx_destroy_image(vars->mlx, vars->img.img);
+	mlx_destroy_image(vars->mlx, vars->no.img);
+	mlx_destroy_image(vars->mlx, vars->so.img);
+	mlx_destroy_image(vars->mlx, vars->ea.img);
+	mlx_destroy_image(vars->mlx, vars->we.img);
 	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
 	ft_free_config(vars->c);
 	mlx_loop_end(vars->mlx);
+	free(vars->mlx);
+	exit(1);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/28 11:47:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 13:44:09 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include <errno.h>
 
 # include "constants.h"
 # include "struct.h"
 
 void			ft_errors(char	*err);
 void			ft_print_msg(char *str, int color);
-void			ft_check_ext(char *path);
+int				ft_check_ext(char *path);
 int				ft_check_colors(const char *color);
 int				ft_parse_color(char *str, t_color *color);
 void			ft_launch_game(char *path);

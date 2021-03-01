@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/19 21:26:02 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 13:31:44 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,13 @@ void		ft_display_info(t_vars *mlx)
 	values[8] = ft_itoa(mlx->c->player_pos->y);
 	values[9] = 0;
 	ft_display_window(mlx, titles, values);
+	free(values[0]);
+	free(values[1]);
+	free(values[2]);
+	free(values[3]);
+	free(values[4]);
+	free(values[5]);
+	free(values[6]);
+	free(values[7]);
+	free(values[8]);
 }

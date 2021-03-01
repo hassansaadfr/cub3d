@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 22:04:03 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/02/14 17:24:24 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/01 13:25:24 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC_FILES		=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
 					ft_putstr_fd.c ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_putchar.c \
 					ft_putstr.c get_next_line.c ft_lstadd_back.c ft_lstadd_front.c \
 					ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c \
-					ft_lstnew.c ft_lstsize.c \
+					ft_lstnew.c ft_lstsize.c ft_isspace.c \
 					ft_printf/ft_printf.c ft_printf/srcs/parse_args.c \
 					ft_printf/srcs/ft_lst_init.c ft_printf/srcs/converter/utils.c \
 					ft_printf/srcs/converter/ft_convert_base.c \

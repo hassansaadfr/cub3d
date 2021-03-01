@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/27 19:12:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:20:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_check_colors(const char *color)
 	return (1);
 }
 
-void		ft_check_ext(char *path)
+int			ft_check_ext(char *path)
 {
 	char	**extension;
 	int		name_size;
@@ -73,8 +73,12 @@ void		ft_check_ext(char *path)
 	diff = ft_strncmp("cub", extension[name_size - 1], 4);
 	free_array_str(extension);
 	if (name_size < 2 || ext_len != 3 || diff != 0)
-		ft_errors(WRONG_FILE_NAME);
+	{
+		ft_print_msg(WRONG_FILE_NAME, ERROR_MSG);
+		return (0);
+	}
 	ft_print_msg(START_MAP_PARSING_MSG, SUCCESS_MSG);
+	return (1);
 }
 
 char		**ft_open_and_read(char *path)
@@ -86,9 +90,18 @@ char		**ft_open_and_read(char *path)
 
 	fd = 0;
 	file = 0;
-	fd = open(path, O_RDONLY);
+	errno = 0;
+	fd = open(path, O_RDWR);
+	if (errno != 0)
+	{
+		ft_print_msg(strerror(errno), ERROR_MSG);
+		return (0);
+	}
 	if (fd < 0)
-		ft_errors(CANT_OPEN_MAP);
+	{
+		ft_print_msg(CANT_OPEN_MAP, ERROR_MSG);
+		return (0);
+	}
 	while (get_next_line(fd, &line))
 	{
 		if ((trimmed_line = ft_strtrim(line, " \t"))[0] != '\0')

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 22:05:45 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/14 17:24:28 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 13:25:12 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*del)(void *));
 int				get_next_line(int fd, char **line);
+int				ft_isspace(int c);
 
 #endif

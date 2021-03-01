@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:08 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:02:45 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,30 @@ static void		ft_parse_resolution(char *str, t_config **config)
 	free(str);
 }
 
-static char		*ft_extract_conf(char *line, int start)
+static char		*ft_extract_conf(char *line)
 {
-	char	*tmp;
-	char	*swap;
+	int		i;
+	int		j;
+	int		len;
+	char	*out;
 
-	tmp = 0;
-	swap = 0;
-	tmp = ft_strtrim(line, " \t");
-	swap = ft_substr(tmp, start, ft_strlen(tmp));
-	free(tmp);
-	tmp = ft_strtrim(swap, " \t");
-	free(swap);
-	return (tmp);
+	i = 0;
+	j = 0;
+	len = 0;
+	out = 0;
+	while (ft_isalpha(line[i]) || ft_isspace(line[i]))
+		i++;
+	len = ft_strlen(line + i);
+	out = malloc(sizeof(char) * (len + 1));
+	if (!out)
+		return (0);
+	while (j < len)
+	{
+		out[j] = line[i + j];
+		j++;
+	}
+	out[j] = 0;
+	return (out);
 }
 
 static void		ft_parse_lines(t_config **config, char *map_line)
@@ -48,22 +59,23 @@ static void		ft_parse_lines(t_config **config, char *map_line)
 
 	line = ft_strtrim(map_line, " \t");
 	if (ft_strncmp("R ", line, 2) == 0)
-		ft_parse_resolution(ft_extract_conf(line, 1), config);
+		ft_parse_resolution(ft_extract_conf(line), config);
 	else if (ft_strncmp("S ", line, 2) == 0)
-		(*config)->sprite_texture = ft_extract_conf(line, 1);
+		(*config)->sprite_texture = ft_extract_conf(line);
 	else if (ft_strncmp("F ", line, 2) == 0)
 		ft_parse_color(line, (*config)->f_color);
 	else if (ft_strncmp("C ", line, 2) == 0)
 		ft_parse_color(line, (*config)->c_color);
 	else if (ft_strncmp("SO", line, 2) == 0)
-		(*config)->so_texture = ft_extract_conf(line, 2);
+		(*config)->so_texture = ft_extract_conf(line);
 	else if (ft_strncmp("NO", line, 2) == 0)
-		(*config)->no_texture = ft_extract_conf(line, 2);
+		(*config)->no_texture = ft_extract_conf(line);
 	else if (ft_strncmp("WE", line, 2) == 0)
-		(*config)->we_texture = ft_extract_conf(line, 2);
+		(*config)->we_texture = ft_extract_conf(line);
 	else if (ft_strncmp("EA", line, 2) == 0)
-		(*config)->ea_texture = ft_extract_conf(line, 2);
+		(*config)->ea_texture = ft_extract_conf(line);
 	free(line);
+	line = 0;
 }
 
 int				ft_parse_map(t_config **config, char **map)

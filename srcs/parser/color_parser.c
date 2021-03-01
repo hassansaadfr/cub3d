@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:32:35 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/23 21:23:38 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 14:31:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				ft_parse_color(char *str, t_color *color)
 	tmp = 0;
 	i = 0;
 	splitted = ft_split(str, ',');
-	while (ft_strtrim(splitted[i], " \t"))
+	while (splitted[i])
 	{
 		if ((tmp = ft_check_color_validity(splitted[i] + (i == 0))) == -1)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/28 11:22:35 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/01 13:11:40 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define TOO_MUCH_ARGS "Too much args"
 # define INVALID_MAP "Invalid map"
 # define WRONG_FILE_NAME "Not a valid .cub file."
+# define CANT_OPEN_FILE "Can't open file"
 # define CANT_OPEN_MAP "Can't open the map"
 # define MALLOC_ERROR "Error during memory allocation"
 
