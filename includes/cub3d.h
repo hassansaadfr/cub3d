@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 16:32:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:30:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void			horizontal_collision(t_vars *v, t_ray *r);
 float			ray_dist(t_float_pos *p, float wallx, float wally, float ang);
 float			fix_angle(float angle);
 float			degree_to_radian(float degree);
+t_tex			texture_choose(t_vars *v, t_ray *r);
 
 #endif

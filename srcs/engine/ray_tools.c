@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:11:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/28 11:42:46 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:41:14 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,25 @@ float	fix_angle(float angle)
 	if (angle >= 2 * PI)
 		angle -= 2 * PI;
 	return (angle);
+}
+
+t_tex	texture_choose(t_vars *v, t_ray *r)
+{
+	t_tex	tex;
+
+	if (r->disth < r->distv)
+	{
+		if (r->ra < PI)
+			tex = v->so;
+		if (r->ra > PI)
+			tex = v->no;
+	}
+	else
+	{
+		if (r->ra < PI / 2 || r->ra > 3 * PI / 2)
+			tex = v->ea;
+		if (r->ra > PI / 2 && r->ra < 3 * PI / 2)
+			tex = v->we;
+	}
+	return (tex);
 }
