@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/28 11:46:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/03 12:07:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		draw_minimap(t_vars *vars)
 	i = 0;
 	j = 0;
 	line = vars->c->map;
-	while (DEBUG == 1 && line[i])
+	while (DEBUG == 2)
 	{
 		while (line[i][j])
 		{
@@ -73,7 +73,7 @@ void		draw_player(t_vars *vars)
 	draw_minimap(vars);
 	ft_draw_img(vars, 0, 0);
 	ft_display_info(vars);
-	if (DEBUG == 1)
+	if (DEBUG == 2)
 	{
 		coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
 		coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);

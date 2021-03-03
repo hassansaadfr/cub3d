@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/02 19:40:48 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:30:22 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void		move_north(t_vars *vars)
 	int	x;
 	int	y;
 
-	vars->player.p_pos.x += (vars->player.pdx / MAP_CUBE_SIZE) * (vars->c->resolution->y / 80);
-	vars->player.p_pos.y += (vars->player.pdy / MAP_CUBE_SIZE) * (vars->c->resolution->y / 80);
+	vars->player.p_pos.x += (vars->player.pdx / MAP_CUBE_SIZE) * SPEED_MOVE;
+	vars->player.p_pos.y += (vars->player.pdy / MAP_CUBE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
@@ -49,8 +49,8 @@ void		move_south(t_vars *vars)
 	int		x;
 	int		y;
 
-	vars->player.p_pos.x -= (vars->player.pdx / MAP_CUBE_SIZE) * (vars->c->resolution->y / 80);
-	vars->player.p_pos.y -= (vars->player.pdy / MAP_CUBE_SIZE) * (vars->c->resolution->y / 80);
+	vars->player.p_pos.x -= (vars->player.pdx / MAP_CUBE_SIZE) * SPEED_MOVE;
+	vars->player.p_pos.y -= (vars->player.pdy / MAP_CUBE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
 	if (ft_player_can_move(vars->player.p_pos, vars->c->map))

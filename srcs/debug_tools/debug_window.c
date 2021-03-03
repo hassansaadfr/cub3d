@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 16:37:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/03 14:25:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static char	*float_to_str(float f)
 
 void		ft_display_info(t_vars *mlx)
 {
-	char	*titles[10];
-	char	*values[10];
+	char	*titles[19];
+	char	*values[19];
 	int		i;
 
 	i = 0;
@@ -65,9 +65,19 @@ void		ft_display_info(t_vars *mlx)
 	titles[6] = "player delta y :";
 	titles[7] = "player x:";
 	titles[8] = "player y:";
-	titles[9] = 0;
-	values[0] = float_to_str(mlx->c->player_pos->x);
-	values[1] = float_to_str(mlx->c->player_pos->y);
+	titles[9] = "resolution x :";
+	titles[10] = "resolution y :";
+	titles[11] = "wall height y:";
+	titles[12] = "wall offset  :";
+	titles[13] = "tex_pos      :";
+	titles[14] = "draw_start   :";
+	titles[15] = "dist         :";
+	titles[16] = "step         :";
+	titles[17] = "lineH        :";
+	titles[18] = 0;
+
+	values[0] = float_to_str(mlx->c->player_pos->x / MAP_CUBE_SIZE);
+	values[1] = float_to_str(mlx->c->player_pos->y/ MAP_CUBE_SIZE);
 	values[2] = float_to_str(mlx->player.pa);
 	values[3] = float_to_str(mlx->player.p_pos.x);
 	values[4] = float_to_str(mlx->player.p_pos.y);
@@ -75,7 +85,16 @@ void		ft_display_info(t_vars *mlx)
 	values[6] = float_to_str(mlx->player.pdy);
 	values[7] = ft_itoa(mlx->c->player_pos->x);
 	values[8] = ft_itoa(mlx->c->player_pos->y);
-	values[9] = 0;
+	values[9] = ft_itoa(mlx->c->resolution->x);
+	values[10] = ft_itoa(mlx->c->resolution->y);
+	values[11] = float_to_str(mlx->player.wall.lineH);
+	values[12] = float_to_str(mlx->player.wall.lineO);
+	values[13] = float_to_str((float)(mlx->debug_tex_pos));
+	values[14] = ft_itoa(mlx->debug_draw_start);
+	values[15] = float_to_str(mlx->debug_dist);
+	values[16] = float_to_str((float)mlx->debug_step);
+	values[17] = float_to_str(mlx->debug_lineH);
+	values[18] = 0;
 	ft_display_window(mlx, titles, values);
 	while (values[i])
 	{
