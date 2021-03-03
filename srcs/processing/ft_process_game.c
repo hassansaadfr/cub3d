@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 16:31:11 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:35:10 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	ft_str_contain_others(char *str)
 	while (str[i])
 	{
 		c = str[i];
-		if (c == '0' || c == '1' || c == '2' ||
+		if (c == '0' || c == '1' || c == '2' || c == ' ' ||
 		c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			i++;
 		else

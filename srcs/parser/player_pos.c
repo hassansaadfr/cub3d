@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:31:19 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 16:32:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:34:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int			ft_get_player_pos(t_config **config, char **map)
 	y = 0;
 	(void)map;
 	(*config)->player_pos->exist = 0;
+	if (!(*config)->map)
+		return (0);
 	while ((*config)->map[y])
 	{
 		while ((*config)->map[y][x])
