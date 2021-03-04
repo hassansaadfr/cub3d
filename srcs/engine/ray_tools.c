@@ -6,19 +6,22 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:11:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/03 15:41:14 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 13:45:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	ray_dist(t_float_pos *p, float wallx, float wally, float ang)
+float	ray_dist(t_float_pos *player, float endx, float endy)
 {
-	float	d;
+	float	distance;
+	float	x;
+	float	y;
 
-	(void)ang;
-	d = sqrt((wallx - p->x) * (wallx - p->x) + (wally - p->y) * (wally - p->y));
-	return (d);
+	x = (endx - player->x) * (endx - player->x);
+	y = (endy - player->y) * (endy - player->y);
+	distance = sqrt(x + y);
+	return (distance);
 }
 
 float	degree_to_radian(float degree)

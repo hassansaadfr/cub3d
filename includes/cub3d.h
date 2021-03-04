@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/03 15:30:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:44:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ void			get_map_dimensions(t_vars *vars);
 t_coord			*get_screen_size(void *mlx, t_coord *res);
 void			init_keys_struct(t_vars *v);
 
-
 void			move_north(t_vars *vars);
 void			move_south(t_vars *vars);
 void			move_east(t_vars *vars);
 void			move_west(t_vars *vars);
+
+void			parse_map_sprites(t_vars *v);
+void			sort_sprites(t_sprite **arr, int n);
+void			get_sprite_list(t_vars *v);
+void			init_sprites_list(t_vars *v);
+void			recalc_sprites_dist(t_vars *v);
 
 void			draw_minimap(t_vars *vars);
 void			draw_player(t_vars *vars);
@@ -93,9 +98,12 @@ void			ft_display_info(t_vars *mlx);
 
 void			vertical_collision(t_vars *v, t_ray *r);
 void			horizontal_collision(t_vars *v, t_ray *r);
-float			ray_dist(t_float_pos *p, float wallx, float wally, float ang);
+float			ray_dist(t_float_pos *p, float endx, float endy);
 float			fix_angle(float angle);
 float			degree_to_radian(float degree);
 t_tex			texture_choose(t_vars *v, t_ray *r);
+
+
+void	draw(t_vars *v);
 
 #endif

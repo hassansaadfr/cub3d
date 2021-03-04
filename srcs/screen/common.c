@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 15:15:40 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 13:29:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void			init_window(t_config *c)
 	vars.c->resolution->y);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
 						&vars.img.line_length, &vars.img.endian);
+	load_texture(&vars, &vars.sprite_tex, vars.c->sprite_texture);
 	load_texture(&vars, &vars.no, vars.c->no_texture);
 	load_texture(&vars, &vars.so, vars.c->so_texture);
 	load_texture(&vars, &vars.ea, vars.c->ea_texture);

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/03 14:24:04 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:59:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct	s_player {
 	float		pdx;
 	float		pdy;
 	t_float_pos	p_pos;
+	float		plane_x;
+	float		plane_y;
 	t_wall		wall;
 }				t_player;
 
@@ -87,18 +89,29 @@ typedef struct	s_keys {
 	int		west;
 }				t_keys;
 
+typedef struct s_sprite
+{
+	float	x;
+	float	y;
+	float	dist;
+}				t_sprite;
+
 typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
 	t_data		img;
 	t_config	*c;
 	t_player	player;
+	t_sprite	**sprites_list;
+	int			nb_sprites;
 	t_coord		map_size;
 	t_keys		keys;
 	t_tex		no;
 	t_tex		so;
 	t_tex		we;
 	t_tex		ea;
+	t_tex		sprite_tex;
+	float		*z_buffer;
 	double		debug_tex_pos;
 	int			debug_draw_start;
 	float		debug_dist;

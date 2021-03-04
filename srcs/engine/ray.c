@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/03 15:31:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 18:11:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int r
 		v->debug_step = step;
 		v->debug_dist = r->final_dist;
 	}
-
 	while (y < pos[1].y)
 	{
 		tex_y = (int)tex_pos & (texture_choose(v, r).height - 1);
@@ -66,6 +65,7 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int r
 		else
 			my_mlx_pixel_put(&v->img, pos[0].x, y,
 			my_mlx_pixel_get(texture_choose(v, r), r->actual_impact_pos, tex_y));
+		v->z_buffer[y] = r->final_dist;
 		y++;
 	}
 }
@@ -130,8 +130,10 @@ void			draw_ray_lines(t_vars *v)
 		vertical_collision(v, &r);
 		horizontal_collision(v, &r);
 		get_longuest_ray(v, &r, i);
-		r.ra += degree_to_radian(60.0 / (float)v->c->resolution->x);
+		r.ra += degree_to_radian(60 / (float)v->c->resolution->x);
 		r.ra = fix_angle(r.ra);
 		i++;
 	}
+	draw(v);
+
 }

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:49:17 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 14:49:54 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:59:27 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void		init_keys_struct(t_vars *v)
 	v->keys.south = 0;
 	v->keys.east = 0;
 	v->keys.west = 0;
+	v->z_buffer = malloc(sizeof(float) * v->c->resolution->x);
 }

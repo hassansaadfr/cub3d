@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/03 12:07:04 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:30:17 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		draw_cube(t_coord *pos, int size, int color, t_data *img)
+void			draw_cube(t_coord *pos, int size, int color, t_data *img)
 {
 	int		y;
 	int		x;
@@ -34,7 +34,7 @@ void		draw_cube(t_coord *pos, int size, int color, t_data *img)
 	}
 }
 
-void		draw_minimap(t_vars *vars)
+void			draw_minimap(t_vars *vars)
 {
 	int		i;
 	int		j;
@@ -63,7 +63,7 @@ void		draw_minimap(t_vars *vars)
 	}
 }
 
-void		draw_player(t_vars *vars)
+void			draw_player(t_vars *vars)
 {
 	t_coord coord;
 
@@ -73,6 +73,7 @@ void		draw_player(t_vars *vars)
 	draw_minimap(vars);
 	ft_draw_img(vars, 0, 0);
 	ft_display_info(vars);
+	recalc_sprites_dist(vars);
 	if (DEBUG == 2)
 	{
 		coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
@@ -81,15 +82,18 @@ void		draw_player(t_vars *vars)
 	}
 }
 
-void		ft_init_minimap(t_vars *vars)
+void			ft_init_minimap(t_vars *vars)
 {
 	char	direction;
 	t_coord	*player_pos;
 
+	init_sprites_list(vars);
 	player_pos = vars->c->player_pos;
 	direction = vars->c->map[player_pos->y][player_pos->x];
 	vars->player.p_pos.x = (player_pos->x + 0.5) * MAP_CUBE_SIZE;
 	vars->player.p_pos.y = (player_pos->y + 0.5) * MAP_CUBE_SIZE;
+	vars->player.plane_x = 0.0;
+	vars->player.plane_y = 0.66;
 	vars->c->map[player_pos->y][player_pos->x] = '0';
 	if (direction == 'N')
 		vars->player.pa = 3 * (PI / 2);
