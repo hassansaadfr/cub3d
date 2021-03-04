@@ -1,9 +1,9 @@
 R 640 640
 
-NO ./textures/bluestone.xpm
-SO ./textures/colorstone.xpm
-WE ./textures/greystone.xpm
-EA ./textures/redbrick.xpm
+NO ./textures/kadhafi.xpm
+SO ./textures/trump.xpm
+WE ./textures/kim.xpm
+EA ./textures/macron.xpm
 S ./textures/barrel.xpm
 
 F 117, 255, 0
