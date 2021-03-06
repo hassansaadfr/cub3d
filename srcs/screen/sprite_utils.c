@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:06:47 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 16:52:15 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/05 21:52:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static t_sprite	*create_sprite_coord(float x, float y, t_player p)
 	sprite = malloc(sizeof(t_sprite));
 	if (!sprite)
 		return (NULL);
-	sprite->x = x + 0.5;
-	sprite->y = y + 0.5;
+	sprite->x = (x + 0.5) * MAP_CUBE_SIZE;
+	sprite->y = (y + 0.5) * MAP_CUBE_SIZE;
 	sprite->dist = ray_dist(&p.p_pos, sprite->x, sprite->y);
 	return (sprite);
 }

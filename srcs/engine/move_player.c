@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 17:36:36 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 00:13:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,37 +69,23 @@ void		move_south(t_vars *vars)
 void		move_east(t_vars *vars)
 {
 	float	rot_speed;
-	float	old_planex;
 
-	old_planex = vars->player.plane_x;
 	rot_speed = 0.1;
 	vars->player.pa -= rot_speed;
-	if (vars->player.pa < 0)
-		vars->player.pa += 2 * PI;
+	normalize_angle(&vars->player.pa);
 	vars->player.pdx = cos(vars->player.pa);
 	vars->player.pdy = sin(vars->player.pa);
-	vars->player.plane_x = vars->player.plane_x * cos(rot_speed)
-		- vars->player.plane_y * sin(rot_speed);
-	vars->player.plane_y = old_planex * sin(rot_speed)
-		+ vars->player.plane_y * cos(rot_speed);
 	draw_player(vars);
 }
 
 void		move_west(t_vars *vars)
 {
 	float	rot_speed;
-	float	old_planex;
 
 	rot_speed = 0.1;
-	old_planex = vars->player.plane_x;
 	vars->player.pa += rot_speed;
-	if (vars->player.pa > PI * 2)
-		vars->player.pa -= 2 * PI;
+	normalize_angle(&vars->player.pa);
 	vars->player.pdx = cos(vars->player.pa);
 	vars->player.pdy = sin(vars->player.pa);
-	vars->player.plane_x = vars->player.plane_x * cos(-rot_speed)
-		- vars->player.plane_y * sin(-rot_speed);
-	vars->player.plane_y = old_planex * sin(-rot_speed)
-		+ vars->player.plane_y * cos(-rot_speed);
 	draw_player(vars);
 }

@@ -6,34 +6,34 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 18:11:25 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/05 23:27:34 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		draw_rays_line_map(t_vars *v, t_ray *r)
-{
-	t_coord	ray_impact;
-	t_coord	player_pos;
+// static void		draw_rays_line_map(t_vars *v, t_ray *r)
+// {
+// 	t_coord	ray_impact;
+// 	t_coord	player_pos;
 
-	if (DEBUG == 2)
-	{
-		player_pos.x = v->player.p_pos.x;
-		player_pos.y = v->player.p_pos.y;
-		if (r->disth < r->distv)
-		{
-			ray_impact.x = r->hx;
-			ray_impact.y = r->hy;
-		}
-		if (r->disth > r->distv)
-		{
-			ray_impact.x = r->vx;
-			ray_impact.y = r->vy;
-		}
-		drawline(&player_pos, &ray_impact, RED, v);
-	}
-}
+// 	if (DEBUG == 2)
+// 	{
+// 		player_pos.x = v->player.p_pos.x;
+// 		player_pos.y = v->player.p_pos.y;
+// 		if (r->disth < r->distv)
+// 		{
+// 			ray_impact.x = r->hx;
+// 			ray_impact.y = r->hy;
+// 		}
+// 		if (r->disth > r->distv)
+// 		{
+// 			ray_impact.x = r->vx;
+// 			ray_impact.y = r->vy;
+// 		}
+// 		drawline(&player_pos, &ray_impact, RED, v);
+// 	}
+// }
 
 static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int ray_nb)
 {
@@ -65,7 +65,6 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int r
 		else
 			my_mlx_pixel_put(&v->img, pos[0].x, y,
 			my_mlx_pixel_get(texture_choose(v, r), r->actual_impact_pos, tex_y));
-		v->z_buffer[y] = r->final_dist;
 		y++;
 	}
 }
@@ -112,7 +111,7 @@ static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 	fisheye = fix_angle(fisheye);
 	r->final_dist = r->final_dist * cos(fisheye);
 	draw_walls(v, r, ray_nb);
-	draw_rays_line_map(v, r);
+	// draw_rays_line_map(v, r);
 }
 
 void			draw_ray_lines(t_vars *v)
@@ -134,6 +133,4 @@ void			draw_ray_lines(t_vars *v)
 		r.ra = fix_angle(r.ra);
 		i++;
 	}
-	draw(v);
-
 }

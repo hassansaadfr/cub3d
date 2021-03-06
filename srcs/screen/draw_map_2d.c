@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 17:30:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 00:16:50 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void			draw_player(t_vars *vars)
 	coord.x = vars->player.p_pos.x;
 	coord.y = vars->player.p_pos.y;
 	draw_ray_lines(vars);
-	draw_minimap(vars);
-	ft_draw_img(vars, 0, 0);
+	// draw_minimap(vars);
 	ft_display_info(vars);
 	recalc_sprites_dist(vars);
+	ft_draw_img(vars, 0, 0);
 	if (DEBUG == 2)
 	{
 		coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
@@ -92,8 +92,6 @@ void			ft_init_minimap(t_vars *vars)
 	direction = vars->c->map[player_pos->y][player_pos->x];
 	vars->player.p_pos.x = (player_pos->x + 0.5) * MAP_CUBE_SIZE;
 	vars->player.p_pos.y = (player_pos->y + 0.5) * MAP_CUBE_SIZE;
-	vars->player.plane_x = 0.0;
-	vars->player.plane_y = 0.66;
 	vars->c->map[player_pos->y][player_pos->x] = '0';
 	if (direction == 'N')
 		vars->player.pa = 3 * (PI / 2);
