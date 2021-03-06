@@ -6,34 +6,31 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/05 23:27:34 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 11:41:20 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// static void		draw_rays_line_map(t_vars *v, t_ray *r)
-// {
-// 	t_coord	ray_impact;
-// 	t_coord	player_pos;
+static t_coord	*get_ray_line_minimap(t_ray *r)
+{
+	t_coord	*ray_impact;
 
-// 	if (DEBUG == 2)
-// 	{
-// 		player_pos.x = v->player.p_pos.x;
-// 		player_pos.y = v->player.p_pos.y;
-// 		if (r->disth < r->distv)
-// 		{
-// 			ray_impact.x = r->hx;
-// 			ray_impact.y = r->hy;
-// 		}
-// 		if (r->disth > r->distv)
-// 		{
-// 			ray_impact.x = r->vx;
-// 			ray_impact.y = r->vy;
-// 		}
-// 		drawline(&player_pos, &ray_impact, RED, v);
-// 	}
-// }
+	ray_impact = malloc(sizeof(t_coord));
+	if (!ray_impact)
+		return (NULL);
+	if (r->disth < r->distv)
+	{
+		ray_impact->x = r->hx;
+		ray_impact->y = r->hy;
+	}
+	if (r->disth > r->distv)
+	{
+		ray_impact->x = r->vx;
+		ray_impact->y = r->vy;
+	}
+	return (ray_impact);
+}
 
 static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int ray_nb)
 {
@@ -44,7 +41,7 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall, int r
 	int			screen;
 
 	screen = v->c->resolution->y / 2 / (tan(30 * DR));
-	wall->lineH = MAP_CUBE_SIZE / r->final_dist * screen;
+	wall->lineH = TILE_SIZE / r->final_dist * screen;
 	y = pos[0].y;
 	step = 1.0 * texture_choose(v, r).height / wall->lineH;
 	tex_pos = ((float)pos[0].y - (float)v->c->resolution->y / 2 + wall->lineH / 2) * step;
@@ -76,7 +73,7 @@ static void		draw_walls(t_vars *v, t_ray *r, int ray_nb)
 	int		screen;
 
 	screen = v->c->resolution->y / 2 / (tan(30 * DR));
-	wall.lineH = MAP_CUBE_SIZE / r->final_dist * screen;
+	wall.lineH = TILE_SIZE / r->final_dist * screen;
 	if (wall.lineH > v->c->resolution->y)
 		wall.lineH = v->c->resolution->y;
 	wall.lineO = (v->c->resolution->y / 2) - wall.lineH / 2;
@@ -111,14 +108,17 @@ static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 	fisheye = fix_angle(fisheye);
 	r->final_dist = r->final_dist * cos(fisheye);
 	draw_walls(v, r, ray_nb);
-	// draw_rays_line_map(v, r);
 }
 
 void			draw_ray_lines(t_vars *v)
 {
 	t_ray	r;
 	int		i;
+	t_coord	**rays;
 
+	rays = malloc(sizeof(t_coord) * (v->c->resolution->x) + 1);
+	if (!rays)
+		return ;
 	i = 0;
 	r.ra = v->player.pa - (DR * 30);
 	r.ra = fix_angle(r.ra);
@@ -129,8 +129,26 @@ void			draw_ray_lines(t_vars *v)
 		vertical_collision(v, &r);
 		horizontal_collision(v, &r);
 		get_longuest_ray(v, &r, i);
+		rays[i] = get_ray_line_minimap(&r);
 		r.ra += degree_to_radian(60 / (float)v->c->resolution->x);
 		r.ra = fix_angle(r.ra);
 		i++;
 	}
+	 draw_minimap(v);
+	 i = 0;
+	 t_coord *c;
+	 t_coord	player_pos;
+	 t_coord	r_p;
+	player_pos.x = (v->player.p_pos.x / TILE_SIZE) * MAP_TILE_SIZE;
+	player_pos.y =(v->player.p_pos.y / TILE_SIZE) * MAP_TILE_SIZE;
+	 while (i < v->c->resolution->x)
+	 {
+		r_p.x = (rays[i]->x / TILE_SIZE) * MAP_TILE_SIZE +(MAP_TILE_SIZE);
+		r_p.y = (rays[i]->y / TILE_SIZE) * MAP_TILE_SIZE +(MAP_TILE_SIZE);
+		c = rays[i];
+		if (i == 0 || i == v->c->resolution->x - 1)
+			drawline(&player_pos, &r_p, RED, v);
+		free(rays[i]);
+		i++;
+	 }
 }

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:09:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 13:40:29 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 11:22:27 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	calc_horizontal(t_ray *r, t_vars *v)
 {
 	int		size;
 
-	size = MAP_CUBE_SIZE;
+	size = TILE_SIZE;
 	r->dof = 0;
 	r->atan = -1 / tan(r->ra);
 	if (r->ra > PI)
@@ -50,7 +50,7 @@ static void	calc_vertical(t_ray *r, t_vars *v)
 {
 	int		size;
 
-	size = MAP_CUBE_SIZE;
+	size = TILE_SIZE;
 	r->dof = 0;
 	r->ntan = -tan(r->ra);
 	if (r->ra > PI / 2 && r->ra < 3 * PI / 2)
@@ -81,15 +81,15 @@ void		horizontal_collision(t_vars *v, t_ray *r)
 	while (r->dof < v->map_size.y)
 	{
 		r->impact_pos_h = 1;
-		r->mxh = ((int)(r->rxh) / MAP_CUBE_SIZE);
-		r->myh = ((int)(r->ryh) / MAP_CUBE_SIZE);
+		r->mxh = ((int)(r->rxh) / TILE_SIZE);
+		r->myh = ((int)(r->ryh) / TILE_SIZE);
 		if (r->mxh > 0 && r->myh >= 0 && r->mxh < v->map_size.x
 		&& r->myh < v->map_size.y && hit_wall(v, r->mxh, r->myh))
 		{
 			r->hx = r->rxh;
 			r->hy = r->ryh;
 			r->disth = ray_dist(&v->player.p_pos, r->hx, r->hy);
-			r->impact_pos_h = r->rxh / MAP_CUBE_SIZE - r->mxh;
+			r->impact_pos_h = r->rxh / TILE_SIZE - r->mxh;
 			r->dof = v->map_size.y;
 		}
 		else
@@ -107,15 +107,15 @@ void		vertical_collision(t_vars *v, t_ray *r)
 	while (r->dof < v->map_size.x)
 	{
 		r->impact_pos_v = 1;
-		r->mxv = ((int)(r->rxv) / MAP_CUBE_SIZE);
-		r->myv = ((int)(r->ryv) / MAP_CUBE_SIZE);
+		r->mxv = ((int)(r->rxv) / TILE_SIZE);
+		r->myv = ((int)(r->ryv) / TILE_SIZE);
 		if (r->mxv >= 0 && r->myv >= 0 && r->mxv <= v->map_size.x
 		&& r->myv < v->map_size.y && hit_wall(v, r->mxv, r->myv))
 		{
 			r->vx = r->rxv;
 			r->vy = r->ryv;
 			r->distv = ray_dist(&v->player.p_pos, r->vx, r->vy);
-			r->impact_pos_v = ((r->ryv) / MAP_CUBE_SIZE) - r->myv;
+			r->impact_pos_v = ((r->ryv) / TILE_SIZE) - r->myv;
 			r->dof = v->map_size.x;
 		}
 		else

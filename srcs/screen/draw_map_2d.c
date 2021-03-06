@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 00:16:50 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 10:06:16 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,28 @@ void			draw_minimap(t_vars *vars)
 	int		j;
 	char	**line;
 	t_coord	cube;
+	char *l;
 
 	i = 0;
 	j = 0;
 	line = vars->c->map;
-	while (DEBUG == 2)
+	while (line[i] && DEBUG == 2)
 	{
+		l = line[i];
 		while (line[i][j])
 		{
-			cube.x = MAP_CUBE_SIZE * j;
-			cube.y = MAP_CUBE_SIZE * i;
+			cube.x = MAP_TILE_SIZE * j;
+			cube.y = MAP_TILE_SIZE * i;
 			if (line[i][j] == '1')
-				draw_cube(&cube, MAP_CUBE_SIZE, BLACK, &vars->img);
+				draw_cube(&cube, MAP_TILE_SIZE, BLACK, &vars->img);
 			if (line[i][j] == '0')
-				draw_cube(&cube, MAP_CUBE_SIZE, WHITE, &vars->img);
+				draw_cube(&cube, MAP_TILE_SIZE, WHITE, &vars->img);
 			if (line[i][j] == '2')
-				draw_cube(&cube, MAP_CUBE_SIZE, ORANGE, &vars->img);
-			j++;
+				draw_cube(&cube, MAP_TILE_SIZE, ORANGE, &vars->img);
+			if (j < (int)ft_strlen(line[i]) - 1)
+				j++;
+			else
+				break ;
 		}
 		j = 0;
 		i++;
@@ -70,15 +75,14 @@ void			draw_player(t_vars *vars)
 	coord.x = vars->player.p_pos.x;
 	coord.y = vars->player.p_pos.y;
 	draw_ray_lines(vars);
-	// draw_minimap(vars);
-	ft_display_info(vars);
 	recalc_sprites_dist(vars);
+	ft_display_info(vars);
 	ft_draw_img(vars, 0, 0);
 	if (DEBUG == 2)
 	{
-		coord.x = (vars->player.p_pos.x - MAP_CUBE_SIZE / 4);
-		coord.y = (vars->player.p_pos.y - MAP_CUBE_SIZE / 4);
-		draw_cube(&coord, MAP_PLAYER_SIZE, RED, &vars->img);
+		coord.x = (vars->player.p_pos.x / TILE_SIZE) * MAP_TILE_SIZE;
+		coord.y = (vars->player.p_pos.y / TILE_SIZE) * MAP_TILE_SIZE;
+		draw_cube(&coord, MAP_TILE_SIZE / 2, RED, &vars->img);
 	}
 }
 
@@ -90,8 +94,8 @@ void			ft_init_minimap(t_vars *vars)
 	init_sprites_list(vars);
 	player_pos = vars->c->player_pos;
 	direction = vars->c->map[player_pos->y][player_pos->x];
-	vars->player.p_pos.x = (player_pos->x + 0.5) * MAP_CUBE_SIZE;
-	vars->player.p_pos.y = (player_pos->y + 0.5) * MAP_CUBE_SIZE;
+	vars->player.p_pos.x = (player_pos->x + 0.5) * TILE_SIZE;
+	vars->player.p_pos.y = (player_pos->y + 0.5) * TILE_SIZE;
 	vars->c->map[player_pos->y][player_pos->x] = '0';
 	if (direction == 'N')
 		vars->player.pa = 3 * (PI / 2);

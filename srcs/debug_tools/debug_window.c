@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 12:59:22 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:08:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_display_window(t_vars *mlx, char **titles, char **values)
 	xspacement = 160;
 	yspacement = 20;
 	y = 40;
-	x = (MAP_CUBE_SIZE * mlx->map_size.x) + MAP_CUBE_SIZE;
+	x = (TILE_SIZE * mlx->map_size.x) + TILE_SIZE;
 	mlx_string_put(mlx->mlx, mlx->win, x, y, 0x6752d9,
 		"=========[ DEBUG ]=========");
 	y += yspacement;
@@ -75,8 +75,8 @@ void		ft_display_info(t_vars *mlx)
 	titles[16] = "step         :";
 	titles[17] = "lineH        :";
 	titles[18] = 0;
-	values[0] = float_to_str(mlx->c->player_pos->x / MAP_CUBE_SIZE);
-	values[1] = float_to_str(mlx->c->player_pos->y / MAP_CUBE_SIZE);
+	values[0] = float_to_str(mlx->c->player_pos->x / TILE_SIZE);
+	values[1] = float_to_str(mlx->c->player_pos->y / TILE_SIZE);
 	values[2] = float_to_str(mlx->player.pa);
 	values[3] = float_to_str(mlx->player.p_pos.x);
 	values[4] = float_to_str(mlx->player.p_pos.y);

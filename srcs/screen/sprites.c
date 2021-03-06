@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:50:12 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 00:22:04 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 10:26:09 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		draw_sprites(t_vars *v)
 	float	sprite_left_x;
 	float	sprite_right_x;
 
-	dist_proj_plane = ((v->c->resolution->x / 2) / tan(FOV / 2));
+	dist_proj_plane = ((v->c->resolution->x / 2) / tan((FOV) / 2));
 	tile_size = 8;
 	i = 0;
 	while (i < v->nb_sprites)
@@ -62,7 +62,7 @@ void		draw_sprites(t_vars *v)
 		if (v->sprites_list[i]->visible == 1)
 		{
 			// float screen = v->c->resolution->y / 2 / (tan(30 * DR));
-			// sprite_h = MAP_CUBE_SIZE / v->sprites_list[i]->dist * screen;
+			// sprite_h = TILE_SIZE / v->sprites_list[i]->dist * screen;
 			sprite_h = (tile_size / v->sprites_list[i]->dist) * dist_proj_plane;
 			sprite_w = sprite_h;
 			sprite_top_y = ((v->c->resolution->y / 2) - sprite_h / 2);

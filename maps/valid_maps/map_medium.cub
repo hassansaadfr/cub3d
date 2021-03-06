@@ -1,9 +1,9 @@
 R 640 640
 
-NO ./textures/kadhafi.xpm
-SO ./textures/trump.xpm
-WE ./textures/kim.xpm
-EA ./textures/macron.xpm
+SO ./textures/kadhafi.xpm
+NO ./textures/trump.xpm
+EA ./textures/kim.xpm
+WE ./textures/macron.xpm
 S ./textures/barrel.xpm
 
 F 117, 255, 0
