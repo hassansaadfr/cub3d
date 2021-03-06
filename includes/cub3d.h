@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 11:47:04 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:03:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				focus_window(t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				my_mlx_pixel_get(t_tex t, float x, int y);
+int			my_mlx_pixel_get_sprite(t_tex t, int texture_w, int textureOffesetY, int textureOffesetX);
 void			ft_draw_img(t_vars *vars, int x, int y);
 void			ft_set_bg(t_vars *vars);
 void			get_map_dimensions(t_vars *vars);

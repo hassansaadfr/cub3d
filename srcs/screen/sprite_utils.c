@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:06:47 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 11:55:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:10:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			sort_sprites(t_sprite **arr, int n)
 		j = i + i;
 		while (j < n)
 		{
-			if (arr[j]->dist < arr[min_idx]->dist)
+			if (arr[j]->dist > arr[min_idx]->dist)
 				min_idx = j;
 			j++;
 		}

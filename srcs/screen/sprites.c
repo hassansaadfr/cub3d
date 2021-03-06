@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:50:12 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 15:39:31 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:38:33 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void		draw_sprites(t_vars *v)
 	float	sprite_pos_x;
 	float	sprite_left_x;
 	float	sprite_right_x;
+	int		texture_w;
+	int		texture_h;
 
 
 	dist_proj_plane = ((v->c->resolution->x / 2) / tan(FOV / 2));
@@ -62,8 +64,6 @@ void		draw_sprites(t_vars *v)
 	{
 		if (v->sprites_list[i]->visible == 1)
 		{
-			// float screen = v->c->resolution->y / 2 / (tan(30 * DR));
-			// sprite_h = TILE_SIZE / v->sprites_list[i]->dist * screen;
 			sprite_h = (tile_size / v->sprites_list[i]->dist) * dist_proj_plane;
 			sprite_w = sprite_h;
 			sprite_top_y = ((v->c->resolution->y / 2) - sprite_h / 2);
@@ -76,13 +76,25 @@ void		draw_sprites(t_vars *v)
 			sprite_pos_x = tan(sprite_angle) * dist_proj_plane;
 			sprite_left_x = v->c->resolution->x / 2 + sprite_pos_x;
 			sprite_right_x = sprite_left_x + sprite_w;
-			for (size_t x = sprite_left_x; x < sprite_right_x; x++)
+			texture_w = v->sprite_tex.width;
+			texture_h = v->sprite_tex.height;
+			int	textureOffesetX;
+			int	textureOffesetY;
+			int colorpx;
+			for (int x = sprite_left_x; x < sprite_right_x; x++)
 			{
-				for (size_t y = sprite_top_y; y < sprite_bottom_y; y++)
+				float texelWidth = (texture_w / sprite_w);
+				textureOffesetX = (x - sprite_left_x) * texelWidth;
+				for (int y = sprite_top_y; y < sprite_bottom_y; y++)
 				{
-					if (x == 0)
-						x = (size_t)x;
-					my_mlx_pixel_put(&v->img, x , y , GREEN + i);
+					int		distancefromtop = y + (sprite_h / 2) - (v->c->resolution->y / 2);
+					textureOffesetY = distancefromtop * (texture_h / sprite_h);
+					colorpx = my_mlx_pixel_get_sprite(v->sprite_tex, texture_w, textureOffesetY, textureOffesetX);
+					if (x > 0 && x < v->c->resolution->x && y > 0 && y < v->c->resolution->y)
+					{
+						if (colorpx != BLACK)
+							my_mlx_pixel_put(&v->img, x , y , colorpx);
+					}
 				}
 
 			}

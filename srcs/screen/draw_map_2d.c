@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 15:22:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:06:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void			draw_player(t_vars *vars)
 	recalc_sprites_dist(vars);
 	ft_display_info(vars);
 	ft_draw_img(vars, 0, 0);
-	printf("pa %f\n",vars->player.pa);
 	if (DEBUG == 2)
 	{
 		coord.x = (vars->player.p_pos.x / TILE_SIZE) * MAP_TILE_SIZE;
