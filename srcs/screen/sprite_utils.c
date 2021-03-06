@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:06:47 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 09:08:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 11:55:19 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,29 @@ void			parse_map_sprites(t_vars *v)
 		x = 0;
 		y++;
 	}
+}
+
+int			sprite_pos_isvisible(t_vars *v, int x, int y)
+{
+	int		i;
+	int		s_x;
+	int		s_y;
+	int		visible;
+
+	i = 0;
+	while (i < v->nb_sprites)
+	{
+		s_x = v->sprites_list[i]->x / TILE_SIZE;
+		s_y = v->sprites_list[i]->y / TILE_SIZE;
+		if (s_x == x && s_y == y)
+		{
+			visible = v->sprites_list[i]->visible;
+			if (visible)
+				return (1);
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (0);
 }

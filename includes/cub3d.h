@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/05 23:12:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 11:47:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void			move_east(t_vars *vars);
 void			move_west(t_vars *vars);
 
 void			parse_map_sprites(t_vars *v);
+int				sprite_pos_isvisible(t_vars *v, int x, int y);
 void			sort_sprites(t_sprite **arr, int n);
 void			get_sprite_list(t_vars *v);
 void			init_sprites_list(t_vars *v);

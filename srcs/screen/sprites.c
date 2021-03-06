@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:50:12 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 10:26:09 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/06 15:39:31 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static float	get_angle(t_player *p, t_sprite *t)
 	float	pa;
 
 	pa = p->pa;
-	angle = pa - atan2(t->y - p->p_pos.y , t->x - p->p_pos.y);
+	angle = pa - atan2(t->y - p->p_pos.y , t->x - p->p_pos.x);
 	if (angle > PI)
 		angle -= PI * 2;
 	if (angle < -PI)
@@ -54,7 +54,8 @@ void		draw_sprites(t_vars *v)
 	float	sprite_left_x;
 	float	sprite_right_x;
 
-	dist_proj_plane = ((v->c->resolution->x / 2) / tan((FOV) / 2));
+
+	dist_proj_plane = ((v->c->resolution->x / 2) / tan(FOV / 2));
 	tile_size = 8;
 	i = 0;
 	while (i < v->nb_sprites)
@@ -79,7 +80,9 @@ void		draw_sprites(t_vars *v)
 			{
 				for (size_t y = sprite_top_y; y < sprite_bottom_y; y++)
 				{
-					my_mlx_pixel_put(&v->img, x , y , RED);
+					if (x == 0)
+						x = (size_t)x;
+					my_mlx_pixel_put(&v->img, x , y , GREEN + i);
 				}
 
 			}
