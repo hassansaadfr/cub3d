@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 16:03:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 19:31:27 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ int				focus_window(t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				my_mlx_pixel_get(t_tex t, float x, int y);
-int			my_mlx_pixel_get_sprite(t_tex t, int texture_w, int textureOffesetY, int textureOffesetX);
+int				get_sprite_pixel(t_tex t, int texture_w, int offsetx, int offsety);
 void			ft_draw_img(t_vars *vars, int x, int y);
-void			ft_set_bg(t_vars *vars);
 void			get_map_dimensions(t_vars *vars);
 t_coord			*get_screen_size(void *mlx, t_coord *res);
 void			init_keys_struct(t_vars *v);
@@ -86,6 +85,9 @@ int				sprite_pos_isvisible(t_vars *v, int x, int y);
 void			sort_sprites(t_sprite **arr, int n);
 void			get_sprite_list(t_vars *v);
 void			init_sprites_list(t_vars *v);
+void			recalc_sprites_dist(t_vars *v);
+float			get_sprite_dist(t_player *p, t_sprite *sprite);
+float			get_sprite_angle(t_player *p, t_sprite *t);
 void			recalc_sprites_dist(t_vars *v);
 
 void			draw_minimap(t_vars *vars);
@@ -102,6 +104,7 @@ void			vertical_collision(t_vars *v, t_ray *r);
 void			horizontal_collision(t_vars *v, t_ray *r);
 float			ray_dist(t_float_pos *p, float endx, float endy);
 void			normalize_angle(float* angle);
+float			get_perp_dist(float dist, float angle);
 float			fix_angle(float angle);
 float			degree_to_radian(float degree);
 t_tex			texture_choose(t_vars *v, t_ray *r);

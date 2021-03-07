@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 11:41:20 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 13:16:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,10 @@ void			draw_ray_lines(t_vars *v)
 	rays = malloc(sizeof(t_coord) * (v->c->resolution->x) + 1);
 	if (!rays)
 		return ;
+	v->distances_walls = malloc(sizeof(float) * (v->c->resolution->x + 1));
+	if (!v->distances_walls)
+		return ;
+	v->distances_walls[v->c->resolution->x] = '\0';
 	i = 0;
 	r.ra = v->player.pa - (DR * 30);
 	r.ra = fix_angle(r.ra);
@@ -129,22 +133,23 @@ void			draw_ray_lines(t_vars *v)
 		vertical_collision(v, &r);
 		horizontal_collision(v, &r);
 		get_longuest_ray(v, &r, i);
+		v->distances_walls[i] = r.final_dist;
 		rays[i] = get_ray_line_minimap(&r);
 		r.ra += degree_to_radian(60 / (float)v->c->resolution->x);
 		r.ra = fix_angle(r.ra);
 		i++;
 	}
-	 draw_minimap(v);
-	 i = 0;
-	 t_coord *c;
-	 t_coord	player_pos;
-	 t_coord	r_p;
+	draw_minimap(v);
+	i = 0;
+	t_coord *c;
+	t_coord	player_pos;
+	t_coord	r_p;
 	player_pos.x = (v->player.p_pos.x / TILE_SIZE) * MAP_TILE_SIZE;
 	player_pos.y =(v->player.p_pos.y / TILE_SIZE) * MAP_TILE_SIZE;
 	 while (i < v->c->resolution->x)
 	 {
-		r_p.x = (rays[i]->x / TILE_SIZE) * MAP_TILE_SIZE +(MAP_TILE_SIZE);
-		r_p.y = (rays[i]->y / TILE_SIZE) * MAP_TILE_SIZE +(MAP_TILE_SIZE);
+		r_p.x = (rays[i]->x / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
+		r_p.y = (rays[i]->y / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
 		c = rays[i];
 		if (i == 0 || i == v->c->resolution->x - 1)
 			drawline(&player_pos, &r_p, RED, v);

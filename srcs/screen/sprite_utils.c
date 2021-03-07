@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 13:06:47 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 16:10:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:52:51 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,32 @@ static int		sprites_count(char **map)
 	return (nb_sprites);
 }
 
-static void		swap_sprites(t_sprite *xp, t_sprite *yp)
-{
-	t_sprite temp;
-
-	temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
-
 void			sort_sprites(t_sprite **arr, int n)
 {
-	int		i;
-	int		j;
-	int		min_idx;
+	int			i;
+	int			j;
+	t_sprite	*temp;
 
 	i = 0;
+	j = 0;
 	while (i < n - 1)
 	{
-		min_idx = i;
-		j = i + i;
+		j = i + 1;
 		while (j < n)
 		{
-			if (arr[j]->dist > arr[min_idx]->dist)
-				min_idx = j;
+			if (arr[i]->dist < arr[j]->dist)
+			{
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
 			j++;
 		}
-		swap_sprites(arr[min_idx], arr[i]);
 		i++;
 	}
 }
 
-static t_sprite	*create_sprite_coord(float x, float y, t_player p)
+static t_sprite	*new_sprite_coord(float x, float y, t_float_pos *p)
 {
 	t_sprite	*sprite;
 
@@ -75,7 +69,7 @@ static t_sprite	*create_sprite_coord(float x, float y, t_player p)
 		return (NULL);
 	sprite->x = (x + 0.5) * TILE_SIZE;
 	sprite->y = (y + 0.5) * TILE_SIZE;
-	sprite->dist = ray_dist(&p.p_pos, sprite->x, sprite->y);
+	sprite->dist = ray_dist(p, sprite->x, sprite->y);
 	return (sprite);
 }
 
@@ -98,7 +92,7 @@ void			parse_map_sprites(t_vars *v)
 		while (v->c->map[y][x])
 		{
 			if (v->c->map[y][x] == '2')
-				v->sprites_list[i++] = create_sprite_coord(x, y, v->player);
+				v->sprites_list[i++] = new_sprite_coord(x, y, &v->player.p_pos);
 			x++;
 		}
 		x = 0;
@@ -106,7 +100,7 @@ void			parse_map_sprites(t_vars *v)
 	}
 }
 
-int			sprite_pos_isvisible(t_vars *v, int x, int y)
+int				sprite_pos_isvisible(t_vars *v, int x, int y)
 {
 	int		i;
 	int		s_x;

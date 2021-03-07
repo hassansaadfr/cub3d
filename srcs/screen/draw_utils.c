@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 16:02:55 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:58:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,19 @@ int			my_mlx_pixel_get(t_tex t, float x, int y)
 	return (color);
 }
 
-int			my_mlx_pixel_get_sprite(t_tex t, int texture_w, int textureOffesetY, int textureOffesetX)
+int			get_sprite_pixel(t_tex t, int texture_w, int offsety, int offsetx)
 {
 	int color;
 	int *int_addr;
 
 	int_addr = (int*)t.addr;
-	color = int_addr[(texture_w * textureOffesetY) + textureOffesetX];
+	color = int_addr[(texture_w * offsety) + offsetx];
 	return (color);
 }
 
 void		ft_draw_img(t_vars *vars, int x, int y)
 {
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, x, y);
-}
-
-void		ft_set_bg(t_vars *vars)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (i < vars->c->resolution->y)
-	{
-		while (j < vars->c->resolution->x)
-		{
-			my_mlx_pixel_put(&vars->img, j, i, LIGHT_GRAY);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
 }
 
 void		drawline(t_coord *start, t_coord *end, int color, t_vars *vars)

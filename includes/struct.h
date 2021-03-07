@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 09:35:44 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 19:44:35 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct	s_tex
 
 typedef struct s_wall
 {
-	float	lineH;
-	float	lineO;
+	float		lineH;
+	float		lineO;
 }				t_wall;
 
 typedef struct	s_player {
@@ -81,19 +81,31 @@ typedef struct	s_player {
 }				t_player;
 
 typedef struct	s_keys {
-	int		north;
-	int		south;
-	int		east;
-	int		west;
+	int			north;
+	int			south;
+	int			east;
+	int			west;
 }				t_keys;
 
 typedef struct s_sprite
 {
-	float	x;
-	float	y;
-	float	dist;
-	float	angle;
-	int		visible;
+	float		x;
+	float		y;
+	float		dist;
+	float		angle;
+	int			visible;
+	float		sprite_h;
+	float		sprite_w;
+	float		sprite_top_y;
+	float		sprite_bottom_y;
+	float		sprite_angle;
+	float		sprite_pos_x;
+	float		sprite_left_x;
+	float		sprite_right_x;
+	int			texture_w;
+	int			texture_h;
+	float		texel_width;
+	float		perp_dist;
 }				t_sprite;
 
 typedef struct	s_vars {
@@ -111,7 +123,7 @@ typedef struct	s_vars {
 	t_tex		we;
 	t_tex		ea;
 	t_tex		sprite_tex;
-	t_list		*ray_to_draw;
+	float		*distances_walls;
 	double		debug_tex_pos;
 	int			debug_draw_start;
 	float		debug_dist;

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/06 16:06:19 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:12:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void			ft_init_minimap(t_vars *vars)
 	char	direction;
 	t_coord	*player_pos;
 
-	init_sprites_list(vars);
 	player_pos = vars->c->player_pos;
 	direction = vars->c->map[player_pos->y][player_pos->x];
 	vars->player.p_pos.x = (player_pos->x + 0.5) * TILE_SIZE;
@@ -107,5 +106,6 @@ void			ft_init_minimap(t_vars *vars)
 		vars->player.pa = PI;
 	vars->player.pdx = cos(vars->player.pa) * 5;
 	vars->player.pdy = sin(vars->player.pa) * 5;
+	init_sprites_list(vars);
 	draw_player(vars);
 }
