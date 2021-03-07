@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 19:44:35 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 20:50:24 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,6 @@ typedef struct	s_vars {
 	t_tex		ea;
 	t_tex		sprite_tex;
 	float		*distances_walls;
-	double		debug_tex_pos;
-	int			debug_draw_start;
-	float		debug_dist;
-	double		debug_step;
-	float		debug_lineH;
 }				t_vars;
 
 typedef struct	s_ray {

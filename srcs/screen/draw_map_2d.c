@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:13:32 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 12:12:15 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:03:33 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,6 @@ void			draw_cube(t_coord *pos, int size, int color, t_data *img)
 		}
 		x = 0;
 		y++;
-	}
-}
-
-void			draw_minimap(t_vars *vars)
-{
-	int		i;
-	int		j;
-	char	**line;
-	t_coord	cube;
-	char *l;
-
-	i = 0;
-	j = 0;
-	line = vars->c->map;
-	while (line[i] && DEBUG == 2)
-	{
-		l = line[i];
-		while (line[i][j])
-		{
-			cube.x = MAP_TILE_SIZE * j;
-			cube.y = MAP_TILE_SIZE * i;
-			if (line[i][j] == '1')
-				draw_cube(&cube, MAP_TILE_SIZE, BLACK, &vars->img);
-			if (line[i][j] == '0')
-				draw_cube(&cube, MAP_TILE_SIZE, WHITE, &vars->img);
-			if (line[i][j] == '2')
-				draw_cube(&cube, MAP_TILE_SIZE, sprite_pos_isvisible(vars, j, i) ? RED : ORANGE, &vars->img);
-			if (j < (int)ft_strlen(line[i]) - 1)
-				j++;
-			else
-				break ;
-		}
-		j = 0;
-		i++;
 	}
 }
 

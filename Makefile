@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/07 19:17:49 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/07 21:04:47 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS			=	main.c \
 					screen/sprite_calcs.c \
 					screen/sprite_utils.c \
 					engine/move_player.c \
+					engine/minimap.c \
 					engine/ray.c \
 					engine/ray_collisions.c \
 					engine/ray_tools.c \

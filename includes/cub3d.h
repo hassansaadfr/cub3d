@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 19:31:27 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:04:02 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int				focus_window(t_vars *vars);
 
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				my_mlx_pixel_get(t_tex t, float x, int y);
-int				get_sprite_pixel(t_tex t, int texture_w, int offsetx, int offsety);
+int				get_sprite_pixel(t_tex t, int texture_w, t_coord offset);
 void			ft_draw_img(t_vars *vars, int x, int y);
 void			get_map_dimensions(t_vars *vars);
 t_coord			*get_screen_size(void *mlx, t_coord *res);
@@ -86,11 +86,11 @@ void			sort_sprites(t_sprite **arr, int n);
 void			get_sprite_list(t_vars *v);
 void			init_sprites_list(t_vars *v);
 void			recalc_sprites_dist(t_vars *v);
-float			get_sprite_dist(t_player *p, t_sprite *sprite);
-float			get_sprite_angle(t_player *p, t_sprite *t);
+float			sprite_dist(t_player *p, t_sprite *sprite);
+float			sprite_angle(t_player *p, t_sprite *t);
 void			recalc_sprites_dist(t_vars *v);
 
-void			draw_minimap(t_vars *vars);
+void			draw_minimap(t_vars *v, t_coord **rays);
 void			draw_player(t_vars *vars);
 void			ft_init_minimap(t_vars *vars);
 t_coord			*ft_calc_pos_in_map(t_vars *vars);

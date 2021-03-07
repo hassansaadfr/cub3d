@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 17:58:13 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 20:34:39 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ int			my_mlx_pixel_get(t_tex t, float x, int y)
 	return (color);
 }
 
-int			get_sprite_pixel(t_tex t, int texture_w, int offsety, int offsetx)
+int			get_sprite_pixel(t_tex t, int texture_w, t_coord offset)
 {
 	int color;
 	int *int_addr;
 
 	int_addr = (int*)t.addr;
-	color = int_addr[(texture_w * offsety) + offsetx];
+	if (offset.x < 0)
+		offset.x = 0;
+	color = int_addr[(texture_w * offset.y) + offset.x];
 	return (color);
 }
 
