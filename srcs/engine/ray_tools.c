@@ -6,20 +6,11 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 20:11:03 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:51:21 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:31:38 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	normalize_angle(float *angle)
-{
-	*angle = remainder(*angle, PI * 2);
-	if (*angle < 0)
-	{
-		*angle = PI * 2 + *angle;
-	}
-}
 
 float	ray_dist(t_float_pos *player, float endx, float endy)
 {

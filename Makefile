@@ -6,15 +6,15 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/07 21:04:47 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/07 21:35:37 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
 
 SRCS			=	main.c \
-					processing/ft_process_game.c \
-					processing/ft_flood_fill.c \
+					parser/ft_process_game.c \
+					parser/ft_flood_fill.c \
 					utils/errors.c \
 					utils/print_colors.c \
 					utils/colors.c \
@@ -27,14 +27,13 @@ SRCS			=	main.c \
 					struct_utils/struct_config_alloc.c \
 					struct_utils/struct_config_free.c \
 					struct_utils/struct_config_utils.c \
-					screen/common.c \
-					screen/screen_utils.c \
-					screen/hooks.c \
-					screen/draw_utils.c \
-					screen/draw_map_2d.c \
-					screen/sprites.c \
-					screen/sprite_calcs.c \
-					screen/sprite_utils.c \
+					engine/game.c \
+					engine/screen_utils.c \
+					engine/hooks.c \
+					engine/draw_utils.c \
+					engine/sprites.c \
+					engine/sprite_calcs.c \
+					engine/sprite_utils.c \
 					engine/move_player.c \
 					engine/minimap.c \
 					engine/ray.c \

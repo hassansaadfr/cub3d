@@ -6,20 +6,42 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 20:59:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:20:00 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:34:13 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	sprite_color(t_vars *v, int i, int j)
+static void		draw_cube(t_coord *pos, int size, int color, t_data *img)
+{
+	int		y;
+	int		x;
+
+	y = 0;
+	x = 0;
+	while (y < size)
+	{
+		while (x < size)
+		{
+			if (x >= size - 1 || y >= size - 1 || x < 1 || y < 1)
+				my_mlx_pixel_put(img, y + pos->x, x + pos->y, LIGHT_GRAY);
+			else
+				my_mlx_pixel_put(img, y + pos->x, x + pos->y, color);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+static int		sprite_color(t_vars *v, int i, int j)
 {
 	if (sprite_pos_isvisible(v, j, i) == 1)
 		return (RED);
 	return (ORANGE);
 }
 
-static void	display_minimap(t_vars *vars)
+static void		display_minimap(t_vars *vars)
 {
 	int		i;
 	int		j;
@@ -48,7 +70,21 @@ static void	display_minimap(t_vars *vars)
 	}
 }
 
-void		draw_minimap(t_vars *v, t_coord **rays)
+static void		free_rays(t_vars *v, t_coord **rays)
+{
+	int		i;
+
+	i = 0;
+	while (i < v->c->resolution->x)
+	{
+		free(rays[i]);
+		i++;
+	}
+	free(rays);
+	rays = 0;
+}
+
+void			draw_minimap(t_vars *v, t_coord **rays)
 {
 	int		i;
 	t_coord	*c;
@@ -69,9 +105,10 @@ void		draw_minimap(t_vars *v, t_coord **rays)
 			if (DEBUG == 2)
 				if (i == 0 || i == v->c->resolution->x - 1)
 					drawline(&coord, &r_p, RED, v);
-			free(rays[i]);
 			i++;
 		}
 		draw_cube(&coord, MAP_TILE_SIZE / 2, RED, &v->img);
+		ft_display_info(v);
 	}
+	free_rays(v, rays);
 }

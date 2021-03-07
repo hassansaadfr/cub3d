@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 16:50:12 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:43:07 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:27:16 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void			display_sprites(t_vars *v, t_sprite *s, t_coord *screen)
 }
 
 /*
-* fix fisheye or not ? perpdist instead of dist for var s->sprite_h
+** fix fisheye or not ? perpdist instead of dist for var s->sprite_h
 */
+
 static t_sprite	*calc_sprites(t_vars *v, t_sprite *s)
 {
 	float	dist_proj_plane;

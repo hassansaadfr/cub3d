@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/04 13:29:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:28:55 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,38 @@ static void		load_texture(t_vars *v, t_tex *t, char *path)
 	t->img = mlx_xpm_file_to_image(v->mlx, path, &t->width, &t->height);
 	t->addr = mlx_get_data_addr(t->img, &t->bits_per_pixel,
 						&t->line_length, &t->endian);
+}
+
+void			draw_frame(t_vars *vars)
+{
+	raycast(vars);
+	recalc_sprites_dist(vars);
+	ft_display_info(vars);
+	ft_draw_img(vars, 0, 0);
+}
+
+void			init_game_config(t_vars *vars)
+{
+	char	direction;
+	t_coord	*player_pos;
+
+	player_pos = vars->c->player_pos;
+	direction = vars->c->map[player_pos->y][player_pos->x];
+	vars->player.p_pos.x = (player_pos->x + 0.5) * TILE_SIZE;
+	vars->player.p_pos.y = (player_pos->y + 0.5) * TILE_SIZE;
+	vars->c->map[player_pos->y][player_pos->x] = '0';
+	if (direction == 'N')
+		vars->player.pa = 3 * (PI / 2);
+	if (direction == 'S')
+		vars->player.pa = (PI / 2);
+	if (direction == 'E')
+		vars->player.pa = 2 * PI;
+	if (direction == 'W')
+		vars->player.pa = PI;
+	vars->player.pdx = cos(vars->player.pa) * 5;
+	vars->player.pdy = sin(vars->player.pa) * 5;
+	init_sprites_list(vars);
+	draw_frame(vars);
 }
 
 void			init_window(t_config *c)
@@ -39,7 +71,7 @@ void			init_window(t_config *c)
 	load_texture(&vars, &vars.so, vars.c->so_texture);
 	load_texture(&vars, &vars.ea, vars.c->ea_texture);
 	load_texture(&vars, &vars.we, vars.c->we_texture);
-	ft_init_minimap(&vars);
+	init_game_config(&vars);
 	mlx_hook(vars.win, 2, 1L << 0, keypress, &vars);
 	mlx_hook(vars.win, 3, 1L << 1, keyrelease, &vars);
 	mlx_hook(vars.win, 10, 1L << 21, focus_window, &vars);

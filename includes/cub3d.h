@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:04:02 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:31:32 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,10 @@ float			sprite_angle(t_player *p, t_sprite *t);
 void			recalc_sprites_dist(t_vars *v);
 
 void			draw_minimap(t_vars *v, t_coord **rays);
-void			draw_player(t_vars *vars);
-void			ft_init_minimap(t_vars *vars);
+void			draw_frame(t_vars *vars);
+void			init_game_config(t_vars *vars);
 t_coord			*ft_calc_pos_in_map(t_vars *vars);
-void			draw_ray_lines(t_vars *v);
-void			draw_cube(t_coord *pos, int size, int color, t_data *img);
+void			raycast(t_vars *v);
 void			drawline(t_coord *start, t_coord *end, int color, t_vars *vars);
 
 void			ft_display_info(t_vars *mlx);
@@ -103,7 +102,6 @@ void			ft_display_info(t_vars *mlx);
 void			vertical_collision(t_vars *v, t_ray *r);
 void			horizontal_collision(t_vars *v, t_ray *r);
 float			ray_dist(t_float_pos *p, float endx, float endy);
-void			normalize_angle(float* angle);
 float			get_perp_dist(float dist, float angle);
 float			fix_angle(float angle);
 float			degree_to_radian(float degree);

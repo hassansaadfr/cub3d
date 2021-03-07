@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:50:24 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:37:30 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ typedef struct	s_tex
 	char		*path;
 }				t_tex;
 
-typedef struct s_wall
+typedef struct	s_wall
 {
-	float		lineH;
-	float		lineO;
+	float		line_h;
+	float		line_o;
 }				t_wall;
 
 typedef struct	s_player {
@@ -87,7 +87,7 @@ typedef struct	s_keys {
 	int			west;
 }				t_keys;
 
-typedef struct s_sprite
+typedef struct	s_sprite
 {
 	float		x;
 	float		y;
@@ -155,7 +155,7 @@ typedef struct	s_ray {
 	float		actual_impact_pos;
 }				t_ray;
 
-typedef struct s_dda_line
+typedef struct	s_dda_line
 {
 	t_coord		delta;
 	t_float_pos	inc;

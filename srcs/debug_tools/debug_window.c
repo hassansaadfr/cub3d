@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:17:10 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:54:17 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:37:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_display_window(t_vars *mlx, char **titles, char **values)
+static void	print_debug_to_window(t_vars *mlx, char **titles, char **values)
 {
 	int				xspacement;
 	int				yspacement;
@@ -81,10 +81,10 @@ void		ft_display_info(t_vars *mlx)
 	values[8] = ft_itoa(mlx->c->player_pos->y);
 	values[9] = ft_itoa(mlx->c->resolution->x);
 	values[10] = ft_itoa(mlx->c->resolution->y);
-	values[11] = float_to_str(mlx->player.wall.lineH);
-	values[12] = float_to_str(mlx->player.wall.lineO);
+	values[11] = float_to_str(mlx->player.wall.line_h);
+	values[12] = float_to_str(mlx->player.wall.line_o);
 	values[13] = 0;
-	ft_display_window(mlx, titles, values);
+	print_debug_to_window(mlx, titles, values);
 	while (values[i])
 	{
 		free(values[i]);

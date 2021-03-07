@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:10:36 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/07 21:37:04 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void		texture_wall(t_vars *v, t_coord *pos, t_ray *r, t_wall *wall)
 	int			y;
 	int			tex_y;
 
-	wall->lineH = TILE_SIZE / r->final_dist *
+	wall->line_h = TILE_SIZE / r->final_dist *
 				(v->c->resolution->y / 2 / (tan(30 * DR)));
 	y = pos[0].y;
-	step = 1.0 * texture_choose(v, r).height / wall->lineH;
+	step = 1.0 * texture_choose(v, r).height / wall->line_h;
 	tex_pos = ((float)pos[0].y - (float)v->c->resolution->y / 2
-				+ wall->lineH / 2) * step;
+				+ wall->line_h / 2) * step;
 	while (y < pos[1].y)
 	{
 		tex_y = (int)tex_pos & (texture_choose(v, r).height - 1);
@@ -62,14 +62,14 @@ static void		draw_walls(t_vars *v, t_ray *r, int ray_nb)
 	int		screen;
 
 	screen = v->c->resolution->y / 2 / (tan(30 * DR));
-	wall.lineH = TILE_SIZE / r->final_dist * screen;
-	if (wall.lineH > v->c->resolution->y)
-		wall.lineH = v->c->resolution->y;
-	wall.lineO = (v->c->resolution->y / 2) - wall.lineH / 2;
+	wall.line_h = TILE_SIZE / r->final_dist * screen;
+	if (wall.line_h > v->c->resolution->y)
+		wall.line_h = v->c->resolution->y;
+	wall.line_o = (v->c->resolution->y / 2) - wall.line_h / 2;
 	wall_pos[0].x = ray_nb;
-	wall_pos[0].y = wall.lineO;
+	wall_pos[0].y = wall.line_o;
 	wall_pos[1].x = ray_nb;
-	wall_pos[1].y = wall.lineH + wall.lineO;
+	wall_pos[1].y = wall.line_h + wall.line_o;
 	if (ray_nb == v->c->resolution->x / 2)
 		v->player.wall = wall;
 	texture_wall(v, wall_pos, r, &wall);
@@ -99,7 +99,7 @@ static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 	draw_walls(v, r, ray_nb);
 }
 
-void			draw_ray_lines(t_vars *v)
+void			raycast(t_vars *v)
 {
 	t_ray	r;
 	int		i;
