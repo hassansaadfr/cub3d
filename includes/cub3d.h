@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 22:08:58 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:21:30 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ float		sprite_angle(t_player *p, t_sprite *t);
 void		recalc_sprites_dist(t_vars *v);
 void		draw_sprites(t_vars *v);
 
-void		draw_minimap(t_vars *v, t_coord **rays);
+void		draw_minimap(t_vars *v, t_coord ***rays);
 void		draw_frame(t_vars *vars);
 void		init_game_config(t_vars *vars);
 t_coord		*ft_calc_pos_in_map(t_vars *vars);

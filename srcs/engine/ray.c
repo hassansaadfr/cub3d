@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 18:23:15 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:22:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void			raycast(t_vars *v)
 		r.ra += degree_to_radian(60 / (float)v->c->resolution->x);
 		r.ra = fix_angle(r.ra);
 	}
-	draw_minimap(v, rays);
+	draw_minimap(v, &rays);
 }

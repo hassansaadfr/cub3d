@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 20:59:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:34:13 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:22:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void		free_rays(t_vars *v, t_coord **rays)
 	rays = 0;
 }
 
-void			draw_minimap(t_vars *v, t_coord **rays)
+void			draw_minimap(t_vars *v, t_coord ***rays)
 {
 	int		i;
 	t_coord	*c;
@@ -99,9 +99,9 @@ void			draw_minimap(t_vars *v, t_coord **rays)
 		coord.y = (v->player.p_pos.y / TILE_SIZE) * MAP_TILE_SIZE;
 		while (i < v->c->resolution->x)
 		{
-			r_p.x = (rays[i]->x / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
-			r_p.y = (rays[i]->y / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
-			c = rays[i];
+			r_p.x = ((*rays)[i]->x / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
+			r_p.y = ((*rays)[i]->y / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
+			c = (*rays)[i];
 			if (DEBUG == 2)
 				if (i == 0 || i == v->c->resolution->x - 1)
 					drawline(&coord, &r_p, RED, v);
@@ -110,5 +110,5 @@ void			draw_minimap(t_vars *v, t_coord **rays)
 		draw_cube(&coord, MAP_TILE_SIZE / 2, RED, &v->img);
 		ft_display_info(v);
 	}
-	free_rays(v, rays);
+	free_rays(v, *rays);
 }

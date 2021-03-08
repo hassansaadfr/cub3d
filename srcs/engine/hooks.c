@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 19:30:55 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:24:40 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,26 @@
 
 int			exit_game(t_vars *vars)
 {
+	int		i;
+
+	i = 0;
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_image(vars->mlx, vars->no.img);
 	mlx_destroy_image(vars->mlx, vars->so.img);
 	mlx_destroy_image(vars->mlx, vars->ea.img);
 	mlx_destroy_image(vars->mlx, vars->we.img);
+	mlx_destroy_image(vars->mlx, vars->sprite_tex.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	ft_free_config(vars->c);
 	mlx_loop_end(vars->mlx);
 	free(vars->mlx);
+	while (i < vars->nb_sprites)
+	{
+		free(vars->sprites_list[i]);
+		i++;
+	}
+	free(vars->sprites_list);
 	exit(1);
 	return (1);
 }
