@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 19:17:20 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:48:26 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:42:29 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	recalc_sprites_dist(t_vars *v)
 	while (i < v->nb_sprites)
 	{
 		s = v->sprites_list[i];
-		v->sprites_list[i]->dist = sprite_dist(&v->player, s) * cos(s->angle);
 		v->sprites_list[i]->angle = sprite_angle(&v->player, s);
+		v->sprites_list[i]->dist = sprite_dist(&v->player, s) * cos(s->angle);
 		if (v->sprites_list[i]->angle < (FOV / 2) + 0.4)
 			v->sprites_list[i]->visible = 1;
 		else

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:26:11 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:37:04 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:23:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		draw_walls(t_vars *v, t_ray *r, int ray_nb)
 	v->c->resolution->y, 0}, create_color(v->c->f_color), v);
 }
 
-static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
+static float	get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 {
 	float	fisheye;
 
@@ -97,6 +97,7 @@ static void		get_longuest_ray(t_vars *v, t_ray *r, int ray_nb)
 	fisheye = fix_angle(fisheye);
 	r->final_dist = r->final_dist * cos(fisheye);
 	draw_walls(v, r, ray_nb);
+	return (r->final_dist);
 }
 
 void			raycast(t_vars *v)
@@ -119,8 +120,7 @@ void			raycast(t_vars *v)
 		r.distv = 1000000;
 		vertical_collision(v, &r);
 		horizontal_collision(v, &r);
-		get_longuest_ray(v, &r, i);
-		v->distances_walls[i] = r.final_dist;
+		v->distances_walls[i] = get_longuest_ray(v, &r, i);
 		rays[i++] = get_ray_line_minimap(&r);
 		r.ra += degree_to_radian(60 / (float)v->c->resolution->x);
 		r.ra = fix_angle(r.ra);

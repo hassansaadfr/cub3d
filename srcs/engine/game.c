@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.c                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:28:55 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:06:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void		load_texture(t_vars *v, t_tex *t, char *path)
 
 void			draw_frame(t_vars *vars)
 {
+	vars->c->player_pos->x = vars->player.p_pos.x;
+	vars->c->player_pos->y = vars->player.p_pos.y;
 	raycast(vars);
 	recalc_sprites_dist(vars);
 	ft_display_info(vars);

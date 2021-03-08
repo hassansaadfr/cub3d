@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 16:02:34 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 19:30:55 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int			keypress(int keycode, t_vars *vars)
 {
 	if (keycode == ESCAPE)
 		exit_game(vars);
-	if (keycode == UP || keycode == W)
+	if (keycode == UP || keycode == Z)
 		vars->keys.north = 1;
 	if (keycode == DOWN || keycode == S)
 		vars->keys.south = 1;
-	if (keycode == A)
+	if (keycode == Q)
 		vars->keys.move_east = 1;
 	if (keycode == D)
 		vars->keys.move_west = 1;
@@ -60,11 +60,11 @@ int			keypress(int keycode, t_vars *vars)
 
 int			keyrelease(int keycode, t_vars *vars)
 {
-	if (keycode == UP || keycode == W)
+	if (keycode == UP || keycode == Z)
 		vars->keys.north = 0;
 	if (keycode == DOWN || keycode == S)
 		vars->keys.south = 0;
-	if (keycode == A)
+	if (keycode == Q)
 		vars->keys.move_east = 0;
 	if (keycode == D)
 		vars->keys.move_west = 0;
@@ -81,8 +81,10 @@ int			loop_hook(t_vars *v)
 		move_north(v);
 	if (v->keys.south)
 		move_south(v);
-	// if (v->keys.move_east)
-	// 	move_side(v, EAST_DIRECTION);
+	if (v->keys.move_east)
+		move_side(v, EAST_DIRECTION);
+	if (v->keys.move_west)
+		move_side(v, WEST_DIRECTION);
 	if (v->keys.rotate_east)
 		turn_camera(v, EAST_DIRECTION);
 	if (v->keys.rotate_west)
