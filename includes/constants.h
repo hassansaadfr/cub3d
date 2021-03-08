@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:38:03 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:15:46 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 # define ERROR_MSG -1
 # define CLEAR_CONSOLE -2
 
+# define EAST_DIRECTION 1
+# define WEST_DIRECTION 2
+
 # define ESCAPE 65307
 # define UP 65362
 # define DOWN 65364
@@ -53,6 +56,8 @@
 # define Q 113
 # define S 115
 # define D 100
+# define W 119
+# define A 97
 
 # define WHITE 0xffffff
 # define BLACK 0x0

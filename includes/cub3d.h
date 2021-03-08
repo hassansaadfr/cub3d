@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:31:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:01:17 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			init_keys_struct(t_vars *v);
 
 void			move_north(t_vars *vars);
 void			move_south(t_vars *vars);
+void			turn_camera(t_vars *vars, int direction);
 void			move_east(t_vars *vars);
 void			move_west(t_vars *vars);
 

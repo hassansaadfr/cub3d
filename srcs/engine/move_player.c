@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:06:48 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:23:23 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:01:24 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_player_can_move(t_float_pos pos, char **map)
+static int	is_wall(t_float_pos pos, char **map)
 {
 	int		x;
 	int		y;
@@ -31,7 +31,7 @@ void		move_north(t_vars *vars)
 	vars->player.p_pos.y += (vars->player.pdy / TILE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
-	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
+	if (is_wall(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
@@ -53,7 +53,7 @@ void		move_south(t_vars *vars)
 	vars->player.p_pos.y -= (vars->player.pdy / TILE_SIZE) * SPEED_MOVE;
 	x = vars->player.p_pos.x;
 	y = vars->player.p_pos.y;
-	if (ft_player_can_move(vars->player.p_pos, vars->c->map))
+	if (is_wall(vars->player.p_pos, vars->c->map))
 	{
 		vars->c->player_pos->x = x;
 		vars->c->player_pos->y = y;
@@ -89,5 +89,29 @@ void		move_west(t_vars *vars)
 		vars->player.pa -= 2 * PI;
 	vars->player.pdx = cos(vars->player.pa);
 	vars->player.pdy = sin(vars->player.pa);
+	draw_frame(vars);
+}
+
+void		turn_camera(t_vars *vars, int direction)
+{
+	float	rot_speed;
+
+	rot_speed = 0.1;
+	if (direction == WEST_DIRECTION)
+	{
+		vars->player.pa += rot_speed;
+		if (vars->player.pa > PI * 2)
+			vars->player.pa -= 2 * PI;
+		vars->player.pdx = cos(vars->player.pa);
+		vars->player.pdy = sin(vars->player.pa);
+	}
+	else
+	{
+		vars->player.pa -= rot_speed;
+		if (vars->player.pa < 0)
+			vars->player.pa += 2 * PI;
+		vars->player.pdx = cos(vars->player.pa);
+		vars->player.pdy = sin(vars->player.pa);
+	}
 	draw_frame(vars);
 }

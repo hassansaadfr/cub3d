@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:49:17 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/05 19:54:39 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:56:06 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ t_coord		*get_screen_size(void *mlx, t_coord *res)
 	return (res);
 }
 
-void		init_keys_struct(t_vars *v)
+void		init_keys_struct(t_vars *vars)
 {
-	v->keys.north = 0;
-	v->keys.south = 0;
-	v->keys.east = 0;
-	v->keys.west = 0;
+	vars->keys.north = 0;
+	vars->keys.south = 0;
+	vars->keys.rotate_east = 0;
+	vars->keys.rotate_west = 0;
+	vars->keys.move_east = 0;
+	vars->keys.move_west = 0;
 }

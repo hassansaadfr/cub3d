@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 21:37:30 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:17:48 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ typedef struct	s_player {
 typedef struct	s_keys {
 	int			north;
 	int			south;
-	int			east;
-	int			west;
+	int			rotate_east;
+	int			rotate_west;
+	int			move_east;
+	int			move_west;
 }				t_keys;
 
 typedef struct	s_sprite

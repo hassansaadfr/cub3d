@@ -43,7 +43,7 @@ void	recalc_sprites_dist(t_vars *v)
 		s = v->sprites_list[i];
 		v->sprites_list[i]->dist = sprite_dist(&v->player, s) * cos(s->angle);
 		v->sprites_list[i]->angle = sprite_angle(&v->player, s);
-		if (v->sprites_list[i]->angle < (FOV / 2) + 0.2)
+		if (v->sprites_list[i]->angle < (FOV / 2) + 0.4)
 			v->sprites_list[i]->visible = 1;
 		else
 			v->sprites_list[i]->visible = 0;
