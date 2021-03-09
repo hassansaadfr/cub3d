@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 15:17:48 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:10:07 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_color {
 	int			g;
 	int			b;
 	int			a;
+	int			nb_val;
 }				t_color;
 
 typedef struct	s_config {

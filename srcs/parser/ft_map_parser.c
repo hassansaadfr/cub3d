@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 16:19:45 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:15:59 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,20 @@ int				ft_parse_map(t_config **config, char **map)
 		ft_parse_lines(config, map[i]);
 		i++;
 	}
-	if (!ft_check_struct_color((*config)->c_color))
-		return (ft_print_err("Cant find ceiling color"));
-	if (!ft_check_struct_color((*config)->f_color))
-		return (ft_print_err("Cant find floor color"));
+	if ((*config)->c_color->nb_val == 3 && (*config)->f_color->nb_val == 3)
+	{
+		if (!ft_check_struct_color((*config)->c_color))
+			return (ft_print_err("Cant find ceiling color"));
+		if (!ft_check_struct_color((*config)->f_color))
+			return (ft_print_err("Cant find floor color"));
+	}
+	else
+	{
+		if ((*config)->c_color->nb_val != 3)
+			return (ft_print_err("Invalid ceiling color"));
+		if ((*config)->f_color->nb_val != 3)
+			return (ft_print_err("Invalid floor color"));
+	}
 	if ((*config)->resolution->x < 0 || (*config)->resolution->y < 0)
 		return (ft_print_err("Invalid resolution"));
 	(*config)->map = ft_extract_map(map);
