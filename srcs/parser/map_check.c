@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 14:43:23 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 22:19:40 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,31 @@ int			ft_can_open_file(char *path)
 
 char		**ft_open_and_read(char *path)
 {
-	int		fd;
+	t_coord	fd_and_i;
 	char	**file;
 	char	*line;
 	char	*trimmed_line;
 
-	fd = 0;
+	fd_and_i.y = 0;
+	fd_and_i.x = 0;
 	file = 0;
 	errno = 0;
-	fd = ft_can_open_file(path);
+	fd_and_i.x = ft_can_open_file(path);
 	if (!ft_can_open_file(path))
 		return (0);
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd_and_i.x, &line))
 	{
-		if ((trimmed_line = ft_strtrim(line, " \t"))[0] != '\0')
+		trimmed_line = ft_strtrim(line, " \t");
+		if (fd_and_i.y < 8 && ft_strlen(trimmed_line) > 0)
+			file = ft_add_line_in_array(trimmed_line, file);
+		else if (fd_and_i.y >= 8)
 			file = ft_add_line_in_array(line, file);
+		if (ft_strlen(line) > 0)
+			fd_and_i.y++;
 		free(line);
 		free(trimmed_line);
 	}
 	free(line);
-	close(fd);
+	close(fd_and_i.x);
 	return (file);
 }

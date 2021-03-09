@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/02 19:35:10 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 22:28:18 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,18 @@ char		**ft_extract_map(char **map)
 		ft_print_msg("The file doesnt contain map", ERROR_MSG);
 		return (0);
 	}
+	while (ft_strlen(map[i]) <=  1)
+		i++;
 	while (map[i])
 	{
+		if (ft_strlen(map[i]) == 0)
+		{
+			ft_print_err("More than one map in file.");
+			return (0);
+		}
 		if (ft_str_contain_others(map[i]))
 		{
-			ft_print_msg("Map contain wrong characters", ERROR_MSG);
+			ft_print_err("Map contain wrong characters");
 			return (0);
 		}
 		out = ft_add_line_in_array(map[i], out);

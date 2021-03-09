@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 20:59:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 22:22:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 22:29:05 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void			draw_minimap(t_vars *v, t_coord ***rays)
 		coord.y = (v->player.p_pos.y / TILE_SIZE) * MAP_TILE_SIZE;
 		while (i < v->c->resolution->x)
 		{
-			r_p.x = ((*rays)[i]->x / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
-			r_p.y = ((*rays)[i]->y / TILE_SIZE) * MAP_TILE_SIZE + (MAP_TILE_SIZE);
+			r_p.x = ((*rays)[i]->x / TILE_SIZE) * MAP_TILE_SIZE + MAP_TILE_SIZE;
+			r_p.y = ((*rays)[i]->y / TILE_SIZE) * MAP_TILE_SIZE + MAP_TILE_SIZE;
 			c = (*rays)[i];
 			if (DEBUG == 2)
 				if (i == 0 || i == v->c->resolution->x - 1)

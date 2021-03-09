@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 17:03:16 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 22:40:54 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_parse_resolution(char *str, t_config **config)
 	int		i;
 
 	i = 0;
-	if ((*config)->resolution->exist)
+	if ((*config)->resolution->exist == 1)
 		return (0);
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
@@ -89,19 +89,19 @@ static int		ft_parse_lines(t_config **config, char *map_line)
 	if (ft_strncmp("R ", line, 2) == 0)
 		err = ft_parse_resolution(ft_extract_conf(line), config);
 	else if (ft_strncmp("F ", line, 2) == 0)
-		ft_parse_color(line, (*config)->f_color);
+		err = ft_parse_color(line, (*config)->f_color);
 	else if (ft_strncmp("C ", line, 2) == 0)
-		ft_parse_color(line, (*config)->c_color);
+		err = ft_parse_color(line, (*config)->c_color);
 	else if (ft_strncmp("S ", line, 2) == 0)
-		err = ft_parse_path_file(&(*config)->sprite_texture, line);
+		err = ft_parse_path_file(&(*config)->sprite_texture, line + 2);
 	else if (ft_strncmp("SO", line, 2) == 0)
-		err = ft_parse_path_file(&(*config)->so_texture, line);
+		err = ft_parse_path_file(&(*config)->so_texture, line + 2);
 	else if (ft_strncmp("NO", line, 2) == 0)
-		err = ft_parse_path_file(&(*config)->no_texture, line);
+		err = ft_parse_path_file(&(*config)->no_texture, line + 2);
 	else if (ft_strncmp("WE", line, 2) == 0)
-		err = ft_parse_path_file(&(*config)->we_texture, line);
+		err = ft_parse_path_file(&(*config)->we_texture, line + 2);
 	else if (ft_strncmp("EA", line, 2) == 0)
-		err = ft_parse_path_file(&(*config)->ea_texture, line);
+		err = ft_parse_path_file(&(*config)->ea_texture, line + 2);
 	free(line);
 	line = 0;
 	return (err);
@@ -112,7 +112,7 @@ int				ft_parse_map(t_config **config, char **map)
 	int			i;
 	int			err;
 
-	err = 4;
+	err = 0;
 	i = 0;
 	if (!config)
 		return (0);
@@ -120,23 +120,13 @@ int				ft_parse_map(t_config **config, char **map)
 	{
 		err = ft_parse_lines(config, map[i]);
 		if (!err)
-			return (ft_print_err("Double params"));
+			return (ft_print_err("Too much params in map."));
 		i++;
 	}
-	if ((*config)->c_color->nb_val == 3 && (*config)->f_color->nb_val == 3)
-	{
-		if (!ft_check_struct_color((*config)->c_color))
-			return (ft_print_err("Cant find ceiling color"));
-		if (!ft_check_struct_color((*config)->f_color))
-			return (ft_print_err("Cant find floor color"));
-	}
-	else
-	{
-		if ((*config)->c_color->nb_val != 3)
-			return (ft_print_err("Invalid ceiling color"));
-		if ((*config)->f_color->nb_val != 3)
-			return (ft_print_err("Invalid floor color"));
-	}
+	if (!ft_check_struct_color((*config)->c_color))
+		return (0);
+	if (!ft_check_struct_color((*config)->f_color))
+		return (0);
 	if ((*config)->resolution->x < 0 || (*config)->resolution->y < 0)
 		return (ft_print_err("Invalid resolution"));
 	(*config)->map = ft_extract_map(map);
