@@ -6,17 +6,19 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 13:15:59 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 17:03:16 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		ft_parse_resolution(char *str, t_config **config)
+static int		ft_parse_resolution(char *str, t_config **config)
 {
 	int		i;
 
 	i = 0;
+	if ((*config)->resolution->exist)
+		return (0);
 	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	(*config)->resolution->x = ft_atoi(str + i);
@@ -25,6 +27,7 @@ static void		ft_parse_resolution(char *str, t_config **config)
 	(*config)->resolution->y = ft_atoi(str + i);
 	(*config)->resolution->exist = 1;
 	free(str);
+	return (1);
 }
 
 static char		*ft_extract_conf(char *line)
@@ -53,41 +56,71 @@ static char		*ft_extract_conf(char *line)
 	return (out);
 }
 
-static void		ft_parse_lines(t_config **config, char *map_line)
+static int		ft_parse_path_file(char **dest, char *line)
+{
+	int		i;
+
+	i = 0;
+	if (*dest != NULL)
+	{
+		ft_print_msg("Too much parameters in map", ERROR_MSG);
+		return (0);
+	}
+	line = ft_strtrim(line, " \t");
+	while (line[i])
+	{
+		if (ft_isspace(line[i]))
+			return (0);
+		i++;
+	}
+	*dest = ft_strdup(line);
+	if (!dest)
+		return (0);
+	return (1);
+}
+
+static int		ft_parse_lines(t_config **config, char *map_line)
 {
 	char	*line;
+	int		err;
 
+	err = 1;
 	line = ft_strtrim(map_line, " \t");
 	if (ft_strncmp("R ", line, 2) == 0)
-		ft_parse_resolution(ft_extract_conf(line), config);
-	else if (ft_strncmp("S ", line, 2) == 0)
-		(*config)->sprite_texture = ft_extract_conf(line);
+		err = ft_parse_resolution(ft_extract_conf(line), config);
 	else if (ft_strncmp("F ", line, 2) == 0)
 		ft_parse_color(line, (*config)->f_color);
 	else if (ft_strncmp("C ", line, 2) == 0)
 		ft_parse_color(line, (*config)->c_color);
+	else if (ft_strncmp("S ", line, 2) == 0)
+		err = ft_parse_path_file(&(*config)->sprite_texture, line);
 	else if (ft_strncmp("SO", line, 2) == 0)
-		(*config)->so_texture = ft_extract_conf(line);
+		err = ft_parse_path_file(&(*config)->so_texture, line);
 	else if (ft_strncmp("NO", line, 2) == 0)
-		(*config)->no_texture = ft_extract_conf(line);
+		err = ft_parse_path_file(&(*config)->no_texture, line);
 	else if (ft_strncmp("WE", line, 2) == 0)
-		(*config)->we_texture = ft_extract_conf(line);
+		err = ft_parse_path_file(&(*config)->we_texture, line);
 	else if (ft_strncmp("EA", line, 2) == 0)
-		(*config)->ea_texture = ft_extract_conf(line);
+		err = ft_parse_path_file(&(*config)->ea_texture, line);
 	free(line);
 	line = 0;
+	return (err);
 }
 
 int				ft_parse_map(t_config **config, char **map)
 {
 	int			i;
+	int			err;
 
+	err = 4;
 	i = 0;
 	if (!config)
 		return (0);
 	while (map[i])
 	{
-		ft_parse_lines(config, map[i]);
+		err = ft_parse_lines(config, map[i]);
+		if (!err)
+			return (ft_print_err("Double params"));
 		i++;
 	}
 	if ((*config)->c_color->nb_val == 3 && (*config)->f_color->nb_val == 3)

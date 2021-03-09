@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 22:05:45 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/01 13:25:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:59:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "ft_printf.h"
 
-# define BUFFER_SIZE 10000
+# define BUFFER_SIZE 1000000
 
 typedef struct	s_list
 {
