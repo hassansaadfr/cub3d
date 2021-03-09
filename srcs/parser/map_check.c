@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 20:49:01 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 22:19:40 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:02:23 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			ft_can_open_file(char *path)
 
 	fd = 0;
 	errno = 0;
-	fd = open(path, O_RDWR);
+	fd = open(path, O_RDWR | O_NOFOLLOW);
 	if (errno != 0)
 	{
 		ft_print_msg(strerror(errno), ERROR_MSG);
@@ -113,7 +113,7 @@ char		**ft_open_and_read(char *path)
 	file = 0;
 	errno = 0;
 	fd_and_i.x = ft_can_open_file(path);
-	if (!ft_can_open_file(path))
+	if (!fd_and_i.x)
 		return (0);
 	while (get_next_line(fd_and_i.x, &line))
 	{

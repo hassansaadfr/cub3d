@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 22:40:54 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:03:22 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static int		ft_parse_path_file(char **dest, char *line)
 		i++;
 	}
 	*dest = ft_strdup(line);
+	free(line);
 	if (!dest)
 		return (0);
 	return (1);

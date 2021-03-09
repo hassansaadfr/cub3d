@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:20:53 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/02/01 01:29:25 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:05:44 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_color			*ft_alloc_color(void)
 	color->g = -1;
 	color->g = -1;
 	color->a = 0;
+	color->exist = 0;
+	color->nb_val = 0;
 	return (color);
 }
 
