@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/10 01:18:54 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/10 18:59:20 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRCS			=	main.c \
 					engine/ray.c \
 					engine/ray_collisions.c \
 					engine/ray_tools.c \
-					debug_tools/debug_window.c \
+					engine/bmp.c \
+					engine/bmp_utils.c \
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
@@ -71,9 +72,12 @@ $(NAME)			:	${OBJS}
 all				:	${NAME}
 
 clean			:
+					make clean -C ${LIBFT_DIR}
+					make clean -C ${MLX_DIR}
 					rm -rf ${OBJS}
 
 fclean			:	clean
+					make fclean -C ${LIBFT_DIR}
 					rm -rf ${NAME}
 
 re				:	fclean all

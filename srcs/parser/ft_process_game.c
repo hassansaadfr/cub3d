@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 15:04:39 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:35:08 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,13 @@ char		**ft_extract_map(char **map)
 	return (out);
 }
 
-void		ft_launch_game(char *path)
+void		ft_launch_game(char *path, int save)
 {
 	char		**map_config;
 	t_config	*config;
 
 	config = ft_alloc_config();
+	config->bmp = save;
 	if (!ft_check_ext(path))
 	{
 		ft_free_config(config);
@@ -105,7 +106,12 @@ void		ft_launch_game(char *path)
 		exit(1);
 	}
 	if (ft_all_checks(&config, map_config))
-		init_window(config);
+	{
+		if (!save)
+			init_window(config);
+		else
+			bmp(config);
+	}
 }
 
 int			ft_all_checks(t_config **c, char **map)

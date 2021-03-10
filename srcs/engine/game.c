@@ -6,13 +6,13 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 21:04:26 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 22:06:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:51:23 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		load_texture(t_vars *v, t_tex *t, char *path)
+void			load_texture(t_vars *v, t_tex *t, char *path)
 {
 	t->img = mlx_xpm_file_to_image(v->mlx, path, &t->width, &t->height);
 	t->addr = mlx_get_data_addr(t->img, &t->bits_per_pixel,
@@ -25,7 +25,6 @@ void			draw_frame(t_vars *vars)
 	vars->c->player_pos->y = vars->player.p_pos.y;
 	raycast(vars);
 	recalc_sprites_dist(vars);
-	ft_display_info(vars);
 	ft_draw_img(vars, 0, 0);
 }
 

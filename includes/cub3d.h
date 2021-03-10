@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 15:09:49 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:57:37 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_print_msg(char *str, int color);
 int			ft_check_ext(char *path);
 int			ft_check_colors(const char *color);
 int			ft_parse_color(char *str, t_color *color);
-void		ft_launch_game(char *path);
+void		ft_launch_game(char *path, int save);
 char		**ft_open_and_read(char *path);
 int			ft_can_open_file(char *path);
 void		free_array_str(char **arr);
@@ -103,8 +103,6 @@ t_coord		*ft_calc_pos_in_map(t_vars *vars);
 void		raycast(t_vars *v);
 void		drawline(t_coord *start, t_coord *end, int color, t_vars *vars);
 
-void		ft_display_info(t_vars *mlx);
-
 void		vertical_collision(t_vars *v, t_ray *r);
 void		horizontal_collision(t_vars *v, t_ray *r);
 float		ray_dist(t_float_pos *p, float endx, float endy);
@@ -112,5 +110,13 @@ float		get_perp_dist(float dist, float angle);
 float		fix_angle(float angle);
 float		degree_to_radian(float degree);
 t_tex		texture_choose(t_vars *v, t_ray *r);
+void		load_texture(t_vars *v, t_tex *t, char *path);
+
+t_bmp		convert_trgb_to_bmp(t_data *img, int x, int y);
+t_header	fill_bmp_header(t_coord img_res);
+void		fill_bmp(t_data *frame, t_header header, int fd);
+int			get_correction_byte(int image_width);
+int			save_bmp(t_data *first_frame, t_coord img_res);
+int			bmp(t_config *c);
 
 #endif

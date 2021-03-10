@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:06:55 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/07 20:34:39 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:45:33 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int			get_sprite_pixel(t_tex t, int texture_w, t_coord offset)
 
 void		ft_draw_img(t_vars *vars, int x, int y)
 {
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, x, y);
+	if (!vars->c->bmp)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, x, y);
 }
 
 void		drawline(t_coord *start, t_coord *end, int color, t_vars *vars)

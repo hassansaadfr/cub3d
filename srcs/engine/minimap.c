@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 20:59:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 22:29:05 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:51:26 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void			draw_minimap(t_vars *v, t_coord ***rays)
 			i++;
 		}
 		draw_cube(&coord, MAP_TILE_SIZE / 2, RED, &v->img);
-		ft_display_info(v);
 	}
 	free_rays(v, *rays);
 }

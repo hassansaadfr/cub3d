@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 15:03:40 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:09:32 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@
 # define PI 3.1415926535
 # define DR 0.0174533
 # define FOV 1.0471975512
+
+# define BYTES_FORMAT 24
+# define BMP_FILE_NAME "save.bmp"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:20:53 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 23:05:44 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:20:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ t_config		*ft_alloc_config(void)
 	c->ea_texture = NULL;
 	c->sprite_texture = NULL;
 	c->map = 0;
+	c->bmp = 0;
 	return (c);
 }

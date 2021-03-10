@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 12:00:56 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 22:24:54 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:57:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_config {
 	t_color		*f_color;
 	t_color		*c_color;
 	char		**map;
+	int			bmp;
 }				t_config;
 
 typedef struct	s_data
@@ -167,5 +168,36 @@ typedef struct	s_dda_line
 	float		x;
 	float		y;
 }				t_dda_line;
+
+typedef struct	s_bmp
+{
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+}				t_bmp;
+
+typedef struct	s_img_header
+{
+	int		size_img_header;
+	int		width;
+	int		height;
+	short	nb_planes;
+	short	bpp;
+	int		compression;
+	int		size_img;
+	int		horizontal_resolution;
+	int		vertical_resolution;
+	int		color_array;
+	int		color_img_array;
+}				t_img_header;
+
+typedef struct	s_header
+{
+	char				signature[2];
+	int					size;
+	int					reserved;
+	int					offset_img;
+	t_img_header		img_header;
+}				t_header;
 
 #endif

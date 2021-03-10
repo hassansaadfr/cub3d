@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 20:07:22 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 16:06:55 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:59:55 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static char	*get_correct_line(char *str)
 	return (remaining);
 }
 
-int		get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	char			*buff;
 	static char		*rem[4096];
