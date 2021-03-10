@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/08 18:10:34 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/10 01:18:54 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ SRCS			=	main.c \
 					parser/ft_process_game.c \
 					parser/ft_flood_fill.c \
 					utils/errors.c \
+					utils/resolution.c \
 					utils/print_colors.c \
 					utils/colors.c \
 					utils/array_utils.c \
-					parser/map_check.c \
+					parser/file.c \
 					parser/color_parser.c \
 					parser/ft_map_parser.c \
 					parser/textures_load.c \

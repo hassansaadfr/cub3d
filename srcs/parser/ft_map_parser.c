@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:09:21 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 23:03:22 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 01:18:36 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 
 static int		ft_parse_resolution(char *str, t_config **config)
 {
+	char	*tmp;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	if ((*config)->resolution->exist == 1)
 		return (0);
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+	tmp = ft_strtrim(str, " \t");
+	if (!check_resolution(tmp))
+	{
+		free(tmp);
+		return (-1);
+	}
+	(*config)->resolution->x = ft_atoi(tmp);
+	while (tmp[i] && ft_isdigit(str[i]))
 		i++;
-	(*config)->resolution->x = ft_atoi(str + i);
-	while (str[i] && ft_isdigit(str[i]))
-		i++;
-	(*config)->resolution->y = ft_atoi(str + i);
+	(*config)->resolution->y = ft_atoi(tmp + i);
 	(*config)->resolution->exist = 1;
 	free(str);
+	free(tmp);
 	return (1);
 }
 
@@ -70,7 +78,10 @@ static int		ft_parse_path_file(char **dest, char *line)
 	while (line[i])
 	{
 		if (ft_isspace(line[i]))
+		{
+			free(line);
 			return (0);
+		}
 		i++;
 	}
 	*dest = ft_strdup(line);
@@ -120,8 +131,10 @@ int				ft_parse_map(t_config **config, char **map)
 	while (map[i])
 	{
 		err = ft_parse_lines(config, map[i]);
-		if (!err)
+		if (err == 0)
 			return (ft_print_err("Too much params in map."));
+		if (err == -1)
+			return (0);
 		i++;
 	}
 	if (!ft_check_struct_color((*config)->c_color))

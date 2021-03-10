@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 22:28:18 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 01:22:25 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,35 @@ static char	ft_str_contain_others(char *str)
 	return (0);
 }
 
+static int	check_double_map(char **map, int i)
+{
+	char	*trim;
+	char	*trimnext;
+	int		out;
+
+	out = 1;
+	trim = 0;
+	if (ft_strlen(map[i]) == 0 && map[i + 1])
+	{
+		trim = ft_strtrim(map[i + 1], " \t");
+		if (ft_strlen(trim) > 0)
+		{
+			if (map[i + 1])
+			{
+				trimnext = ft_strtrim(map[i + 1], " \t");
+				if (ft_strlen(ft_strtrim(map[i + 1], " \t")) > 0
+					&& ft_str_contain_others(map[i]))
+					out = ft_print_err("Map contain wrong characters");
+				else
+					out = ft_print_err("More than one map in file.");
+				free(trimnext);
+			}
+		}
+		free(trim);
+	}
+	return (out);
+}
+
 char		**ft_extract_map(char **map)
 {
 	int		i;
@@ -42,24 +71,15 @@ char		**ft_extract_map(char **map)
 	while (map[map_size])
 		map_size++;
 	if (map_size <= i)
-	{
-		ft_print_msg("The file doesnt contain map", ERROR_MSG);
-		return (0);
-	}
-	while (ft_strlen(map[i]) <=  1)
+		return (ft_print_error("The file doesnt contain map"));
+	while (map[i] && ft_strlen(map[i]) <= 1)
 		i++;
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) == 0)
-		{
-			ft_print_err("More than one map in file.");
+		if (!check_double_map(map, i))
 			return (0);
-		}
 		if (ft_str_contain_others(map[i]))
-		{
-			ft_print_err("Map contain wrong characters");
-			return (0);
-		}
+			return (ft_print_error("Map contain wrong characters"));
 		out = ft_add_line_in_array(map[i], out);
 		i++;
 	}

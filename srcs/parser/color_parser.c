@@ -6,11 +6,37 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:32:35 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 23:05:12 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 00:24:34 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void		assign_color(t_color *color, int tmp, int i)
+{
+	if (i == 0)
+		(color)->r = tmp;
+	if (i == 1)
+		(color)->g = tmp;
+	if (i == 2)
+		(color)->b = tmp;
+}
+
+static int		nb_commas(char *color)
+{
+	int		i;
+	int		nb;
+
+	i = 0;
+	nb = 0;
+	while (color[i])
+	{
+		if (color[i] == ',')
+			nb++;
+		i++;
+	}
+	return (nb);
+}
 
 static int		ft_check_color_validity(char *color)
 {
@@ -20,6 +46,11 @@ static int		ft_check_color_validity(char *color)
 
 	i = 0;
 	tmp = ft_strtrim(color, " \t");
+	if (ft_strlen(tmp) == 0)
+	{
+		free(tmp);
+		return (-1);
+	}
 	while (tmp[i])
 	{
 		if (!ft_isdigit(tmp[i]))
@@ -31,7 +62,7 @@ static int		ft_check_color_validity(char *color)
 	}
 	free(tmp);
 	out = ft_atoi(color);
-	if (out >= 0 && out <= 255)
+	if (color_is_valid(out))
 		return (out);
 	return (-1);
 }
@@ -44,30 +75,24 @@ int				ft_parse_color(char *str, t_color *color)
 
 	tmp = 0;
 	i = 0;
-	if (color->exist == 1)
+	if (color->exist == 1 || nb_commas(str) != 2)
 		return (0);
 	splitted = ft_split(str, ',');
 	while (splitted[i])
 	{
 		tmp = ft_check_color_validity(splitted[i] + (i == 0));
-		if (i == 0)
-			(color)->r = tmp;
-		if (i == 1)
-			(color)->g = tmp;
-		if (i == 2)
-			(color)->b = tmp;
+		assign_color(color, tmp, i);
 		i++;
 	}
 	color->exist = 1;
 	color->nb_val = i;
 	free_array_str(splitted);
-	return (1);
-}
-
-static int		color_is_valid(int c)
-{
-	if (c < 0 || c > 255)
+	if (i != 3)
+	{
+		color->exist = 0;
+		color->nb_val = i;
 		return (0);
+	}
 	return (1);
 }
 

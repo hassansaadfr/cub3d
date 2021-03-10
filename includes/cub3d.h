@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 22:21:30 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 01:18:01 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 void		ft_errors(char	*err);
 int			ft_print_err(char *msg);
+char		**ft_print_error(char *msg);
 void		ft_print_msg(char *str, int color);
 int			ft_check_ext(char *path);
 int			ft_check_colors(const char *color);
@@ -41,6 +42,7 @@ int			ft_can_open_file(char *path);
 void		free_array_str(char **arr);
 int			ft_parse_map(t_config **config, char **map);
 void		ft_read_array_str(char **array);
+int			check_resolution(char *str);
 char		**ft_add_line_in_array(char *line, char **array);
 int			ft_flood_fill(t_config **config, char **map);
 int			ft_all_checks(t_config **config, char **map);
@@ -51,6 +53,7 @@ void		ft_free_config(t_config *config);
 t_config	*ft_alloc_config(void);
 t_coord		*ft_alloc_coord(int x, int y);
 t_color		*ft_alloc_color(void);
+int			color_is_valid(int c);
 int			get_array_size(char **arr);
 char		**ft_copy_arr(char **original);
 char		**ft_extract_map(char **map);

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   resolution.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 19:38:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/09 23:47:29 by hsaadaou         ###   ########.fr       */
+/*   Created: 2021/03/10 01:16:48 by hsaadaou          #+#    #+#             */
+/*   Updated: 2021/03/10 01:19:41 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_errors(char *err)
+int		check_resolution(char *str)
 {
-	ft_print_msg(err, ERROR_MSG);
-	exit(1);
-}
+	int		j;
 
-int		ft_print_err(char *msg)
-{
-	ft_print_msg(msg, ERROR_MSG);
-	return (0);
-}
-
-char	**ft_print_error(char *msg)
-{
-	ft_print_msg(msg, ERROR_MSG);
-	return (0);
+	j = 0;
+	while (str[j])
+	{
+		if (ft_isdigit(str[j]) || str[j] == ' ')
+			j++;
+		else
+		{
+			ft_print_msg("Invalid resolution", ERROR_MSG);
+			return (0);
+		}
+	}
+	return (1);
 }
