@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/10 18:59:20 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/10 19:02:19 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ HEAD			=	-I includes -I libft/includes -I ${MLX_DIR}
 
 CC				=	clang
 
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-Wall -Werror -Wextra
 
 LIBFT_DIR		=	libft
 
