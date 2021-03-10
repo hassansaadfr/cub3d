@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 00:17:05 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/08 22:24:40 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 19:08:43 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int			keypress(int keycode, t_vars *vars)
 {
 	if (keycode == ESCAPE)
 		exit_game(vars);
-	if (keycode == UP || keycode == Z)
+	if (keycode == W)
 		vars->keys.north = 1;
-	if (keycode == DOWN || keycode == S)
+	if (keycode == S)
 		vars->keys.south = 1;
-	if (keycode == Q)
+	if (keycode == A)
 		vars->keys.move_east = 1;
 	if (keycode == D)
 		vars->keys.move_west = 1;
@@ -70,11 +70,11 @@ int			keypress(int keycode, t_vars *vars)
 
 int			keyrelease(int keycode, t_vars *vars)
 {
-	if (keycode == UP || keycode == Z)
+	if (keycode == W)
 		vars->keys.north = 0;
-	if (keycode == DOWN || keycode == S)
+	if (keycode == S)
 		vars->keys.south = 0;
-	if (keycode == Q)
+	if (keycode == A)
 		vars->keys.move_east = 0;
 	if (keycode == D)
 		vars->keys.move_west = 0;
