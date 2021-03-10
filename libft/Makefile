@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 22:04:03 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/01 13:25:24 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/10 13:53:04 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ HEAD			=	includes
 
 CC				=	clang
 
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g
 
 NAME			=	libft.a
 

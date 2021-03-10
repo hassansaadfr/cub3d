@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:07 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 01:18:01 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:09:49 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ void		free_array_str(char **arr);
 int			ft_parse_map(t_config **config, char **map);
 void		ft_read_array_str(char **array);
 int			check_resolution(char *str);
+int			check_resolution_content(char **splitted, int size);
 char		**ft_add_line_in_array(char *line, char **array);
 int			ft_flood_fill(t_config **config, char **map);
 int			ft_all_checks(t_config **config, char **map);
 int			ft_get_player_pos(t_config **config, char **map);
 
 int			ft_check_config(t_config **config, char **map);
+int			check_undefined_options(t_config *c);
 void		ft_free_config(t_config *config);
 t_config	*ft_alloc_config(void);
 t_coord		*ft_alloc_coord(int x, int y);
@@ -57,7 +59,7 @@ int			color_is_valid(int c);
 int			get_array_size(char **arr);
 char		**ft_copy_arr(char **original);
 char		**ft_extract_map(char **map);
-int			ft_check_struct_color(t_color *color);
+int			check_color(t_color *color);
 int			try_load_textures(t_config *c);
 
 int			create_color(t_color *c);

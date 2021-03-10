@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:13:36 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/01/29 15:52:23 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:56:51 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		**ft_add_line_in_array(char *line, char **array)
 		i++;
 	}
 	out[i] = ft_strdup(line);
-	out[i + 1] = 0;
+	out[i + 1] = NULL;
 	free_array_str(array);
 	return (out);
 }

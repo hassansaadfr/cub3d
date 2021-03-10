@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:57:44 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 01:22:25 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:04:39 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_double_map(char **map, int i)
 			if (map[i + 1])
 			{
 				trimnext = ft_strtrim(map[i + 1], " \t");
-				if (ft_strlen(ft_strtrim(map[i + 1], " \t")) > 0
+				if (ft_strlen(trimnext) > 0
 					&& ft_str_contain_others(map[i]))
 					out = ft_print_err("Map contain wrong characters");
 				else
@@ -76,10 +76,11 @@ char		**ft_extract_map(char **map)
 		i++;
 	while (map[i])
 	{
-		if (!check_double_map(map, i))
-			return (0);
-		if (ft_str_contain_others(map[i]))
+		if (!check_double_map(map, i) || ft_str_contain_others(map[i]))
+		{
+			free_array_str(out);
 			return (ft_print_error("Map contain wrong characters"));
+		}
 		out = ft_add_line_in_array(map[i], out);
 		i++;
 	}

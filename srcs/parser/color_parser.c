@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:32:35 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 00:24:34 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:36:26 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int				ft_parse_color(char *str, t_color *color)
 	return (1);
 }
 
-int				ft_check_struct_color(t_color *color)
+int				check_color(t_color *color)
 {
 	if (color->exist != 1)
 		return (ft_print_err("A color is missing"));

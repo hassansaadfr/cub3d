@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 03:22:17 by hsaadaou          #+#    #+#             */
-/*   Updated: 2020/11/20 03:27:49 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:02:15 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s)
 	char	*str;
 
 	len = ft_strlen(s);
-	if (!(str = malloc(sizeof(char) * len + 1)))
+	if (!(str = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	ft_strlcpy(str, s, len + 1);
 	return (str);
