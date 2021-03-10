@@ -6,7 +6,7 @@
 #    By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/17 14:58:24 by hsaadaou          #+#    #+#              #
-#    Updated: 2021/03/10 19:02:19 by hsaadaou         ###   ########.fr        #
+#    Updated: 2021/03/10 19:14:48 by hsaadaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ $(NAME)			:	${OBJS}
 					${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} ${LIBS}
 
 all				:	${NAME}
+
+bonus			:	${NAME}
 
 clean			:
 					make clean -C ${LIBFT_DIR}
