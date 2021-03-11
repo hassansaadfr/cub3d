@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:07:50 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 18:25:08 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:29:47 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 	{
 		if (argc == 2)
 			ft_launch_game(argv[1], argc == 3);
-		else if (ft_strncmp(argv[2], "--save", 6) == 0)
+		else if (ft_strncmp(argv[2], "--save", 7) == 0)
 			ft_launch_game(argv[1], argc == 3);
 		else
 			ft_errors(INVALID_ARGS);

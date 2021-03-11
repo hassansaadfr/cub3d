@@ -6,7 +6,7 @@
 /*   By: hsaadaou <hsaadaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:12:58 by hsaadaou          #+#    #+#             */
-/*   Updated: 2021/03/10 18:09:32 by hsaadaou         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:29:38 by hsaadaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # define DEBUG 0
 
-# define INVALID_ARGS "Usage : ./cub3d [--save] <map.cub>"
+# define INVALID_ARGS "Usage : ./cub3d <map.cub> [--save]"
 # define TOO_MUCH_ARGS "Too much args"
 # define INVALID_MAP "Invalid map"
 # define WRONG_FILE_NAME "Not a valid .cub file."
